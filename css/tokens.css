@@ -29,6 +29,7 @@
   --font-size-lg: 16px;
 
   /* Radius & Shadow */
+   --radius-full: 999px;
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
