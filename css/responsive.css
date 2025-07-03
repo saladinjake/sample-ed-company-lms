@@ -42,6 +42,7 @@
   .sm\:m-56 { margin: 14rem; }
   .sm\:p-64 { padding: 16rem; }
   .sm\:m-64 { margin: 16rem; }
+    .sm\:mt-24 { margin-top: 6rem; }
   .sm\:text-primary { color: #1d4ed8; }
   .sm\:bg-primary { background-color: #1d4ed8; }
   .sm\:text-secondary { color: #64748b; }
