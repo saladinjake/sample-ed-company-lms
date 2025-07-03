@@ -9,13 +9,13 @@
 
 </head>
 <body class="bg-light text-md font-base text-primary">
-<header class="bg-white border-b shadow-sm p-3">
+<header class="bg-white border-b shadow-sm p-3"  >
   <!-- Top Row -->
-  <div class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 ">
+  <div class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 " >
     
     <!-- Social Icons -->
-    <div class="flex gap-2 md:order-2 order-1 items-center mx-auto">
-      <a href="#" class="border rounded-full p-2"><i class="fab fa-facebook-f"></i></a>
+    <div class=" gap-2 md:order-2 order-1 items-center mx-auto  hidden md:flex" >
+      <a href="#" class="border rounded-full p-2"><i class="fab fa-cart"></i></a>
       <a href="#" class="border rounded-full p-2"><i class="fab fa-twitter"></i></a>
       <a href="#" class="border rounded-full p-2"><i class="fab fa-instagram"></i></a>
       <a href="#" class="border rounded-full p-2"><i class="fab fa-dribbble"></i></a>
@@ -23,31 +23,31 @@
 
     <!-- Logo -->
     <div class="text-center md:order-1 order-2 w-full sm:w-auto">
-      <h1 class="text-lg font-bold">PUBLISHING <span class="text-warning">COMPANY</span></h1>
-      <p class="text-muted text-sm">BOOK PUBLISHING COMPANY</p>
+      <h1 class="text-lg font-bold">UNI<span class="text-warning">CAST</span></h1>
+      <p class="text-muted text-sm">E-LEARNING COMPANY</p>
     </div>
 
     <!-- Search -->
     <div class="md:order-3 order-3 w-full w-auto">
-      <form class="flex bg-light rounded-full overflow-hidden w-full sm:w-auto">
-        <input class="input rounded-none border-0 bg-transparent px-3 w-fullx" placeholder="Search" />
+      <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
+        <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search" />
         <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
       </form>
     </div>
   </div>
 
   <!-- Mobile Menu Toggle -->
-  <div class="md:hidden mt-4">
+  <div class="md:hidden mt-4" >
     <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-muted text-md flex items-center gap-2">
-      <i class="fas fa-bars"></i> MENU
+      <i class="fas fa-bars"></i> Browse Categories
     </button>
   </div>
 
   <!-- Nav Menu -->
 <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
   <ul class="flex justify-center gap-6 text-sm uppercase">
-    <li><a href="#" class="text-primary text-muted font-semibold">Home</a></li>
-    <li><a href="#" class="text-black hover:text-primary">About</a></li>
+    <li><a href="#" class="text-primary text-muted font-semibold">Courses</a></li>
+    <li><a href="#" class="text-black hover:text-primary">Guide</a></li>
     <li><a href="#" class="text-black hover:text-primary">Coming Soon</a></li>
     <li><a href="#" class="text-black hover:text-primary">Top Seller</a></li>
     <li><a href="#" class="text-black hover:text-primary">Books</a></li>
@@ -60,6 +60,7 @@
 
   <!-- Mobile Nav -->
   <nav class="sm:hidden hidden mt-4 bg-black text-white text-sm uppercase" id="mobile-menu">
+     <!-- <div class="overlay absolute inset-0" style="background: rgba(255,255,255,0.5)"></div> -->
     <a href="#" class="block py-2 border-b px-3 text-primary">Home</a>
     <a href="#" class="block py-2 border-b px-3">About</a>
     <a href="#" class="block py-2 border-b px-3">Coming Soon</a>
@@ -71,18 +72,41 @@
   </nav>
 </header>
 
-  <!-- Hero Section -->
-  <section class="flex flex-col items-center justify-center text-center py-6 px-4 sm:py-12">
+  <!-- Hero Section example-->
+  <!-- <section class="flex flex-col items-center justify-center text-center py-6 px-4 sm:py-12">
     <h2 class="text-lg sm:text-xl font-bold mb-3">Build Beautiful UIs with Ease</h2>
     <p class="text-muted mb-4 max-w-md">
       A lightweight, Ant Design–inspired utility-first CSS framework tailored for mobile-first design and rapid prototyping.
     </p>
     <button class="btn btn-primary">Start Building</button>
-  </section>
+  </section> -->
 
 
+
+
+    <!-- Hero Section example 2-->
+
+   <section class="hero-parallax relative text-white flex sm:items-center">
+  <div class="overlay absolute inset-0"></div>
+
+  <div class="sm:container relative z-10 px-4  flex flex-col sm:items-start sm:items-center text-center sm:text-left max-w-2xl">
+    <h1 class="text-xl sm:text-2xl font-bold ">
+      Elevate Your <span class="text-warning">Reading</span> Experience
+    </h1>
+    <p class="text-muted text-white ">
+      Browse bestsellers, new releases, and exclusive pre-orders from your favorite authors.
+    </p>
+    <a href="#books" class="btn btn-primary">Explore Collection</a>
+  </div>
+
+
+</section> 
+
+
+
+  
   <!-- Features -->
-  <section class=" px-16 py-16 bg-white">
+  <section class=" px-16 py-2 bg-white">
     <h3 class="text-md font-bold text-center mb-6">Why Choose AntLiteCSS?</h3>
     <div class="grid grid-cols md:grid-cols-3 gap-8   items-center">
       <div class="card">
@@ -99,6 +123,33 @@
       </div>
     </div>
   </section>
+
+<!-- <section class="relative bg-white overflow-hidden py-12">
+  <div class="container mx-auto flex flex-col-reverse sm:flex-row items-center gap-8 px-4">
+    
+    <div class="w-full sm:w-1/2 text-center sm:text-left">
+      <h1 class="text-xl sm:text-2xl font-bold mb-4">
+        Discover the Art of <span class="text-primary">Publishing</span>
+      </h1>
+      <p class="text-muted mb-6">
+        Explore our latest releases, bestsellers, and upcoming titles from award-winning authors.
+      </p>
+      <a href="#books" class="btn btn-primary">
+        Browse Books
+      </a>
+    </div>
+
+    <div class="w-full sm:w-1/2">
+      <div class="parallax-wrapper">
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1400&q=80" alt="Hero" class="w-full parallax-img" />
+      </div>
+    </div>
+
+  </div>
+</section> -->
+
+
+
 
 
     <!-- Testimonials -->

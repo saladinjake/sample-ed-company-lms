@@ -61,3 +61,14 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
 }
+
+
+
+
+.carousel img { display: block; }
+
+.w-200{width: 200px}
+.h-200{height:200px}
+.contain{object-fit:contain;}
+
+
