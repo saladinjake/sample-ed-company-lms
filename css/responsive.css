@@ -77,7 +77,7 @@
   .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
   .sm\:hidden { display: none; }
 
-
+  .sm\:flex-row { flex-direction: row; }
       
   .sm\:flex { display: flex; }
 .sm\:flex-wrap { flex-wrap: wrap; }

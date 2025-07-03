@@ -111,12 +111,6 @@ button[onclick] {
 
 /*two col hero paralax*/
 
-/* Container helper if not defined */
-.container {
-  max-width: 1200px;
-  /* margin: 0 auto; */
-}
-
 /* Parallax wrapper */
 .parallax-wrapper {
   position: relative;
@@ -193,4 +187,26 @@ button[onclick] {
 
 .carousel-btn:hover {
   background-color: var(--color-bg-light);
+}
+@media (max-width: 640px) {
+  #course-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  #course-track > div {
+    scroll-snap-align: start;
+  }
+}
+
+
+
+
+/*course search section in home page*/
+
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
