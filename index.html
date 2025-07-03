@@ -109,6 +109,10 @@
 
 
 
+
+
+
+
   <!-- Features -->
   <section class=" px-16 py-2 bg-white">
     <h3 class="text-md font-bold text-center mb-6">Why Choose Us?</h3>
@@ -165,7 +169,7 @@
               <h4 class="text-primary font-bold mb-2">Utility-Focused</h4>
               <p class="text-muted">Design quickly with a clean and consistent class system.</p>
             </div>
-            
+
           </div>
         </section>
 
@@ -176,6 +180,36 @@
 
 
 
+
+
+
+  <section class="bg-white py-8">
+    <div class="container mx-auto px-4 relative">
+      <h2 class="text-center text-lg font-semibold mb-6">Our Partners</h2>
+
+      <!-- Carousel Wrapper -->
+      <div class="overflow-hidden relative" id="logo-carousel">
+        <div class="flex transition-all duration-500" id="carousel-track">
+          <img src="https://img.freepik.com/premium-vector/logo-bakers-kitchen-that-says-tasty-nutritious_878099-26.jpg" class="carousel-logo" />
+          <img src="https://thumbs.dreamstime.com/b/sponsor-stamp-vector-sign-seal-logo-isolated-white-background-86263619.jpg" class="carousel-logo" />
+          <img src="https://thumbs.dreamstime.com/b/sponsor-badge-red-white-background-58987248.jpg" class="carousel-logo" />
+          <img src="https://thumbs.dreamstime.com/b/sponsor-stamp-vector-sign-seal-logo-isolated-white-background-86263619.jpg" class="carousel-logo" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCAWgaE9NVfPitmEcDjEh44I3cOZdyuynH1s3duzKgKpDnpmRNC6vRPIfc60yoeVXOzYU&usqp=CAU" class="carousel-logo" />
+      
+          <img src="https://img.freepik.com/premium-vector/logo-bakers-kitchen-that-says-tasty-nutritious_878099-26.jpg" class="carousel-logo" />
+          <img src="https://thumbs.dreamstime.com/b/sponsor-stamp-vector-sign-seal-logo-isolated-white-background-86263619.jpg" class="carousel-logo" />
+          <img src="https://thumbs.dreamstime.com/b/sponsor-badge-red-white-background-58987248.jpg" class="carousel-logo" />
+          <img src="https://thumbs.dreamstime.com/b/sponsor-stamp-vector-sign-seal-logo-isolated-white-background-86263619.jpg" class="carousel-logo" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCAWgaE9NVfPitmEcDjEh44I3cOZdyuynH1s3duzKgKpDnpmRNC6vRPIfc60yoeVXOzYU&usqp=CAU" class="carousel-logo" />
+  
+        </div>
+
+        <!-- Arrows -->
+        <button class="carousel-btn left-0" onclick="prevSlide()">&#10094;</button>
+        <button class="carousel-btn right-0" onclick="nextSlide()">&#10095;</button>
+      </div>
+    </div>
+  </section>
 
 
   <!-- Testimonials -->
@@ -205,6 +239,40 @@
   <footer class="py-6 px-4 bg-light text-center text-muted text-sm">
     © 2025 AntLiteCSS. All rights reserved.
   </footer>
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const logos = track.children;
+    const logoWidth = 144; // 120px + 24px gap
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const offset = -(currentIndex * logoWidth);
+      track.style.transform = `translateX(${offset}px)`;
+    }
+
+    function nextSlide() {
+      if (currentIndex < logos.length - 4) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = logos.length - 4;
+      }
+      updateCarousel();
+    }
+
+    // Auto slide every 3 seconds
+    setInterval(nextSlide, 3000);
+  </script>
+
 </body>
 
 </html>

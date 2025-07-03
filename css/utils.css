@@ -598,6 +598,8 @@
 .flex-row { flex-direction: row; }
 .block { display: block; }
 
+.overflow-hidden{overflow: hidden}
+
 /*grids calculation*/
 .focus\:outline-none:focus { outline: none; }
 .grid { display: grid; }
