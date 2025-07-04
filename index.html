@@ -217,6 +217,8 @@
 
 
 
+
+
   <section class="bg-light py-12">
   <div class="container mx-auto px-4 relative">
     <h2 class="text-3xl font-semibold mb-8">Popular Courses</h2>
@@ -429,6 +431,31 @@
 
 
 
+<div class="max-w-4xl mx-auto p-6">
+  <div class="flex border-b mb-4 container">
+    <button class="color-black px-4 py-2 text-xl text-gray-600" onclick="switchPlanTab('individual')">Individual</button>
+    <button class="color-black px-4 py-2 text-xl text-gray-600" onclick="switchPlanTab('teams')">For Teams</button>
+  </div>
+
+  <div id="plansContent" class="container grid sm:grid-cols-2 gap-4"></div>
+</div>
+
+
+
+
+ <section class="text-center py-8 px-2  container mx-auto w-full">
+     <h1 class="font-semibold cursor-pointer">FAQs</h1>
+  <div class="bg-white rounded shadow p-4 border-b mb-2" onclick="toggleFaq(this)">
+    <h3 class="font-semibold cursor-pointer">What happens after I enroll?</h3>
+    <p class="faq-answer text-sm text-gray-600 hidden mt-2">You get instant access to your dashboard and course content.</p>
+  </div>
+  <div class="bg-white rounded shadow p-4 border-b mb-2" onclick="toggleFaq(this)">
+    <h3 class="font-semibold cursor-pointer">Do I get a certificate?</h3>
+    <p class="faq-answer text-sm text-gray-600 hidden mt-2">Yes, upon completion of any paid course.</p>
+  </div>
+</section>
+
+
 
   <!-- Testimonials -->
   <section class="container-white py-8 px-8 ">
@@ -448,6 +475,9 @@
 
 
   </main>
+
+
+ 
 
 
   <!-- CTA -->
@@ -713,7 +743,7 @@ const allCourses = [
     loadCourses(true);
   });
 
-  // 👁️ IntersectionObserver for infinite scroll
+  //  IntersectionObserver for infinite scroll
   const observer = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting && page * perPage <= visibleCourses.length) {
       loadCourses();
@@ -727,6 +757,50 @@ const allCourses = [
   // 🔁 Initial setup
   visibleCourses = allCourses;
   loadCourses(true);
+
+
+
+
+
+
+
+
+//faq
+const plans = {
+  individual: [
+    { name: "Free", price: "₦0", features: ["Access 5 free courses", "Community support"] },
+    { name: "Pro", price: "₦5,000", features: ["All courses", "Certificates", "Offline mode"] }
+  ],
+  teams: [
+    { name: "Starter Team", price: "₦10,000", features: ["3 members", "Admin dashboard"] },
+    { name: "Business", price: "₦30,000", features: ["25 members", "Analytics", "Priority support"] }
+  ]
+};
+
+function switchPlanTab(type) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+
+  const html = plans[type].map(p => `
+    <div class="p-6 border rounded shadow bg-white mb-4">
+      <h3 class="text-lg font-bold mb-2">${p.name}</h3>
+      <p class="text-xl font-semibold mb-2">${p.price} / month</p>
+      <ul class="text-sm text-gray-600 mb-3">${p.features.map(f => `<li>✅ ${f}</li>`).join("")}</ul>
+      <button class="btn bg-blue-600 text-white w-full">Subscribe</button>
+    </div>
+  `).join("");
+
+  document.getElementById("plansContent").innerHTML = html;
+}
+switchPlanTab("individual");
+
+
+
+function toggleFaq(el) {
+  const answer = el.querySelector('.faq-answer');
+  answer.classList.toggle('hidden');
+}
+
 </script>
 
 

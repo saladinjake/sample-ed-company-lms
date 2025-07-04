@@ -661,3 +661,6 @@
 .shadow-sm { box-shadow: var(--shadow-sm); }
 .shadow-md { box-shadow: var(--shadow-md); }
 
+.whitespace-nowrap {
+  white-space: nowrap;
+}
