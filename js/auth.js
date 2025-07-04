@@ -1,51 +1,69 @@
+// auth utils
+export async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
 
+export function getUsers() {
+  return JSON.parse(localStorage.getItem("users") || "[]");
+}
 
-function signUp(name, email, password) {
+export function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+export function setCurrentUser(user) {
+  localStorage.setItem("currentUser", JSON.stringify(user));
+}
+
+export function getCurrentUser() {
+  return JSON.parse(localStorage.getItem("currentUser"));
+}
+
+export function logout() {
+  localStorage.removeItem("currentUser");
+}
+
+export async function signUp(name, email, password) {
   const users = getUsers();
-  const exists = users.find(u => u.email === email);
-  if (exists) return { error: "Email already exists." };
-
-  const newUser = { name, email, password }; // In real world, hash it
-  users.push(newUser);
-  saveUsers(users);
+  if (users.find(u => u.email === email)) return { error: "Email exists" };
+  const hashed = await hashPassword(password);
+  users.push({ name, email, password: hashed });
+    saveUsers(users);
   return { success: true };
 }
 
-
-function login(email, password) {
+export async function login(email, password) {
   const users = getUsers();
-  const user = users.find(u => u.email === email && u.password === password);
-  if (!user) return { error: "Invalid email or password." };
-
+    const hashed = await hashPassword(password);
+  const user = users.find(u => u.email === email && u.password === hashed);
+  if (!user) return { error: "Invalid credentials" };
   const token = crypto.randomUUID();
-  user.token = token;
+   user.token = token;
   saveUsers(users);
-  setCurrentUser({ email: user.email, token });
+    setCurrentUser({ email, token });
   return { success: true, user };
 }
 
-
-function requestPasswordReset(email) {
+export function requestReset(email) {
   const users = getUsers();
-  const user = users.find(u => u.email === email);
-  if (!user) return { error: "Email not found." };
-
-  user.resetToken = crypto.randomUUID().slice(0, 6); 
+    const user = users.find(u => u.email === email);
+  if (!user) return { error: "User not found" };
+  const code = Math.random().toString().slice(2, 8);
+    user.resetToken = code;
   saveUsers(users);
-  return { success: true, token: user.resetToken }; // display this to user for demo
+  return { success: true, token: code }; // return code for demo
 }
 
-
-function resetPassword(email, token, newPassword) {
+export async function resetPassword(email, token, newPassword) {
   const users = getUsers();
-  const user = users.find(u => u.email === email && u.resetToken === token);
-  if (!user) return { error: "Invalid token or email." };
-
-  user.password = newPassword;
+    const user = users.find(u => u.email === email && u.resetToken === token);
+  if (!user) return { error: "Invalid token" };
+  user.password = await hashPassword(newPassword);
   delete user.resetToken;
-  saveUsers(users);
+    saveUsers(users);
   return { success: true };
 }
-
-
-
