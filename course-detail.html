@@ -248,8 +248,12 @@
         ];
 
 
+        function markWatched(sectionIndex, childIndex) {
+            const key = `watched_${sectionIndex}_${childIndex}`;
+            localStorage.setItem(key, "true");
+        }
 
-        
+
         function renderModules() {
             const container = document.getElementById("course-modules");
             container.innerHTML = "";
@@ -258,6 +262,7 @@
                 const sectionId = `section-${sectionIndex}`;
                 const secEl = document.createElement("div");
 
+              
                 secEl.innerHTML = `
       <button class="flex items-center justify-between w-full mb-2 text-left" onclick="toggleSection(${sectionIndex})">
         <h3 class="text-lg font-bold">${section.title}</h3>
@@ -267,12 +272,17 @@
       <ul class="ml-4 space-y-2 transition-all duration-300 ${section.collapsed ? 'hidden' : ''}" id="${sectionId}">
         ${section.children.map((child, childIndex) => {
                     const locked = !child.unlocked && !isEnrolled;
+                      //track course watched
+                const watched = localStorage.getItem(`watched_${sectionIndex}_${childIndex}`) === "true";
+                const watchedBadge = watched ? '<span class="ml-auto text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded">Watched</span>' : '';
+
+
                     return `
             <li class="flex items-center gap-2 text-sm cursor-pointer ${locked ? 'text-muted cursor-not-allowed' : 'hover:text-primary'}"
                 onclick="playVideo(${sectionIndex}, ${childIndex})">
               <i class="fa ${locked ? 'fa-lock' : 'fa-play-circle'} text-xs"></i>
               ${child.title}
-              ${locked ? '<span class="ml-auto text-xs px-2 py-0.5 bg-gray-200 rounded">Locked</span>' : ''}
+              ${locked ? '<span class="ml-auto text-xs px-2 py-0.5 bg-gray-200 rounded">Locked</span>' : watchedBadge}
             </li>
           `;
                 }).join("")}
