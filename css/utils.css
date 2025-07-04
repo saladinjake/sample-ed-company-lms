@@ -486,6 +486,7 @@
   width: 20rem; /* 20 × 16px = 320px */
 }
 .w-25{width: 25%}
+.w-33{width: 33%}
 .w-64 { width: 16rem; }  /* 256px */
 .w-96 { width: 24rem; }  /* 384px */
 
