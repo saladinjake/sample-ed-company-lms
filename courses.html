@@ -33,7 +33,8 @@
       <!-- Search -->
       <div class="md:order-3 order-3 w-full w-auto mr-8">
         <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
-          <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"  id="course-search" />
+          <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
+            id="course-search" />
           <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
         </form>
       </div>
@@ -45,6 +46,8 @@
         class="text-muted text-md flex items-center gap-2">
         <i class="fas fa-bars"></i> Browse Categories
       </button>
+      <button onclick="toggleCartModal(true)" class="btn">🛒 View Cart (<span id="cart-count">0</span>)</button>
+
     </div>
 
     <!-- Nav Menu -->
@@ -87,282 +90,361 @@
 
   <!-- CTA -->
   <section class="text-center py-10 px-4 bg-white relative p-4">
-      <h2 class="text-lg sm:text-xl font-bold mb-3 mt-24">Build Beautiful UIs with Ease</h2>
+    <h2 class="text-lg sm:text-xl font-bold mb-3 mt-24">Build Beautiful UIs with Ease</h2>
     <p class="text-muted mb-4 max-w-md">
-      A simple lightweight, Ant Design–inspired utility-first CSS framework tailored for mobile-first design and rapid prototyping.
+      A simple lightweight, Ant Design–inspired utility-first CSS framework tailored for mobile-first design and rapid
+      prototyping.
     </p>
-   
+
   </section>
 
 
 
   <section class="container-x mx-auto px-4 py-12 flex flex-col md:flex-row gap-8">
 
-  <aside class="w-full md:w-18 bg-white p-4 rounded shadow-sm">
+    <aside class="w-full md:w-18 bg-white p-4 rounded shadow-sm">
 
 
-    <div>
-      <h3 class="font-semibold mb-2">Price Range</h3>
-      <input type="range" min="0" max="100" step="10" id="price-range" >
-      <p class="text-sm text-muted mt-1">Up to $<span id="price-value">100</span></p>
-    </div>
+      <div>
+        <h3 class="font-semibold mb-2">Price Range</h3>
+        <input type="range" min="0" max="100" step="10" id="price-range">
+        <p class="text-sm text-muted mt-1">Up to $<span id="price-value">100</span></p>
+      </div>
 
-    <div>
-      <h3 class="font-semibold mb-2">Learning Style</h3>
-      <label class="block"><input type="checkbox" class="learning-filter" value="video"> Video</label>
-      <label class="block"><input type="checkbox" class="learning-filter" value="text"> Text</label>
-      <label class="block"><input type="checkbox" class="learning-filter" value="interactive"> Interactive</label>
-    </div>
+      <div>
+        <h3 class="font-semibold mb-2">Learning Style</h3>
+        <label class="block"><input type="checkbox" class="learning-filter" value="video"> Video</label>
+        <label class="block"><input type="checkbox" class="learning-filter" value="text"> Text</label>
+        <label class="block"><input type="checkbox" class="learning-filter" value="interactive"> Interactive</label>
+      </div>
 
-    <div>
-      <h3 class="font-semibold mb-2">Categories</h3>
-      <label class="block"><input type="checkbox" class="category-filter" value="Design"> Design</label>
-      <label class="block"><input type="checkbox" class="category-filter" value="Development"> Development</label>
-      <label class="block"><input type="checkbox" class="category-filter" value="Marketing"> Marketing</label>
-      <label class="block"><input type="checkbox" class="category-filter" value="Business"> Business</label>
-    </div>
-  </aside>
+      <div>
+        <h3 class="font-semibold mb-2">Categories</h3>
+        <label class="block"><input type="checkbox" class="category-filter" value="Design"> Design</label>
+        <label class="block"><input type="checkbox" class="category-filter" value="Development"> Development</label>
+        <label class="block"><input type="checkbox" class="category-filter" value="Marketing"> Marketing</label>
+        <label class="block"><input type="checkbox" class="category-filter" value="Business"> Business</label>
+      </div>
+    </aside>
 
-  <!-- Course Results -->
-  <main class="w-full">
-    <div class="mb-6 mr-8">
-      <input
-        type="text"
-        placeholder="Search courses..."
-        id="search-input"
-        class="input w-full px-4 py-2 border rounded"
-      />
-    </div>
+    <!-- Course Results -->
+    <main class="w-full">
+      <div class="mb-6 mr-8">
+        <input type="text" placeholder="Search courses..." id="search-input"
+          class="input w-full px-4 py-2 border rounded" />
+      </div>
 
-    <div class="grid sm:grid-cols-1 grid-cols-4 gap-6" id="course-grid">
-      <!-- Course cards injected here -->
-    </div>
+      <div class="grid sm:grid-cols-1 grid-cols-4 gap-6" id="course-grid">
+        <!-- Course cards injected here -->
+      </div>
 
-    <!-- Load More / Pagination -->
-    <!-- Load More / Pagination -->
-    <div class="text-center mt-8" id="load-controls">
-      <button class="btn btn-primary" id="load-more-btn">Load More</button>
-      <div class="mt-4 hidden" id="pagination"></div>
-    </div>
-    <!-- Sentinel for infinite scroll -->
-    <div id="scroll-sentinel" class="h-8"></div>
-  </main>
+      <!-- Load More / Pagination -->
+      <!-- Load More / Pagination -->
+      <div class="text-center mt-8" id="load-controls">
+        <button class="btn btn-primary" id="load-more-btn">Load More</button>
+        <div class="mt-4 hidden" id="pagination"></div>
+      </div>
+      <!-- Sentinel for infinite scroll -->
+      <div id="scroll-sentinel" class="h-8"></div>
+    </main>
 
-</section>
+  </section>
 
 
 
 
   <footer class="bg-gray-100 text-white pt-12 pb-8 border-t">
-  <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4">
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
 
- 
-      <div>
-        <h2 class="text-xl font-bold mb-4">UNICAST</h2>
-        <p class="text-sm text-muted mb-4 text-lg">
-          Discover, Engage and embrace your next favorite career growth. We connect talents to clients that matter.
-        </p>
-        <div class="flex gap-4 mt-4 text-lg">
-          <a href="#" class="text-muted text-lg hover:text-white"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="text-muted hover:text-white"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-muted hover:text-white"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-muted hover:text-white"><i class="fab fa-instagram"></i></a>
+
+        <div>
+          <h2 class="text-xl font-bold mb-4">UNICAST</h2>
+          <p class="text-sm text-muted mb-4 text-lg">
+            Discover, Engage and embrace your next favorite career growth. We connect talents to clients that matter.
+          </p>
+          <div class="flex gap-4 mt-4 text-lg">
+            <a href="#" class="text-muted text-lg hover:text-white"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-muted hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-muted hover:text-white"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="text-muted hover:text-white"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
+
+
+        <div>
+          <h3 class="text-md font-semibold mb-3 text-xl">Products</h3>
+          <ul class="text-sm space-y-2 text-lg">
+            <li><a href="#" class="text-muted hover:text-white">New Courses</a></li>
+            <li><a href="#" class="text-muted hover:text-white">Certificates</a></li>
+            <li><a href="#" class="text-muted hover:text-white">FAQS</a></li>
+            <li><a href="#" class="text-muted hover:text-white">For Business</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div>
+          <h3 class="text-md font-semibold mb-3 text-xl">Support</h3>
+          <ul class="text-sm space-y-2 text-lg">
+            <li><a href="#" class="text-muted hover:text-white">Contact</a></li>
+            <li><a href="#" class="text-muted hover:text-white">Help Center</a></li>
+            <li><a href="#" class="text-muted hover:text-white">Returns</a></li>
+            <li><a href="#" class="text-muted hover:text-white">Become an Instructor</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h3 class="text-md font-semibold mb-3 text-xl">Newsletter</h3>
+          <p class="text-sm text-muted mb-4 text-lg">Get the latest updates and offers.</p>
+          <form class="flex flex-col sm:flex-row gap-2">
+            <input type="email" placeholder="Your email" class="px-3 py-2 rounded-md w-full text-dark" />
+            <button class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+
       </div>
 
- 
-      <div>
-        <h3 class="text-md font-semibold mb-3 text-xl">Products</h3>
-        <ul class="text-sm space-y-2 text-lg">
-          <li><a href="#" class="text-muted hover:text-white">New Courses</a></li>
-          <li><a href="#" class="text-muted hover:text-white">Certificates</a></li>
-          <li><a href="#" class="text-muted hover:text-white">FAQS</a></li>
-          <li><a href="#" class="text-muted hover:text-white">For Business</a></li>
-        </ul>
-      </div>
-
-      <!-- Support Links -->
-      <div>
-        <h3 class="text-md font-semibold mb-3 text-xl">Support</h3>
-        <ul class="text-sm space-y-2 text-lg">
-          <li><a href="#" class="text-muted hover:text-white">Contact</a></li>
-          <li><a href="#" class="text-muted hover:text-white">Help Center</a></li>
-          <li><a href="#" class="text-muted hover:text-white">Returns</a></li>
-          <li><a href="#" class="text-muted hover:text-white">Become an Instructor</a></li>
-        </ul>
-      </div>
-
-      <!-- Newsletter -->
-      <div>
-        <h3 class="text-md font-semibold mb-3 text-xl">Newsletter</h3>
-        <p class="text-sm text-muted mb-4 text-lg">Get the latest updates and offers.</p>
-        <form class="flex flex-col sm:flex-row gap-2">
-          <input type="email" placeholder="Your email" class="px-3 py-2 rounded-md w-full text-dark" />
-          <button class="btn btn-primary">Subscribe</button>
-        </form>
-      </div>
 
     </div>
-
-   
-  </div>
-</footer>
+  </footer>
 
   <!-- Footer -->
   <footer class="py-6 px-4 bg-light text-center text-muted text-sm border-t">
     © 2025 AntLiteCSS. All rights reserved.
   </footer>
-<script>
-const allCourses = generateMockCourses(600); // You can replace with real data
-let filteredCourses = [];
-let page = 1;
-const perPage = 20;
-const infiniteLimit = 200;
+  <script  type="text/javascript">
+    const allCourses = generateMockCourses(600); // You can replace with real data
+    let filteredCourses = [];
+    let page = 1;
+    const perPage = 20;
+    const infiniteLimit = 200;
 
-const grid = document.getElementById('course-grid');
-const searchInput = document.getElementById('search-input');
-const priceRange = document.getElementById('price-range');
-const priceValue = document.getElementById('price-value');
-const loadMoreBtn = document.getElementById('load-more-btn');
-const paginationDiv = document.getElementById('pagination');
-const sentinel = document.getElementById('scroll-sentinel');
+    const grid = document.getElementById('course-grid');
+    const searchInput = document.getElementById('search-input');
+    const priceRange = document.getElementById('price-range');
+    const priceValue = document.getElementById('price-value');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const paginationDiv = document.getElementById('pagination');
+    const sentinel = document.getElementById('scroll-sentinel');
 
-function generateMockCourses(count) {
-  const categories = ['Design', 'Development', 'Marketing', 'Business'];
-  const styles = ['video', 'text', 'interactive'];
-  const list = [];
-  for (let i = 1; i <= count; i++) {
-    list.push({
-      title: `Course ${i}`,
-      description: `This is a description of Course ${i}.`,
-      category: categories[i % 4],
-      style: styles[i % 3],
-      price: Math.floor(Math.random() * 500),
-      image: `https://img-c.udemycdn.com/course/480x270/382300_f75b_3.jpg?text=Course+${i}`,
-      instructor: `Instructor ${i}`
-    });
-  }
-  return list;
-}
+    function generateMockCourses(count) {
+      const categories = ['Design', 'Development', 'Marketing', 'Business'];
+      const styles = ['video', 'text', 'interactive'];
+      const list = [];
+      for (let i = 1; i <= count; i++) {
+        list.push({
+          title: `Course ${i}`,
+          description: `This is a description of Course ${i}.`,
+          category: categories[i % 4],
+          style: styles[i % 3],
+          price: Math.floor(Math.random() * 500),
+          image: `https://img-c.udemycdn.com/course/480x270/382300_f75b_3.jpg?text=Course+${i}`,
+          instructor: `Instructor ${i}`
+        });
+      }
+      return list;
+    }
 
-function applyFilters() {
-  const q = searchInput.value.toLowerCase();
-  const maxPrice = parseInt(priceRange.value);
-  const selectedStyles = Array.from(document.querySelectorAll('.learning-filter:checked')).map(i => i.value);
-  const selectedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(i => i.value);
+    function applyFilters() {
+      const q = searchInput.value.toLowerCase();
+      const maxPrice = parseInt(priceRange.value);
+      const selectedStyles = Array.from(document.querySelectorAll('.learning-filter:checked')).map(i => i.value);
+      const selectedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(i => i.value);
 
-  return allCourses.filter(course => {
-    const matchesSearch = (course.title + course.description + course.category).toLowerCase().includes(q);
-    const matchesPrice = course.price <= maxPrice;
-    const matchesStyle = selectedStyles.length ? selectedStyles.includes(course.style) : true;
-    const matchesCategory = selectedCats.length ? selectedCats.includes(course.category) : true;
-    return matchesSearch && matchesPrice && matchesStyle && matchesCategory;
-  });
-}
+      return allCourses.filter(course => {
+        const matchesSearch = (course.title + course.description + course.category).toLowerCase().includes(q);
+        const matchesPrice = course.price <= maxPrice;
+        const matchesStyle = selectedStyles.length ? selectedStyles.includes(course.style) : true;
+        const matchesCategory = selectedCats.length ? selectedCats.includes(course.category) : true;
+        return matchesSearch && matchesPrice && matchesStyle && matchesCategory;
+      });
+    }
 
-function renderCourses(reset = false) {
-  if (reset) {
-    grid.innerHTML = "";
-    page = 1;
-  }
+    function renderCourses(reset = false) {
+      if (reset) {
+        grid.innerHTML = "";
+        page = 1;
+      }
 
-  const start = (page - 1) * perPage;
-  const end = page * perPage;
-  const slice = filteredCourses.slice(start, end);
+      const start = (page - 1) * perPage;
+      const end = page * perPage;
+      const slice = filteredCourses.slice(start, end);
 
-  slice.forEach(course => {
-    const card = document.createElement("div");
-    card.className = "bg-white rounded-xl shadow-sm w-full";
-    card.innerHTML = `
+      slice.forEach(course => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-xl shadow-sm w-full";
+        card.innerHTML = `
       <img src="${course.image}" class="rounded-t-xl w-full" />
       <div class="p-4">
         <h3 class="text-md font-semibold mb-2">${course.title}</h3>
         <p class="text-sm text-muted mb-3">${course.description}</p>
         <p class="text-xs text-muted">By ${course.instructor}</p>
-        <button class="btn btn-primary mt-4 w-full">Enroll Now</button>
+     <button onclick='payWithPaystack(${JSON.stringify(course)})' class="btn btn-primary mt-4 w-full">
+  Enroll ₦${course.price}
+</button>
+
       </div>`;
-    grid.appendChild(card);
+        grid.appendChild(card);
+      });
+
+      page++;
+      handleLoadControls();
+    }
+
+    function handleLoadControls() {
+      const shown = (page - 1) * perPage;
+      const total = filteredCourses.length;
+
+      if (shown < 200 && total > shown) {
+        // still in infinite scroll range
+        sentinel.style.display = "block";
+        loadMoreBtn.style.display = "none";
+        paginationDiv.classList.add("hidden");
+
+      } else if (shown >= 200 && shown < 400) {
+        // between 200–400 → show "Load More"
+        sentinel.style.display = "none";
+        loadMoreBtn.style.display = "inline-block";
+        paginationDiv.classList.add("hidden");
+
+      } else {
+        // 400+ → pagination
+        sentinel.style.display = "none";
+        loadMoreBtn.style.display = "none";
+        showPagination();
+      }
+    }
+
+
+    function showPagination() {
+      paginationDiv.classList.remove("hidden");
+      paginationDiv.innerHTML = '';
+      const totalPages = Math.ceil(filteredCourses.length / perPage);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = `btn ${i === page - 1 ? 'btn-primary' : 'btn-light'} mx-1`;
+        btn.onclick = () => {
+          page = i;
+          grid.innerHTML = '';
+          renderCourses();
+        };
+        paginationDiv.appendChild(btn);
+      }
+    }
+
+    // Handlers
+    searchInput.addEventListener("input", resetAndRender);
+    priceRange.addEventListener("input", () => {
+      priceValue.textContent = priceRange.value;
+      resetAndRender();
+    });
+    document.querySelectorAll('.learning-filter, .category-filter').forEach(el =>
+      el.addEventListener('change', resetAndRender)
+    );
+    loadMoreBtn.addEventListener('click', renderCourses);
+
+    function resetAndRender() {
+      filteredCourses = applyFilters();
+      renderCourses(true);
+    }
+
+    // Infinite Scroll
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && page * perPage <= infiniteLimit) {
+        renderCourses();
+      }
+    }, { rootMargin: '200px' });
+
+    observer.observe(sentinel);
+
+    // Init
+    filteredCourses = applyFilters();
+    renderCourses(true);
+  </script>
+
+
+
+  <script  type="text/javascript">
+    function payWithPaystack(course) {
+      const handler = PaystackPop.setup({
+        publicKey: "pk_test_5dca9a796da0a59391c7f15c6cdc0275db4c8093",
+        reference: new Date().getTime(),
+        email: 'juwavictor@gmail.com',
+        amount: course.price * 100, // in kobo
+        currency: 'NGN',
+        ref: 'COURSE_' + new Date().getTime(),
+
+        metadata: {
+          custom_fields: [
+            {
+              display_name: course.title,
+              variable_name: 'course_id',
+              value: course.title,
+            },
+          ],
+        },
+
+        callback: function (response) {
+          alert(`Payment successful! Ref: ${response.reference}`);
+          // You can call your backend API here to mark as enrolled
+        },
+
+        onClose: function () {
+          alert('Transaction cancelled');
+        }
+      });
+
+      handler.openIframe();
+    }
+
+  </script>
+
+
+
+<script type="text/javascript">
+  let cart = [];
+
+function addToCart(course) {
+  const exists = cart.find(c => c.title === course.title);
+  if (!exists) cart.push(course);
+  renderCartItems();
+  toggleCartModal(true);
+}
+
+
+
+function toggleCartModal(show) {
+  document.getElementById("cart-modal").classList.toggle("hidden", !show);
+  document.getElementById("cart-count").textContent = cart.length;
+}
+
+function renderCartItems() {
+  const container = document.getElementById("cart-items");
+  container.innerHTML = "";
+  cart.forEach(course => {
+    const item = document.createElement("div");
+    item.className = "flex justify-between items-center border-b pb-2";
+    item.innerHTML = `
+      <div>
+        <h4 class="font-semibold">${course.title}</h4>
+        <p class="text-sm text-muted">₦${course.price}</p>
+      </div>
+      <button class="text-red-500 text-sm" onclick="removeFromCart('${course.title}')">Remove</button>
+    `;
+    container.appendChild(item);
   });
-
-  page++;
-  handleLoadControls();
 }
 
-function handleLoadControls() {
-  const shown = (page - 1) * perPage;
-  const total = filteredCourses.length;
-
-  if (shown < 200 && total > shown) {
-    // still in infinite scroll range
-    sentinel.style.display = "block";
-    loadMoreBtn.style.display = "none";
-    paginationDiv.classList.add("hidden");
-
-  } else if (shown >= 200 && shown < 400) {
-    // between 200–400 → show "Load More"
-    sentinel.style.display = "none";
-    loadMoreBtn.style.display = "inline-block";
-    paginationDiv.classList.add("hidden");
-
-  } else {
-    // 400+ → pagination
-    sentinel.style.display = "none";
-    loadMoreBtn.style.display = "none";
-    showPagination();
-  }
+function removeFromCart(title) {
+  cart = cart.filter(c => c.title !== title);
+  renderCartItems();
+  toggleCartModal(true);
 }
 
-
-function showPagination() {
-  paginationDiv.classList.remove("hidden");
-  paginationDiv.innerHTML = '';
-  const totalPages = Math.ceil(filteredCourses.length / perPage);
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement('button');
-    btn.textContent = i;
-    btn.className = `btn ${i === page - 1 ? 'btn-primary' : 'btn-light'} mx-1`;
-    btn.onclick = () => {
-      page = i;
-      grid.innerHTML = '';
-      renderCourses();
-    };
-    paginationDiv.appendChild(btn);
-  }
-}
-
-// Handlers
-searchInput.addEventListener("input", resetAndRender);
-priceRange.addEventListener("input", () => {
-  priceValue.textContent = priceRange.value;
-  resetAndRender();
-});
-document.querySelectorAll('.learning-filter, .category-filter').forEach(el =>
-  el.addEventListener('change', resetAndRender)
-);
-loadMoreBtn.addEventListener('click', renderCourses);
-
-function resetAndRender() {
-  filteredCourses = applyFilters();
-  renderCourses(true);
-}
-
-// Infinite Scroll
-const observer = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting && page * perPage <= infiniteLimit) {
-    renderCourses();
-  }
-}, { rootMargin: '200px' });
-
-observer.observe(sentinel);
-
-// Init
-filteredCourses = applyFilters();
-renderCourses(true);
 </script>
-
-
 </body>
 
 </html>
