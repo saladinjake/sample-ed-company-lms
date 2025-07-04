@@ -1,5 +1,5 @@
 // auth utils
-export async function hashPassword(password) {
+async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
@@ -7,27 +7,27 @@ export async function hashPassword(password) {
   return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
-export function getUsers() {
+function getUsers() {
   return JSON.parse(localStorage.getItem("users") || "[]");
 }
 
-export function saveUsers(users) {
+function saveUsers(users) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-export function setCurrentUser(user) {
+function setCurrentUser(user) {
   localStorage.setItem("currentUser", JSON.stringify(user));
 }
 
-export function getCurrentUser() {
+function getCurrentUser() {
   return JSON.parse(localStorage.getItem("currentUser"));
 }
 
-export function logout() {
+function logout() {
   localStorage.removeItem("currentUser");
 }
 
-export async function signUp(name, email, password) {
+async function signUp(name, email, password) {
   const users = getUsers();
   if (users.find(u => u.email === email)) return { error: "Email exists" };
   const hashed = await hashPassword(password);
@@ -36,7 +36,7 @@ export async function signUp(name, email, password) {
   return { success: true };
 }
 
-export async function login(email, password) {
+async function login(email, password) {
   const users = getUsers();
     const hashed = await hashPassword(password);
   const user = users.find(u => u.email === email && u.password === hashed);
@@ -48,7 +48,7 @@ export async function login(email, password) {
   return { success: true, user };
 }
 
-export function requestReset(email) {
+function requestReset(email) {
   const users = getUsers();
     const user = users.find(u => u.email === email);
   if (!user) return { error: "User not found" };
@@ -58,7 +58,7 @@ export function requestReset(email) {
   return { success: true, token: code }; // return code for demo
 }
 
-export async function resetPassword(email, token, newPassword) {
+async function resetPassword(email, token, newPassword) {
   const users = getUsers();
     const user = users.find(u => u.email === email && u.resetToken === token);
   if (!user) return { error: "Invalid token" };
