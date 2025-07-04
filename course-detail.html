@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AntLiteCSS/custom css util Landing Page for E-learning</title>
+  <link href="./css/index.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light text-md font-base text-primary">
+  <header class="bg-white border-b shadow-sm p-3 fixed z-10">
+    <!-- Top Row -->
+    <div
+      class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 ">
+
+      <!-- Social Icons -->
+      <div class=" gap-2 md:order-2 order-1 items-center mx-auto  hidden md:flex">
+        <a href="#" class="border rounded-full p-2"><i class="fab fa-cart"></i></a>
+        <a href="#" class="border rounded-full p-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="border rounded-full p-2"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="border rounded-full p-2"><i class="fab fa-dribbble"></i></a>
+      </div>
+
+      <!-- Logo -->
+      <div class="text-center md:order-1 order-2 w-full sm:w-auto">
+        <h1 class="text-lg font-bold">UNI<span class="text-warning">CAST</span></h1>
+        <p class="text-muted text-sm">E-LEARNING COMPANY</p>
+      </div>
+
+      <!-- Search -->
+      <div class="md:order-3 order-3 w-full w-auto mr-8">
+        <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
+          <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"  id="course-search" />
+          <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="md:hidden mt-4">
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+        class="text-muted text-md flex items-center gap-2">
+        <i class="fas fa-bars"></i> Browse Categories
+      </button>
+    </div>
+
+    <!-- Nav Menu -->
+    <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
+      <ul class="flex justify-center gap-6 text-sm uppercase">
+        <li><a href="#" class="text-primary text-muted font-semibold">Courses</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Guide</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Coming Soon</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Top Seller</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Books</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Author</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Blog</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Contact</a></li>
+      </ul>
+    </nav>
+
+
+    <!-- Mobile Nav -->
+    <nav class="sm:hidden hidden mt-4 bg-black text-white text-sm uppercase" id="mobile-menu">
+      <!-- <div class="overlay absolute inset-0" style="background: rgba(255,255,255,0.5)"></div> -->
+      <a href="#" class="block py-2 border-b px-3 text-primary">Home</a>
+      <a href="#" class="block py-2 border-b px-3">About</a>
+      <a href="#" class="block py-2 border-b px-3">Coming Soon</a>
+      <a href="#" class="block py-2 border-b px-3">Top Seller</a>
+      <a href="#" class="block py-2 border-b px-3">Books</a>
+      <a href="#" class="block py-2 border-b px-3">Author</a>
+      <a href="#" class="block py-2 border-b px-3">Blog</a>
+      <a href="#" class="block py-2 border-b px-3">Contact</a>
+    </nav>
+  </header>
+
+
+
+
+
+
+
+  <main id="home">
+
+  <!-- Hero Section example-->
+  <section class="flex flex-col items-center justify-center text-center py-6 px-4 sm:py-12">
+    <h2 class="text-lg sm:text-xl font-bold mb-3">Build Beautiful UIs with Ease</h2>
+    <p class="text-muted mb-4 max-w-md">
+      A lightweight, Ant Design–inspired utility-first CSS framework tailored for mobile-first design and rapid prototyping.
+    </p>
+    <button class="btn btn-primary">Start Building</button>
+  </section>
+
+
+<h1 class="text-2xl font-bold mb-4 pl-4">Advanced UI Design Course</h1>
+<section class=" px-4 py-4 flex flex-col md:flex-row gap-8">
+
+  <!-- Left: Course Modules -->
+  <div class="w-full md:w-25 bg-white p-4">
+    
+    <p class="text-muted mb-6">Master the art of creating stunning user interfaces with real-world projects and interactive walkthroughs.</p>
+
+    <!-- Modules -->
+    <div id="course-modules" class="space-y-6">
+      <!-- Modules injected by JS -->
+    </div>
+  </div>
+
+  <!-- Right: Sidebar -->
+  <aside class="w-full sticky top-24 self-start">
+    <video controls poster="https://via.placeholder.com/640x360?text=Intro+Video" class="rounded-xl w-full mb-4">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="bg-white p-4 rounded-xl shadow-sm">
+      <h3 class="text-xl font-semibold mb-2">₦15,000</h3>
+      <p class="text-sm text-muted mb-4">15 modules • 3 hours</p>
+      <button class="btn btn-primary w-full" onclick="enroll()">Enroll Now</button>
+    </div>
+  </aside>
+</section>
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+
+  <!-- CTA -->
+  <section class="text-center py-10 px-4 bg-white">
+    <h3 class="text-md font-bold mb-4">Ready to ship faster?</h3>
+    <p class="text-muted mb-4">Start using AntLiteCSS in your next project today.</p>
+    <button class="btn btn-primary">Try It Free</button>
+  </section>
+
+
+
+  <footer class="bg-gray-100 text-white pt-12 pb-8 border-t">
+  <div class="container mx-auto px-4">
+
+    <!-- Top grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+
+      <!-- Logo & About -->
+      <div>
+        <h2 class="text-xl font-bold mb-4">UNICAST</h2>
+        <p class="text-sm text-muted mb-4 text-lg">
+          Discover, Engage and embrace your next favorite career growth. We connect talents to clients that matter.
+        </p>
+        <div class="flex gap-4 mt-4 text-lg">
+          <a href="#" class="text-muted text-lg hover:text-white"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-muted hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-muted hover:text-white"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="text-muted hover:text-white"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Product Links -->
+      <div>
+        <h3 class="text-md font-semibold mb-3 text-xl">Products</h3>
+        <ul class="text-sm space-y-2 text-lg">
+          <li><a href="#" class="text-muted hover:text-white">Books</a></li>
+          <li><a href="#" class="text-muted hover:text-white">Authors</a></li>
+          <li><a href="#" class="text-muted hover:text-white">Genres</a></li>
+          <li><a href="#" class="text-muted hover:text-white">Pre-orders</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Links -->
+      <div>
+        <h3 class="text-md font-semibold mb-3 text-xl">Support</h3>
+        <ul class="text-sm space-y-2 text-lg">
+          <li><a href="#" class="text-muted hover:text-white">Contact</a></li>
+          <li><a href="#" class="text-muted hover:text-white">Help Center</a></li>
+          <li><a href="#" class="text-muted hover:text-white">Returns</a></li>
+          <li><a href="#" class="text-muted hover:text-white">Shipping</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h3 class="text-md font-semibold mb-3 text-xl">Newsletter</h3>
+        <p class="text-sm text-muted mb-4 text-lg">Get the latest updates and offers.</p>
+        <form class="flex flex-col sm:flex-row gap-2">
+          <input type="email" placeholder="Your email" class="px-3 py-2 rounded-md w-full text-dark" />
+          <button class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+
+    </div>
+
+   
+  </div>
+</footer>
+
+  <!-- Footer -->
+  <footer class="py-6 px-4 bg-light text-center text-muted text-sm border-t">
+    © 2025 AntLiteCSS. All rights reserved.
+  </footer>
+
+<script>
+const isEnrolled = false; // toggle this for testing
+
+const modules = [
+  {
+    title: "Section 1: Introduction",
+    children: [
+      { title: "Welcome", unlocked: true },
+      { title: "What to Expect", unlocked: true },
+    ]
+  },
+  {
+    title: "Section 2: Design Principles",
+    children: [
+      { title: "Typography Basics", unlocked: false },
+      { title: "Color Theory", unlocked: false },
+    ]
+  },
+  {
+    title: "Section 3: Interactive UI",
+    children: [
+      { title: "Hover States", unlocked: false },
+      { title: "Microinteractions", unlocked: false },
+    ]
+  }
+];
+
+
+function renderModules() {
+  const container = document.getElementById("course-modules");
+  container.innerHTML = "";
+
+  modules.forEach((section, i) => {
+    const secEl = document.createElement("div");
+    secEl.innerHTML = `
+      <h3 class="text-lg font-bold mb-2">${section.title}</h3>
+      <ul class="ml-4 space-y-2">
+        ${section.children.map(child => {
+          const locked = !child.unlocked && !isEnrolled;
+          return `
+            <li class="flex items-center gap-2 text-sm ${locked ? 'text-muted' : ''}">
+              <i class="fa ${locked ? 'fa-lock' : 'fa-play-circle'} text-xs"></i>
+              ${child.title}
+              ${locked ? '<span class="ml-auto text-xs px-2 py-0.5 bg-gray-200 rounded">Locked</span>' : ''}
+            </li>
+          `;
+        }).join("")}
+      </ul>
+    `;
+    container.appendChild(secEl);
+  });
+}
+
+renderModules();
+
+function enroll() {
+  alert("Redirect to Paystack or handle enrollment here...");
+}
+
+
+</script>
+</body>
+
+</html>

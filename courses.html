@@ -32,10 +32,12 @@
 
       <!-- Search -->
       <div class="md:order-3 order-3 w-full w-auto mr-8">
+         
         <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
-          <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
+          <span onclick="toggleCartModal(true)" class="btn">🛒  (<span id="cart-count">0</span>)</span> <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
             id="course-search" />
           <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
+          
         </form>
       </div>
     </div>
@@ -214,7 +216,27 @@
   <footer class="py-6 px-4 bg-light text-center text-muted text-sm border-t">
     © 2025 AntLiteCSS. All rights reserved.
   </footer>
-  <script  type="text/javascript">
+
+
+
+  <!-- Inside #cart-modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white w-full max-w-lg p-6 rounded shadow-lg relative">
+      <h2 class="text-lg font-semibold mb-4">Your Cart</h2>
+      <div id="cart-items" class="space-y-4"></div>
+
+      <div id="cart-subtotal" class="mt-4 text-right font-semibold text-md"></div>
+
+      <button onclick="toggleCartModal(false)" class="absolute top-2 right-2 text-lg">✖</button>
+      <!-- Below cart-subtotal -->
+      <div class="mt-4 text-right">
+        <button onclick="clearCart()" class="btn btn-danger text-sm">Clear Cart</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
     const allCourses = generateMockCourses(600); // You can replace with real data
     let filteredCourses = [];
     let page = 1;
@@ -281,9 +303,13 @@
         <h3 class="text-md font-semibold mb-2">${course.title}</h3>
         <p class="text-sm text-muted mb-3">${course.description}</p>
         <p class="text-xs text-muted">By ${course.instructor}</p>
-     <button onclick='payWithPaystack(${JSON.stringify(course)})' class="btn btn-primary mt-4 w-full">
+
+         <button onclick='addToCart(${course})' class="btn btn-primary mt-4 w-full">
   Enroll ₦${course.price}
 </button>
+     <!--<button onclick='payWithPaystack(${JSON.stringify(course)})' class="btn btn-primary mt-4 w-full">
+  Enroll ₦${course.price}
+</button>-->
 
       </div>`;
         grid.appendChild(card);
@@ -366,8 +392,9 @@
   </script>
 
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
 
-  <script  type="text/javascript">
+  <script type="text/javascript">
     function payWithPaystack(course) {
       const handler = PaystackPop.setup({
         publicKey: "pk_test_5dca9a796da0a59391c7f15c6cdc0275db4c8093",
@@ -404,47 +431,91 @@
 
 
 
-<script type="text/javascript">
-  let cart = [];
-
-function addToCart(course) {
-  const exists = cart.find(c => c.title === course.title);
-  if (!exists) cart.push(course);
-  renderCartItems();
-  toggleCartModal(true);
-}
+  <script type="text/javascript">
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
+    function addToCart(course) {
+      const exists = cart.find(c => c.title === course.title);
+      if (!exists) {
+        cart.push(course);
+        saveCart();
+        renderCartItems();
+        toggleCartModal(true);
+      }
+    }
 
-function toggleCartModal(show) {
-  document.getElementById("cart-modal").classList.toggle("hidden", !show);
-  document.getElementById("cart-count").textContent = cart.length;
-}
 
-function renderCartItems() {
-  const container = document.getElementById("cart-items");
-  container.innerHTML = "";
-  cart.forEach(course => {
-    const item = document.createElement("div");
-    item.className = "flex justify-between items-center border-b pb-2";
-    item.innerHTML = `
+
+    function toggleCartModal(show) {
+      document.getElementById("cart-modal").classList.toggle("hidden", !show);
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById("cart-items");
+      const subtotal = cart.reduce((sum, c) => sum + c.price, 0);
+      container.innerHTML = "";
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p class='text-muted'>Your cart is empty.</p>";
+      }
+
+      cart.forEach(course => {
+        const item = document.createElement("div");
+        item.className = "flex justify-between items-center border-b pb-2";
+        item.innerHTML = `
       <div>
         <h4 class="font-semibold">${course.title}</h4>
         <p class="text-sm text-muted">₦${course.price}</p>
       </div>
       <button class="text-red-500 text-sm" onclick="removeFromCart('${course.title}')">Remove</button>
     `;
-    container.appendChild(item);
-  });
-}
+        container.appendChild(item);
+      });
 
-function removeFromCart(title) {
-  cart = cart.filter(c => c.title !== title);
-  renderCartItems();
-  toggleCartModal(true);
-}
+      document.getElementById("cart-subtotal").textContent =
+        cart.length > 0 ? `Total: ₦${subtotal}` : "";
+    }
 
-</script>
+    function removeFromCart(title) {
+      cart = cart.filter(c => c.title !== title);
+      saveCart();
+      renderCartItems();
+      toggleCartModal(true);
+    }
+
+    function saveCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart_saved_at", Date.now());
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    function clearCart() {
+      cart = [];
+      localStorage.removeItem("cart");
+      localStorage.removeItem("cart_saved_at");
+      renderCartItems();
+      toggleCartModal(true);
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTime = parseInt(localStorage.getItem("cart_saved_at") || "0");
+      const now = Date.now();
+      if (now - savedTime > 86400000) {
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cart_saved_at");
+        cart = [];
+      }
+      renderCartItems();
+      saveCart();
+    });
+
+
+
+
+  </script>
 </body>
 
 </html>
