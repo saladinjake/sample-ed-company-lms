@@ -210,3 +210,7 @@ button[onclick] {
 @media (min-width: 1024px) {
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
+
+
+
+.btn-light { background: #f4f4f4; color: #333; }
