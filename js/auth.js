@@ -131,7 +131,7 @@ function enrollCourse(courseId) {
   return { success: true };
 }
 
-function isEnrolled(courseId) {
+function hasEnrolled(courseId) {
   const current = getCurrentUser();
   if (!current) return false;
 

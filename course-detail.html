@@ -131,7 +131,7 @@
                 <div class="bg-white p-4 rounded-xl shadow-sm">
                     <h3 class="text-xl font-semibold mb-2" id="price">₦15,000</h3>
                     <p class="text-sm text-muted mb-4" id="duration">15 modules • 3 hours</p>
-                    <button class="text-xl w-full" onclick="enroll()">Enroll Now</button>
+                    <button class="text-xl w-full"  id="enrollBtn">Enroll Now</button>
                 </div>
             </aside>
 
@@ -216,7 +216,7 @@
     <footer class="py-6 px-4 bg-light text-center text-muted text-sm border-t">
         © 2025 AntLiteCSS. All rights reserved.
     </footer>
-
+    <script src="./js/auth.js"></script>
     <script>
 
 
@@ -352,11 +352,24 @@
 
         renderModules();
 
-        function enroll() {
-            alert("Enrolled successfully!");
-            localStorage.setItem("is_enrolled", "true");
-            window.location.reload();
-        }
+        
+const course = JSON.parse(localStorage.getItem("selected_course"));
+const enrollBtn = document.getElementById("enrollBtn");
+
+if (hasEnrolled(course.id)) {
+  enrollBtn.textContent = "You are already enrolled";
+  enrollBtn.disabled = true;
+} else {
+  enrollBtn.addEventListener("click", () => {
+    const result = enrollCourse(course.id);
+    if (result.error) return alert(result.error);
+
+    alert("Enrollment successful!");
+    enrollBtn.textContent = "You are now enrolled";
+    enrollBtn.disabled = true;
+    renderCurriculum(course.curriculum, true); // reload as enrolled
+  });
+}
 
 
 
