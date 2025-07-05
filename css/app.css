@@ -248,3 +248,22 @@ button[onclick] {
     background-color: white;
   }
 }
+
+
+
+/*certificate prints*/
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #certificate, #certificate * {
+    visibility: visible;
+  }
+  #certificate {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+
