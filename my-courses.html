@@ -92,7 +92,7 @@
 
         <div class="min-h-screen bg-gray-50 p-6">
             <h2 class="text-2xl font-bold mb-6">My Courses</h2>
-            <div id="my-course-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="my-course-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 container mt-10"></div>
         </div>
 
 
@@ -157,7 +157,7 @@
         const enrolledCourses = allCourses.filter(c => enrolledIds.includes(c.id));
 
         if (enrolledCourses.length === 0) {
-            courseList.innerHTML = `<p class="text-gray-500">You haven't enrolled in any courses yet.</p>`;
+            courseList.innerHTML = `<p class="text-gray-500 text-xl w-full">You haven't enrolled in any courses yet.</p>`;
         } else {
             courseList.innerHTML = enrolledCourses.map(course => `
     <div class="bg-white p-4 shadow rounded-xl">
