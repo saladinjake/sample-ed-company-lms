@@ -131,13 +131,13 @@
                 <div class="bg-white p-4 rounded-xl shadow-sm">
                     <h3 class="text-xl font-semibold mb-2" id="price">₦15,000</h3>
                     <p class="text-sm text-muted mb-4" id="duration">15 modules • 3 hours</p>
-                    <button class="text-xl w-full"  id="enrollBtn">Enroll Now</button>
+                    <button class="text-xl w-full" id="enrollBtn">Enroll Now</button>
                 </div>
             </aside>
 
 
             <!-- Left: Course Modules -->
-            <div class="w-full md:w-38  p-2 hidden md:block" >
+            <div class="w-full md:w-38  p-2 hidden md:block">
 
                 <!-- Modules -->
                 <div id="course-modules" class="space-y-6 p-3">
@@ -251,7 +251,9 @@
                     instructor: `Instructor ${i}`,
                     introVideo: "https://vimeo.com/76979871", //"https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
                     tags: [category, level],
-                    curriculum
+                    curriculum,
+                    approved: true,
+                    approvalNote: "", // optional
                 });
             }
             return list;
@@ -320,7 +322,7 @@
            <div class="bg-green-500 h-1 rounded" style="width: ${percent}%;"></div>
          </div>
       <ul class="ml-4 space-y-2 transition-all duration-300 ${section.collapsed ? 'hidden' : ''}" id="${sectionId}">
-         <span class="text-xs ${percent> 45 ? 'text-green' : 'text-red'}  mb-1 flex justify-end">Progress: ${percent}%</span>
+         <span class="text-xs ${percent > 45 ? 'text-green' : 'text-red'}  mb-1 flex justify-end">Progress: ${percent}%</span>
         ${childrenHTML}
       </ul>
     </div>
@@ -352,24 +354,24 @@
 
         renderModules();
 
-        
-const course = JSON.parse(localStorage.getItem("selected_course"));
-const enrollBtn = document.getElementById("enrollBtn");
 
-if (hasEnrolled(course.id)) {
-  enrollBtn.textContent = "You are already enrolled";
-  enrollBtn.disabled = true;
-} else {
-  enrollBtn.addEventListener("click", () => {
-    const result = enrollCourse(course.id);
-    if (result.error) return alert(result.error);
+        const course = JSON.parse(localStorage.getItem("selected_course"));
+        const enrollBtn = document.getElementById("enrollBtn");
 
-    alert("Enrollment successful!");
-    enrollBtn.textContent = "You are now enrolled";
-    enrollBtn.disabled = true;
-    renderCurriculum(course.curriculum, true); // reload as enrolled
-  });
-}
+        if (hasEnrolled(course.id)) {
+            enrollBtn.textContent = "You are already enrolled";
+            enrollBtn.disabled = true;
+        } else {
+            enrollBtn.addEventListener("click", () => {
+                const result = enrollCourse(course.id);
+                if (result.error) return alert(result.error);
+
+                alert("Enrollment successful!");
+                enrollBtn.textContent = "You are now enrolled";
+                enrollBtn.disabled = true;
+                renderCurriculum(course.curriculum, true); // reload as enrolled
+            });
+        }
 
 
 
