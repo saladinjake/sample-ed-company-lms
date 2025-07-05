@@ -83,7 +83,7 @@
 
 
 
-    <main id="home">
+    <main id="home" class="bg-white">
 
         <!-- Hero Section example-->
         <section class="flex flex-col items-center justify-center text-center py-6 px-4 sm:py-12">
@@ -97,11 +97,11 @@
 
 
 
-            <!--lets get concerned about responsive mobile screen for the modules course title and sections-->
+        <!--lets get concerned about responsive mobile screen for the modules course title and sections-->
         <section class=" px-4 py-4 flex flex-col md:flex-row gap-8">
 
             <div class="block md:hidden mb-4">
-                   <i class="fas fa-bars" onclick="toggleDrawer(true)"></i> View Modules
+                <i class="fas fa-bars" onclick="toggleDrawer(true)"></i> View Modules
             </div>
             <div id="modules-drawer" class="fixed inset-0 z-10 bg-black bg-opacity-40 hidden lg:hidden">
                 <div class="absolute left-0 top-0 h-full w-11/12 max-w-sm bg-white p-4 overflow-y-auto shadow-xl">
@@ -114,19 +114,12 @@
             </div>
 
 
-            <!-- Left: Course Modules -->
-            <div class="w-full md:w-33 bg-white p-4 hidden md:block">
-                <p class="text-muted mb-6">Master the art of creating stunning user interfaces with real-world projects
-                    and interactive walkthroughs.</p>
-                <!-- Modules -->
-                <div id="course-modules" class="space-y-6">
-                    <!-- Modules injected by JS -->
-                </div>
-            </div>
 
             <!-- Right: Sidebar -->
-            <aside class="w-full sticky top-24 self-start">
+            <aside class="w-full sticky top-24 self-start border-2 radius-2">
                 <h1 class="text-2xl  text-black mb-4 pl-4">Advanced UI Design Course</h1>
+                <p class="text-muted mb-6">Master the art of creating stunning user interfaces with real-world projects
+                    and interactive walkthroughs.</p>
                 <!-- <video id="video-player" controls class="rounded-xl w-full mb-4"
                     poster="https://via.placeholder.com/640x360">
                     <source id="video-src" src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
@@ -136,11 +129,22 @@
                     <!-- dynamically  injected here -->
                 </div>
                 <div class="bg-white p-4 rounded-xl shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2">₦15,000</h3>
-                    <p class="text-sm text-muted mb-4">15 modules • 3 hours</p>
-                    <button class="btn btn-primary w-full" onclick="enroll()">Enroll Now</button>
+                    <h3 class="text-xl font-semibold mb-2" id="price">₦15,000</h3>
+                    <p class="text-sm text-muted mb-4" id="duration">15 modules • 3 hours</p>
+                    <button class="text-xl w-full" onclick="enroll()">Enroll Now</button>
                 </div>
             </aside>
+
+
+            <!-- Left: Course Modules -->
+            <div class="w-full md:w-38  p-2 hidden md:block" >
+
+                <!-- Modules -->
+                <div id="course-modules" class="space-y-6 p-3">
+                    <!-- Modules injected by JS -->
+                </div>
+            </div>
+
         </section>
 
 
@@ -215,60 +219,58 @@
 
     <script>
 
+
+
+        const currentCourse = localStorage.getItem("selected_course") ? JSON.parse(localStorage.getItem("selected_course")) : generateMockCourses(1000)[0]
+        if (!currentCourse) {
+            alert("cant find course")
+        }
         const isEnrolled = localStorage.getItem("is_enrolled") === "true";
 
-        const modules = [
-            {
-                title: "Section 1: Getting Started",
-                collapsed: false,
-                children: [
-                    {
-                        title: "Intro to UI Design",
-                        unlocked: true,
-                        video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // YouTube
-                    },
-                    {
-                        title: "Why Design Matters",
-                        unlocked: true,
-                        video: "https://vimeo.com/76979871" // Vimeo
-                    }
-                ]
-            },
-            {
-                title: "Section 2: Layout Fundamentals",
-                collapsed: true,
-                children: [
-                    {
-                        title: "Grid Systems Explained",
-                        unlocked: isEnrolled,
-                        video: "https://www.w3schools.com/html/mov_bbb.mp4" // MP4
-                    },
-                    {
-                        title: "Flexbox Mastery",
-                        unlocked: isEnrolled,
-                        video: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" // MP4
-                    }
-                ]
-            },
-            {
-                title: "Section 3: Design Systems",
-                collapsed: true,
-                children: [
-                    {
-                        title: "Creating Token Systems",
-                        unlocked: isEnrolled,
-                        video: "https://www.youtube.com/watch?v=kt3aQ8VvPpI" // YouTube
-                    },
-                    {
-                        title: "Scaling Design Teams",
-                        unlocked: isEnrolled,
-                        video: "https://vimeo.com/357274789" // Vimeo
-                    }
-                ]
+        function generateMockCourses(count) {
+            const categories = ['Design', 'Development', 'Marketing', 'Business'];
+            const styles = ['video', 'text', 'interactive'];
+            const levels = ["Beginner", "Intermediate", "Advanced"];
+
+            const list = [];
+            for (let i = 1; i <= count; i++) {
+                const id = `course-${i}`;
+                const category = categories[i % categories.length];
+                const level = levels[i % levels.length];
+                const curriculum = generateCurriculum(i);
+
+                list.push({
+                    id: i,
+                    title: `Course ${i}`,
+                    description: `This is a description of Course ${i}.`,
+                    category: categories[i % 4],
+                    style: styles[i % 3],
+                    level,
+                    price: Math.floor(Math.random() * 500),
+                    image: `https://img-c.udemycdn.com/course/480x270/382300_f75b_3.jpg?text=Course+${i}`,
+                    instructor: `Instructor ${i}`,
+                    introVideo: "https://vimeo.com/76979871", //"https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+                    tags: [category, level],
+                    curriculum
+                });
             }
-        ];
+            return list;
+        }
+        function generateCurriculum(seed = 1) {
+            const sectionCount = 9 + (seed % 3); // 2–4 sections
+            return Array.from({ length: sectionCount }, (_, s) => ({
+                title: `Section ${s + 1}`,
+                collapsed: true,
+                children: Array.from({ length: 3 + (seed % 2) }, (_, c) => ({
+                    title: `Lesson ${s + 1}.${c + 1}`,
+                    unlocked: c === 0, // unlock only first lesson
+                    video: "https://vimeo.com/76979871"  //|| "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+                }))
+            }));
+        }
 
 
+        const modules = currentCourse?.curriculum
 
         function markWatched(sectionIndex, childIndex) {
             const key = `watched_${sectionIndex}_${childIndex}`;
@@ -281,13 +283,13 @@
 
         function buildModuleSection(section, sectionIndex) {
             const sectionId = `section-${sectionIndex}`;
-               //                 //track percentage watched
-                const total = section.children.length;
-                const watchedCount = section.children.filter((_, i) =>
-                    localStorage.getItem(`watched_${sectionIndex}_${i}`) === "true"
-                ).length;
+            //                 //track percentage watched
+            const total = section.children.length;
+            const watchedCount = section.children.filter((_, i) =>
+                localStorage.getItem(`watched_${sectionIndex}_${i}`) === "true"
+            ).length;
 
-                const percent = Math.floor((watchedCount / total) * 100);
+            const percent = Math.floor((watchedCount / total) * 100);
             const childrenHTML = section.children.map((child, childIndex) => {
                 const locked = !child.unlocked && !isEnrolled;
                 const watched = localStorage.getItem(`watched_${sectionIndex}_${childIndex}`) === "true";
@@ -295,11 +297,11 @@
                 const lockedBadge = locked ? '<span class="ml-auto text-xs px-2 py-0.5 bg-gray-200 rounded">Locked</span>' : '';
 
 
-             
+
                 return `
-      <li class="flex items-center gap-2 text-sm ${locked ? 'text-muted cursor-not-allowed' : 'hover:text-primary cursor-pointer'}"
+      <li class="flex w-full  gap-2 text-md ${locked ? 'text-muted cursor-not-allowed' : 'hover:text-primary cursor-pointer'}"
           onclick="playVideo(${sectionIndex}, ${childIndex})">
-        <i class="fa ${locked ? 'fa-lock' : 'fa-play-circle'} text-xs"></i>
+        <i class="fa ${locked ? 'fa-lock' : 'fa-play-circle'} text-md"></i>
         ${child.title}
         ${locked ? lockedBadge : watchedBadge}
       </li>
@@ -308,15 +310,17 @@
 
             return `
     <div>
-      <button class="flex items-center justify-between w-full mb-2 text-left" onclick="toggleSection(${sectionIndex})">
-        <h3 class="text-lg font-bold">${section.title}</h3>
-        <i class="fa fa-chevron-${section.collapsed ? 'down' : 'up'} text-xs"></i>
-      </button>
-       <h4 class="text-xs text-muted mb-1">Progress: ${percent}%</h4>
-     <div class="w-full h-1 bg-gray-200 rounded">
+      <div class="flex  justify-between mb-2 text-left bg-gray-100 p-2 " onclick="toggleSection(${sectionIndex})">
+        <h3 class="text-lg text-muted font-bold">${section.title}</h3>
+        <i class="fa fa-chevron-${section.collapsed ? 'down' : 'up'} text-xs text-muted"></i>
+      </div> 
+      
+     <div class="w-full h-1 bg-gray-200 rounded bg-gray-200">
+        
            <div class="bg-green-500 h-1 rounded" style="width: ${percent}%;"></div>
          </div>
       <ul class="ml-4 space-y-2 transition-all duration-300 ${section.collapsed ? 'hidden' : ''}" id="${sectionId}">
+         <span class="text-xs ${percent> 45 ? 'text-green' : 'text-red'}  mb-1 flex justify-end">Progress: ${percent}%</span>
         ${childrenHTML}
       </ul>
     </div>
@@ -340,59 +344,6 @@
         }
 
 
-        //old code
-        //         function renderModules() {
-        //             const container = document.getElementById("course-modules");
-        //             container.innerHTML = "";
-
-        //             modules.forEach((section, sectionIndex) => {
-        //                 const sectionId = `section-${sectionIndex}`;
-        //                 const secEl = document.createElement("div");
-
-        //                 //track percentage watched
-        //                 const total = section.children.length;
-        //                 const watchedCount = section.children.filter((_, i) =>
-        //                     localStorage.getItem(`watched_${sectionIndex}_${i}`) === "true"
-        //                 ).length;
-
-        //                 const percent = Math.floor((watchedCount / total) * 100);
-
-
-        //                 secEl.innerHTML = `
-        //       <button class="flex items-center justify-between w-full mb-2 text-left" onclick="toggleSection(${sectionIndex})">
-        //         <h3 class="text-lg font-bold">${section.title}</h3>
-        //         <i class="fa fa-chevron-${section.collapsed ? 'down' : 'up'} text-xs"></i>
-        //       </button>
-
-        //       <h4 class="text-xs text-muted mb-1">Progress: ${percent}%</h4>
-        // <div class="w-full h-1 bg-gray-200 rounded">
-        //   <div class="bg-green-500 h-1 rounded" style="width: ${percent}%;"></div>
-        // </div>
-
-        //       <ul class="ml-4 space-y-2 transition-all duration-300 ${section.collapsed ? 'hidden' : ''}" id="${sectionId}">
-        //         ${section.children.map((child, childIndex) => {
-        //                     const locked = !child.unlocked && !isEnrolled;
-        //                     //track course watched
-        //                     const watched = localStorage.getItem(`watched_${sectionIndex}_${childIndex}`) === "true";
-        //                     const watchedBadge = watched ? '<span class="ml-auto text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded">Watched</span>' : '';
-
-
-        //                     return `
-        //             <li class="flex items-center gap-2 mb-2 text-md cursor-pointer ${locked ? 'text-muted cursor-not-allowed' : 'hover:text-primary'}"
-        //                 onclick="playVideo(${sectionIndex}, ${childIndex})">
-        //               <i class="fa ${locked ? 'fa-lock' : 'fa-play-circle'} text-xs"></i>
-        //               ${child.title}
-        //               ${locked ? '<span class="ml-auto text-md mb-2 px-2 py-0.5 bg-gray-200 rounded">Locked</span>' : watchedBadge}
-        //             </li>
-        //           `;
-        //                 }).join("")}
-        //       </ul>
-        //     `;
-
-        //                 container.appendChild(secEl);
-        //             });
-        //         }
-
         function toggleSection(index) {
             modules[index].collapsed = !modules[index].collapsed;
             renderModules();
@@ -409,29 +360,6 @@
 
 
 
-
-        // function playVideo(sectionIndex, childIndex) {
-        //     const child = modules[sectionIndex].children[childIndex];
-        //     const locked = !child.unlocked && !isEnrolled;
-
-        //     if (locked) {
-        //         alert("This video is locked. Please enroll to access it.");
-        //         return;
-        //     }
-
-        //     const player = document.getElementById("video-player");
-        //     const source = document.getElementById("video-src");
-
-        //     source.src = child.video;
-        //     player.load();
-        //     player.scrollIntoView({ behavior: "smooth", block: "center" });
-
-        //     // Save last watched
-        //     const last = { sectionIndex, childIndex };
-        //     localStorage.setItem("last_watched_video", JSON.stringify(last));
-
-        //     markWatched(sectionIndex, childIndex);
-        // }
 
         function playVideo(sectionIndex, childIndex) {
             const child = modules[sectionIndex].children[childIndex];

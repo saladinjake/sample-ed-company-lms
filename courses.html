@@ -32,12 +32,12 @@
 
       <!-- Search -->
       <div class="md:order-3 order-3 w-full w-auto mr-8">
-         
+
         <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
-          <span onclick="toggleCartModal(true)" class="btn">🛒  (<span id="cart-count">0</span>)</span> <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
-            id="course-search" />
+          <span onclick="toggleCartModal(true)" class="btn">🛒 (<span id="cart-count">0</span>)</span> <input
+            class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search" id="course-search" />
           <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
-          
+
         </form>
       </div>
     </div>
@@ -237,7 +237,51 @@
   </div>
 
   <script type="text/javascript">
-    const allCourses = generateMockCourses(600); // You can replace with real data
+
+    function generateMockCourses(count) {
+      const categories = ['Design', 'Development', 'Marketing', 'Business'];
+      const styles = ['video', 'text', 'interactive'];
+      const levels = ["Beginner", "Intermediate", "Advanced"];
+
+      const list = [];
+      for (let i = 1; i <= count; i++) {
+        const id = `course-${i}`;
+        const category = categories[i % categories.length];
+        const level = levels[i % levels.length];
+        const curriculum = generateCurriculum(i);
+
+        list.push({
+          id: i,
+          title: `Course ${i}`,
+          description: `This is a description of Course ${i}.`,
+          category: categories[i % 4],
+          style: styles[i % 3],
+          level,
+          price: Math.floor(Math.random() * 500),
+          image: `https://img-c.udemycdn.com/course/480x270/382300_f75b_3.jpg?text=Course+${i}`,
+          instructor: `Instructor ${i}`,
+          introVideo: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+          tags: [category, level],
+          curriculum
+        });
+      }
+      return list;
+    }
+    function generateCurriculum(seed = 1) {
+      const sectionCount = 2 + (seed % 3); // 2–4 sections
+      return Array.from({ length: sectionCount }, (_, s) => ({
+        title: `Section ${s + 1}`,
+        collapsed: true,
+        children: Array.from({ length: 3 + (seed % 2) }, (_, c) => ({
+          title: `Lesson ${s + 1}.${c + 1}`,
+          unlocked: c === 0, // unlock only first lesson
+          video: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+        }))
+      }));
+    }
+
+
+    const allCourses = generateMockCourses(1000); // You can replace with real data
     let filteredCourses = [];
     let page = 1;
     const perPage = 20;
@@ -251,54 +295,17 @@
     const paginationDiv = document.getElementById('pagination');
     const sentinel = document.getElementById('scroll-sentinel');
 
-    function generateMockCourses(count) {
-      const categories = ['Design', 'Development', 'Marketing', 'Business'];
-      const styles = ['video', 'text', 'interactive'];
-  const levels = ["Beginner", "Intermediate", "Advanced"];
-      
-      const list = [];
-      for (let i = 1; i <= count; i++) {
-    const id = `course-${i}`;
-    const category = categories[i % categories.length];
-    const level = levels[i % levels.length];
-    const curriculum = generateCurriculum(i);
 
-        list.push({
-          title: `Course ${i}`,
-          description: `This is a description of Course ${i}.`,
-          category: categories[i % 4],
-          style: styles[i % 3],
-          price: Math.floor(Math.random() * 500),
-          image: `https://img-c.udemycdn.com/course/480x270/382300_f75b_3.jpg?text=Course+${i}`,
-          instructor: `Instructor ${i}`,
-          introVideo: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-tags: [category, level],
-          curriculum
-        });
-      }
-      return list;
+
+    function viewCourse(courseId) {
+      // const allCourses = generateMockCourses(1000); // You can replace with real data
+      // console.log(allCourses, ">>>")
+      const course = allCourses.find(c => parseInt(c.id) === parseInt(courseId));
+      if (!course) return alert("Course not found!");
+
+      localStorage.setItem("selected_course", JSON.stringify(course));
+      window.location.href = "course-detail.html";
     }
-function generateCurriculum(seed = 1) {
-  const sectionCount = 2 + (seed % 3); // 2–4 sections
-  return Array.from({ length: sectionCount }, (_, s) => ({
-    title: `Section ${s + 1}`,
-    collapsed: true,
-    children: Array.from({ length: 3 + (seed % 2) }, (_, c) => ({
-      title: `Lesson ${s + 1}.${c + 1}`,
-      unlocked: c === 0, // unlock only first lesson
-      video: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
-    }))
-  }));
-}
-
-
-function viewCourse(courseId) {
-  const course = allCourses.find(c => c.id === courseId);
-  if (!course) return alert("Course not found!");
-
-  localStorage.setItem("selected_course", JSON.stringify(course));
-  window.location.href = "course-detail.html";
-}
 
     function applyFilters() {
       const q = searchInput.value.toLowerCase();
@@ -334,8 +341,11 @@ function viewCourse(courseId) {
         <h3 class="text-md font-semibold mb-2">${course.title}</h3>
         <p class="text-sm text-muted mb-3">${course.description}</p>
         <p class="text-xs text-muted">By ${course.instructor}</p>
-   <button class="btn btn-primary mt-3" onclick="viewCourse('${course.id}')">View Course</button>
-         <button onclick='addToCart(${course})' class="btn btn-primary mt-4 w-full">
+         <div class="text-sm mt-2">
+         • ${course.level} • ${course.category}
+      </div>
+   <button class="p-4 mt-3 border-2" onclick="viewCourse('${course.id}')">View Course</button>
+         <button onclick='addToCart(${course})' class=" mt-4 w-full">
   Enroll ₦${course.price}
 </button>
      <!--<button onclick='payWithPaystack(${JSON.stringify(course)})' class="btn btn-primary mt-4 w-full">
@@ -423,7 +433,7 @@ function viewCourse(courseId) {
   </script>
 
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
 
   <script type="text/javascript">
     function payWithPaystack(course) {

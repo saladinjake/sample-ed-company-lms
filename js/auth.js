@@ -114,3 +114,30 @@ function requireAuth(role = null) {
 
 
 
+function enrollCourse(courseId) {
+  const current = getCurrentUser();
+  if (!current) return { error: "Login required" };
+
+  const users = getUsers();
+  const user = users.find(u => u.email === current.email);
+  if (!user) return { error: "User not found" };
+
+  user.enrolledCourses = user.enrolledCourses || [];
+  if (!user.enrolledCourses.includes(courseId)) {
+    user.enrolledCourses.push(courseId);
+    saveUsers(users);
+  }
+
+  return { success: true };
+}
+
+function isEnrolled(courseId) {
+  const current = getCurrentUser();
+  if (!current) return false;
+
+  const users = getUsers();
+  const user = users.find(u => u.email === current.email);
+  if (!user) return false;
+
+  return (user.enrolledCourses || []).includes(courseId);
+}
