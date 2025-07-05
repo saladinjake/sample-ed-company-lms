@@ -88,49 +88,11 @@
 
 
 
-
-        <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-64 container mx-auto">
-            <div class="max-w-sm w-full md:w-1/2 bg-white shadow-lg p-6 rounded-xl">
-                <h2 class="text-xl font-semibold mb-4">Log in to your account</h2>
-
-                <form id="login-form" class="space-y-4">
-                    <input type="email" name="email" placeholder="Email" required class="input w-full mb-6 p-4 " />
-                    <input type="password" name="password" placeholder="Password" required
-                        class="input w-full mb-6 p-4 " />
-
-                    <button type="submit" class="btn btn-primary w-full">Log In</button>
-                    <a href="forgot-password.html" class="text-sm text-blue-500 block text-center mt-2">Forgot password?</a>
-                </form>
-
-                <p class="text-sm mt-4 text-center">
-                    Don’t have an account?
-                    <a href="signup.html" class="text-blue-500">Sign up</a>
-                </p>
-            </div>
-        </div>
-
-
+        <!--Start here for body-->
 
     </main>
 
-    <script src="./js/auth.js"></script>
-    <script>
-
-        document.getElementById("login-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const email = e.target.email.value;
-            const password = e.target.password.value;
-
-            const result = await login(email, password);
-            if (result.error) {
-                alert(result.error);
-            } else {
-                alert("Login successful!");
-               
-                window.location.href = "dashboard.html";
-            }
-        });
-    </script>
+ 
 
 </body>
 

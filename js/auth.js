@@ -65,7 +65,14 @@ async function login(email, password) {
     const token = crypto.randomUUID();
     user.token = token;
     saveUsers(users);
-    setCurrentUser({ email: user.email, token, role: user.role });
+    setCurrentUser({ email: user.email, token, role: user.role , preference: {
+      cardPreference: {paymentMethod: "Master Card"},
+       onboardingCategories:["React", "Frontend Development","Data Structures"],
+       displayName:"***",
+       displayEmail:email,
+       screenReaderEnabled: true
+
+    }});
     return { success: true, user };
 }
 
