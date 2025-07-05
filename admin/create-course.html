@@ -188,6 +188,60 @@
         }
 
 
+        // save the form
+        const form = document.getElementById("courseForm");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const user = getCurrentUser();
+
+            const course = {
+                id: "course-" + Date.now(),
+                title: data.get("title"),
+                description: data.get("description"),
+                price: +data.get("price"),
+                introVideo: data.get("introVideo"),
+                level: data.get("level"),
+                category: data.get("category"),
+                tags: data.get("tags").split(",").map(t => t.trim()),
+                enabled: data.get("enabled") === "on",
+                createdBy: user.email,
+                expiresAt: data.get("expiresAt") || null,
+                curriculum: tempCurriculum
+            };
+
+            const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
+            allCourses.push(course);
+            localStorage.setItem("created_courses", JSON.stringify(allCourses));
+            alert("Course saved!");
+            form.reset();
+            tempCurriculum = [];
+            renderCurriculum();
+            renderCourseList();
+        });
+
+
+        //show the created course persisted
+        function renderCourseList() {
+            const wrapper = document.getElementById("myCourseList");
+            const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
+            const mine = allCourses.filter(c => c.createdBy === getCurrentUser().email);
+
+            wrapper.innerHTML = mine.length
+                ? mine.map(c => `
+      <div class="bg-white p-4 rounded-xl shadow">
+        <h4 class="text-lg font-semibold">${c.title}</h4>
+        <p class="text-sm text-gray-500">${c.description}</p>
+        <div class="text-sm mt-1">${c.category} • ${c.level}</div>
+        <div class="text-xs text-gray-400 mt-2">Enabled: ${c.enabled} • Expires: ${c.expiresAt || "Never"}</div>
+      </div>
+    `).join("")
+                : `<p class="text-gray-500">No courses created yet.</p>`;
+        }
+
+        renderCourseList();
+
+
     </script>
 
 </body>
