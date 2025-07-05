@@ -95,8 +95,8 @@
                     <button onclick="toggleSidebar()" class="text-gray-500">✖</button>
                 </div>
                 <nav class="space-y-2">
-                    <a href="#new" class="block text-blue-600 font-semibold">➕ New Course</a>
-                    <a href="#list" class="block">📚 My Courses</a>
+                    <a href="#new" class="block text-blue-600 font-semibold">New Course</a>
+                    <a href="#list" class="block">My Courses</a>
                 </nav>
             </aside>
 
@@ -105,42 +105,102 @@
                 <button onclick="toggleSidebar()" class="mb-4 md:hidden btn btn-outline">☰ Menu</button>
 
                 <!-- Create Course Form -->
-                <div class="bg-white p-6 rounded-xl shadow space-y-6" id="new">
+                <div class="bg-white p-6 rounded-xl shadow space-y-6 mb-4" id="new">
                     <h2 class="text-2xl font-bold">Create / Edit Course</h2>
                     <form id="courseForm">
                         <div class="grid grid-cols-1  md:grid-cols-4 gap-12">
-                            <input name="title" class="input" placeholder="Course Title" />
-                            <input name="price" type="number" class="input" placeholder="Price ($)" />
-                            <input name="introVideo" class="input" placeholder="Intro Video URL" />
-                            <input name="tags" class="input" placeholder="Tags (comma-separated)" />
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Course Title</label>
+                                <input name="title" class="input" placeholder="Course Title" />
+                            </div>
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Price</label>
+                                <input name="price" type="number" class="input" placeholder="Price ($)" />
+                            </div>
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Video Url</label>
+                                <input name="introVideo" class="input" placeholder="Intro Video URL" />
+                            </div>
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Tag</label>
+                                <input name="tags" class="input" placeholder="Tags (comma-separated)" />
+                            </div>
+
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Category</label>
+                                <select name="category" class="input">
+                                    <option>Design</option>
+                                    <option>Programming</option>
+                                    <option>Marketing</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Level</label>
+                                <select name="level" class="input">
+                                    <option>Beginner</option>
+                                    <option>Intermediate</option>
+                                    <option>Advanced</option>
+                                </select>
+                            </div>
 
 
 
-                            <input name="description" class="input col-span-1 md:col-span-2 lg:col-span-4"
-                                placeholder="Short Description" />
-                            <select name="category" class="input">
-                                <option>Design</option>
-                                <option>Programming</option>
-                                <option>Marketing</option>
-                            </select>
-                            <select name="level" class="input">
-                                <option>Beginner</option>
-                                <option>Intermediate</option>
-                                <option>Advanced</option>
-                            </select>
 
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Course Thumbnail</label>
+                                <input type="file" id="thumbnailUpload" class="input w-full" />
+                                <img id="thumbnailPreview" class="w-32 mt-2 rounded"
+                                    style="display:none; width:100px;height: 100px" />
+                                <input type="hidden" name="thumbnail" />
+                            </div>
 
-                            
-                            <input type="file" id="thumbnailUpload" class="input w-full" />
-                            <img id="thumbnailPreview" class="w-32 mt-2 rounded" style="display:none; width:100px;height: 100px" />
-                            <input type="hidden" name="thumbnail" />
-                            
-                            <input type="date" name="expiresAt" class="input" />
-                            <label class="flex items-center gap-2"><input type="checkbox" name="enabled" />
-                                Publish</label>
+                            <div>
+                                <label class="text-black mb-3 block text-sm font-semibold">Expiry Date</label>
+                                <input type="date" name="expiresAt" class="input" />
+                            </div>
 
 
                         </div>
+
+
+                        <div class="w-100 mb-4 mt-8">
+                            <label class="text-black mb-3 block text-sm font-semibold">Course Description</label>
+
+                            <!-- Toolbar -->
+                            <div class="flex gap-2 flex-wrap mb-6 text-black text-md mt-4">
+                                <button class="btn-sm" onclick="execCmd('bold')"><b>B</b></button>
+                                <button class="btn-sm" onclick="execCmd('italic')"><i>I</i></button>
+                                <button class="btn-sm" onclick="execCmd('underline')"><u>U</u></button>
+                                <select class="btn-sm" onchange="execCmd('formatBlock', this.value)">
+                                    <option value="<p>">Paragraph</option>
+                                    <option value="<h1>">Heading 1</option>
+                                    <option value="<h2>">Heading 2</option>
+                                    <option value="<h3>">Heading 3</option>
+                                </select>
+                                <button class="btn-sm" onclick="execCmd('insertOrderedList')">1.</button>
+                                <button class="btn-sm" onclick="execCmd('insertUnorderedList')">•</button>
+                                <button class="btn-sm" onclick="execCmd('createLink', prompt('URL?'))">🔗</button>
+                                <button class="btn-sm" onclick="embedYouTube()">▶️ YouTube</button>
+                                <button class="btn-sm" onclick="embedPDF()">📄 PDF</button>
+                                <label class="btn-sm bg-blue-100 text-blue-700 cursor-pointer">📷
+                                    <input type="file" id="imgUpload" hidden />
+                                </label>
+                                <button class="btn-sm" onclick="togglePreview()">👁 Preview</button>
+                                <button class="btn-sm" onclick="clearDraft()">🗑 Clear</button>
+                            </div>
+
+                            <!-- Editable Area -->
+                            <div id="richDesc" contenteditable="true"
+                                class="min-h-[150px] border border-gray-300 p-3 rounded-md bg-white"
+                                placeholder="Write course description here..." style="height: 300px"></div>
+
+                            <!-- Hidden field to save content -->
+                            <input type="hidden" name="description" />
+                        </div>
+
+                        <label class="flex items-center gap-2 mb-4"><input type="checkbox" name="enabled" />
+                            Publish</label>
+
 
                         <div class="mt-6">
                             <h3 class="font-semibold text-lg mb-2">Curriculum Builder</h3>
@@ -162,6 +222,8 @@
         </div>
 
 
+        <div id="previewBox" class="hidden border border-gray-200 p-4 mt-4 rounded bg-gray-50 text-sm prose max-w-none">
+        </div>
 
     </main>
 
@@ -216,13 +278,41 @@
             tempCurriculum[si].children[li].unlocked = !tempCurriculum[si].children[li].unlocked;
         }
 
+        function sanitizeHTML(html) {
+            const div = document.createElement("div");
+            div.innerHTML = html;
+
+            const whitelist = ['P', 'H1', 'H2', 'H3', 'UL', 'OL', 'LI', 'STRONG', 'EM', 'U', 'A', 'IMG', 'IFRAME', 'SPAN'];
+
+            const all = div.querySelectorAll("*");
+            for (const el of all) {
+                if (!whitelist.includes(el.tagName)) {
+                    const replacement = document.createElement("span");
+                    replacement.innerHTML = el.innerHTML;
+                    el.replaceWith(...replacement.childNodes);
+                }
+
+                [...el.attributes].forEach(attr => {
+                    const name = attr.name;
+                    const value = attr.value;
+                    if (name.startsWith("on") || value.startsWith("javascript:")) {
+                        el.removeAttribute(name);
+                    }
+                });
+            }
+
+            return div.innerHTML;
+        }
 
         // save the form
 
         document.getElementById("courseForm").addEventListener("submit", (e) => {
             e.preventDefault();
+            //rich text form content editor
+            syncRichEditorToInput()
             const data = new FormData(e.target);
             const user = getCurrentUser();
+
 
             const course = {
                 id: "course-" + Date.now(),
@@ -255,7 +345,7 @@
             const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
             const currentUser = getCurrentUser();
 
-            const isAdmin = currentUser & currentUser?.role === 'admin'? true: false;
+            const isAdmin = currentUser & currentUser?.role === 'admin' ? true : false;
             const visibleCourses = isAdmin
                 ? allCourses
                 : allCourses.filter(c => c.createdBy === currentUser?.email);
@@ -298,6 +388,8 @@
 
             // Store to session to detect edit mode
             sessionStorage.setItem("editing_course", courseId);
+            //rich text form content editor
+            document.getElementById("richDesc").innerHTML = course.description || "";
 
             const form = document.getElementById("courseForm");
             form.title.value = course.title;
@@ -356,6 +448,116 @@
             preview.src = data.secure_url;
             preview.style.display = "block";
         });
+
+
+        //custom rich text
+        // Basic command execution
+        // Execute basic command
+        function execCmd(cmd, val = null) {
+            document.execCommand(cmd, false, val);
+        }
+
+        // Inline tagging: detect # or @ in real-time (optional highlight)
+        document.getElementById("richDesc").addEventListener("keyup", () => {
+            let html = document.getElementById("richDesc").innerHTML;
+
+            html = html.replace(/(@\w+)/g, `<span class="text-blue-500 font-medium">$1</span>`);
+            html = html.replace(/(#\w+)/g, `<span class="text-green-600 font-semibold">$1</span>`);
+
+            document.getElementById("richDesc").innerHTML = html;
+        });
+
+        // Cloudinary image upload
+        document.getElementById("imgUpload").addEventListener("change", async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "YOUR_UPLOAD_PRESET");
+
+            const res = await fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await res.json();
+            const img = `<img src="${data.secure_url}" class="rounded mt-2 max-w-full" />`;
+            execCmd("insertHTML", img);
+        });
+
+        // Embed YouTube
+        function embedYouTube() {
+            const url = prompt("YouTube link:");
+            const id = (url.match(/(?:v=|\.be\/)([\w-]+)/) || [])[1];
+            if (id) {
+                const iframe = `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
+                execCmd("insertHTML", iframe);
+            }
+        }
+
+        // Embed PDF
+        function embedPDF() {
+            const url = prompt("PDF URL:");
+            if (url) {
+                const iframe = `<iframe src="${url}" width="100%" height="400px" class="mt-2 border"></iframe>`;
+                execCmd("insertHTML", iframe);
+            }
+        }
+
+        // Preview toggle
+        function togglePreview() {
+            const html = document.getElementById("richDesc").innerHTML;
+            const sanitized = sanitizeHTML(html);
+            document.getElementById("previewBox").innerHTML = sanitized;
+            document.getElementById("previewBox").classList.toggle("hidden");
+        }
+
+        // Save to form
+        function syncRichEditorToInput() {
+            document.querySelector("[name='description']").value = sanitizeHTML(
+                document.getElementById("richDesc").innerHTML
+            );
+        }
+
+        // Auto save draft
+        document.getElementById("richDesc").addEventListener("input", () => {
+            localStorage.setItem("draft_rich_desc", document.getElementById("richDesc").innerHTML);
+        });
+
+        // Restore on load
+        window.addEventListener("DOMContentLoaded", () => {
+            const draft = localStorage.getItem("draft_rich_desc");
+            if (draft) document.getElementById("richDesc").innerHTML = draft;
+        });
+
+        // Clear draft
+        function clearDraft() {
+            localStorage.removeItem("draft_rich_desc");
+            document.getElementById("richDesc").innerHTML = "";
+            document.getElementById("previewBox").classList.add("hidden");
+        }
+
+
+        // Cloudinary image upload
+        document.getElementById("imgUpload").addEventListener("change", async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "hpvklb3p"); // MY UPLOAD PRESET ALLOW_UPLOAD_TEST
+            const res = await fetch("https://api.cloudinary.com/v1_1/questence/image/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await res.json();
+            const imgTag = `<img src="${data.secure_url}" style="max-width: 100%; border-radius: 8px;" />`;
+            document.execCommand("insertHTML", false, imgTag);
+        });
+
+
 
     </script>
 
