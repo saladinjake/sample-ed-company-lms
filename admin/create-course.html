@@ -242,19 +242,31 @@
         function renderCourseList() {
             const wrapper = document.getElementById("myCourseList");
             const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
-            const mine = allCourses.filter(c => c.createdBy === getCurrentUser().email);
+            const currentUser = getCurrentUser();
 
-            wrapper.innerHTML = mine.length
-                ? mine.map(c => `
-      <div class="bg-white p-4 shadow rounded-xl">
+            const isAdmin = currentUser.role === 'admin';
+            const visibleCourses = isAdmin
+                ? allCourses
+                : allCourses.filter(c => c.createdBy === currentUser.email);
+
+            wrapper.innerHTML = visibleCourses.length
+                ? visibleCourses.map(c => `
+      <div class="bg-white p-4 shadow rounded-xl space-y-2">
         <h4 class="text-lg font-semibold">${c.title}</h4>
         <p class="text-sm text-gray-500">${c.description}</p>
-        <div class="text-sm mt-1">${c.category} • ${c.level}</div>
-        <div class="text-xs text-gray-400 mt-2">Published: ${c.enabled ? 'Yes' : 'No'} • Expires: ${c.expiresAt || "Never"}</div>
+        <div class="text-xs text-gray-400">Category: ${c.category} • Level: ${c.level}</div>
+        <div class="text-xs text-gray-400">Published: ${c.enabled ? '✅' : '❌'} • Expires: ${c.expiresAt || 'Never'}</div>
+        
+        <div class="flex gap-2 pt-2">
+          <button class="btn btn-sm" onclick="editCourse('${c.id}')">✏️ Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteCourse('${c.id}')">🗑 Delete</button>
+          <button class="btn btn-sm btn-outline" onclick="togglePublish('${c.id}')">${c.enabled ? 'Unpublish' : 'Publish'}</button>
+        </div>
       </div>
     `).join("")
-                : `<p class="text-gray-500">You haven't created any courses yet.</p>`;
+                : `<p class="text-gray-500">No courses available.</p>`;
         }
+
 
 
         renderCourseList();
@@ -265,6 +277,53 @@
             const sidebar = document.getElementById("sidebar");
             sidebar.classList.toggle("hidden");
         }
+
+
+        //edit form
+        function editCourse(courseId) {
+            const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
+            const course = allCourses.find(c => c.id === courseId);
+            if (!course) return alert("Course not found");
+
+            // Store to session to detect edit mode
+            sessionStorage.setItem("editing_course", courseId);
+
+            const form = document.getElementById("courseForm");
+            form.title.value = course.title;
+            form.price.value = course.price;
+            form.introVideo.value = course.introVideo;
+            form.tags.value = course.tags.join(", ");
+            form.description.value = course.description;
+            form.level.value = course.level;
+            form.category.value = course.category;
+            form.expiresAt.value = course.expiresAt || "";
+            form.enabled.checked = course.enabled;
+
+            tempCurriculum = JSON.parse(JSON.stringify(course.curriculum));
+            renderCurriculum();
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function togglePublish(courseId) {
+            const all = JSON.parse(localStorage.getItem("created_courses") || "[]");
+            const course = all.find(c => c.id === courseId);
+            if (!course) return;
+
+            course.enabled = !course.enabled;
+            localStorage.setItem("created_courses", JSON.stringify(all));
+            renderCourseList();
+        }
+
+        function deleteCourse(courseId) {
+            if (!confirm("Are you sure you want to delete this course?")) return;
+            const all = JSON.parse(localStorage.getItem("created_courses") || "[]");
+            const updated = all.filter(c => c.id !== courseId);
+            localStorage.setItem("created_courses", JSON.stringify(updated));
+            renderCourseList();
+        }
+
+
 
     </script>
 
