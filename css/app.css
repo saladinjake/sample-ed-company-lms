@@ -236,3 +236,15 @@ button[onclick] {
   top: 0; left: 0;
   width: 100%; height: 100%;
 }
+
+
+
+/*admin sidebar and dashboard*/
+@media (max-width: 768px) {
+  #sidebar {
+    position: absolute;
+    z-index: 50;
+    height: 100vh;
+    background-color: white;
+  }
+}

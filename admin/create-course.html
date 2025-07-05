@@ -86,51 +86,69 @@
 
     <main id="home">
 
+        <div class="min-h-screen flex bg-gray-50">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="w-64 bg-white shadow-xl p-4 transition-all duration-300"
+                style="margin-top:170px">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Dashboard</h2>
+                    <button onclick="toggleSidebar()" class="text-gray-500">✖</button>
+                </div>
+                <nav class="space-y-2">
+                    <a href="#new" class="block text-blue-600 font-semibold">➕ New Course</a>
+                    <a href="#list" class="block">📚 My Courses</a>
+                </nav>
+            </aside>
 
+            <!-- Main Content -->
+            <main class="flex-1 p-6 w-100  " style="margin-top:180px">
+                <button onclick="toggleSidebar()" class="mb-4 md:hidden btn btn-outline">☰ Menu</button>
 
+                <!-- Create Course Form -->
+                <div class="bg-white p-6 rounded-xl shadow space-y-6" id="new">
+                    <h2 class="text-2xl font-bold">Create / Edit Course</h2>
+                    <form id="courseForm">
+                        <div class="grid grid-cols-1  md:grid-cols-4 gap-12">
+                            <input name="title" class="input" placeholder="Course Title" />
+                            <input name="price" type="number" class="input" placeholder="Price ($)" />
+                            <input name="introVideo" class="input" placeholder="Intro Video URL" />
+                            <input name="tags" class="input" placeholder="Tags (comma-separated)" />
 
-        <div class="p-6 space-y-6 max-w-4xl mx-auto container mx-auto">
-            <h2 class="text-2xl font-bold">Create / Edit Course</h2>
+                            <input name="description" class="input col-span-1 md:col-span-2 lg:col-span-4"
+                                placeholder="Short Description" />
+                            <select name="category" class="input">
+                                <option>Design</option>
+                                <option>Programming</option>
+                                <option>Marketing</option>
+                            </select>
+                            <select name="level" class="input">
+                                <option>Beginner</option>
+                                <option>Intermediate</option>
+                                <option>Advanced</option>
+                            </select>
+                            <input type="date" name="expiresAt" class="input" />
+                            <label class="flex items-center gap-2"><input type="checkbox" name="enabled" />
+                                Publish</label>
+                        </div>
 
-            <form id="courseForm" class="space-y-4 bg-white p-6 rounded-xl shadow mt-8">
-                <input name="title" placeholder="Course Title" class="input w-full mb-4" />
-                <textarea name="description" placeholder="Course Description" class="input w-full mb-4"></textarea>
-                <input name="price" type="number" placeholder="Price ($)" class="input w-full mb-4" />
-                <input name="introVideo" placeholder="Intro Video URL" class="input w-full mb-4" />
-                <input name="tags" placeholder="Tags (comma-separated)" class="input w-full mb-4" />
+                        <div class="mt-6">
+                            <h3 class="font-semibold text-lg mb-2">Curriculum Builder</h3>
+                            <div id="curriculumBuilder" class="space-y-2"></div>
+                            <button type="button" class="btn btn-outline mt-2" onclick="addSection()">+ Add
+                                Section</button>
+                        </div>
 
-                <select name="level" class="input w-full mb-4">
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
-                </select>
-
-                <select name="category" class="input w-full mb-4">
-                    <option>Design</option>
-                    <option>Programming</option>
-                    <option>Marketing</option>
-                    <option>Business</option>
-                </select>
-
-                <input name="expiresAt" type="date" class="input w-full mb-4" />
-
-                <label><input type="checkbox" name="enabled" class="mr-2 mb-4" /> Publish Course</label>
-
-                <div class="border-t pt-4 mb-4">
-                    <h3 class="font-semibold text-lg mb-2">Curriculum Builder</h3>
-                    <div id="curriculumBuilder" class="space-y-2"></div>
-                    <button type="button" class="btn btn-outline mt-2" onclick="addSection()">+ Add Section</button>
+                        <button class="btn btn-primary w-full mt-6">Save Course</button>
+                    </form>
                 </div>
 
-                <button class="btn btn-primary w-full mt-4 mb-4">Save Course</button>
-            </form>
-
-            <hr class="my-6" />
-
-            <h3 class="text-xl font-bold mb-4">My Courses</h3>
-            <div id="myCourseList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                <!-- Course List -->
+                <div class="mt-10" id="list">
+                    <h3 class="text-xl font-bold mb-4">My Courses</h3>
+                    <div id="myCourseList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+            </main>
         </div>
-
 
 
 
@@ -189,10 +207,10 @@
 
 
         // save the form
-        const form = document.getElementById("courseForm");
-        form.addEventListener("submit", (e) => {
+
+        document.getElementById("courseForm").addEventListener("submit", (e) => {
             e.preventDefault();
-            const data = new FormData(form);
+            const data = new FormData(e.target);
             const user = getCurrentUser();
 
             const course = {
@@ -210,16 +228,15 @@
                 curriculum: tempCurriculum
             };
 
-            const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
-            allCourses.push(course);
-            localStorage.setItem("created_courses", JSON.stringify(allCourses));
+            const all = JSON.parse(localStorage.getItem("created_courses") || "[]");
+            all.push(course);
+            localStorage.setItem("created_courses", JSON.stringify(all));
             alert("Course saved!");
-            form.reset();
+            e.target.reset();
             tempCurriculum = [];
             renderCurriculum();
             renderCourseList();
         });
-
 
         //show the created course persisted
         function renderCourseList() {
@@ -229,18 +246,25 @@
 
             wrapper.innerHTML = mine.length
                 ? mine.map(c => `
-      <div class="bg-white p-4 rounded-xl shadow">
+      <div class="bg-white p-4 shadow rounded-xl">
         <h4 class="text-lg font-semibold">${c.title}</h4>
         <p class="text-sm text-gray-500">${c.description}</p>
         <div class="text-sm mt-1">${c.category} • ${c.level}</div>
-        <div class="text-xs text-gray-400 mt-2">Enabled: ${c.enabled} • Expires: ${c.expiresAt || "Never"}</div>
+        <div class="text-xs text-gray-400 mt-2">Published: ${c.enabled ? 'Yes' : 'No'} • Expires: ${c.expiresAt || "Never"}</div>
       </div>
     `).join("")
-                : `<p class="text-gray-500">No courses created yet.</p>`;
+                : `<p class="text-gray-500">You haven't created any courses yet.</p>`;
         }
+
 
         renderCourseList();
 
+
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("hidden");
+        }
 
     </script>
 
