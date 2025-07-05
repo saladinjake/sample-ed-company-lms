@@ -114,6 +114,8 @@
                             <input name="introVideo" class="input" placeholder="Intro Video URL" />
                             <input name="tags" class="input" placeholder="Tags (comma-separated)" />
 
+
+
                             <input name="description" class="input col-span-1 md:col-span-2 lg:col-span-4"
                                 placeholder="Short Description" />
                             <select name="category" class="input">
@@ -126,9 +128,18 @@
                                 <option>Intermediate</option>
                                 <option>Advanced</option>
                             </select>
+
+
+                            
+                            <input type="file" id="thumbnailUpload" class="input w-full" />
+                            <img id="thumbnailPreview" class="w-32 mt-2 rounded" style="display:none; width:100px;height: 100px" />
+                            <input type="hidden" name="thumbnail" />
+                            
                             <input type="date" name="expiresAt" class="input" />
                             <label class="flex items-center gap-2"><input type="checkbox" name="enabled" />
                                 Publish</label>
+
+
                         </div>
 
                         <div class="mt-6">
@@ -244,10 +255,10 @@
             const allCourses = JSON.parse(localStorage.getItem("created_courses") || "[]");
             const currentUser = getCurrentUser();
 
-            const isAdmin = currentUser.role === 'admin';
+            const isAdmin = currentUser & currentUser?.role === 'admin'? true: false;
             const visibleCourses = isAdmin
                 ? allCourses
-                : allCourses.filter(c => c.createdBy === currentUser.email);
+                : allCourses.filter(c => c.createdBy === currentUser?.email);
 
             wrapper.innerHTML = visibleCourses.length
                 ? visibleCourses.map(c => `
@@ -324,6 +335,27 @@
         }
 
 
+        // cloudinary upload
+        document.getElementById("thumbnailUpload").addEventListener("change", async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "hpvklb3p"); // MY UPLOAD PRESET ALLOW_UPLOAD_TEST
+
+
+            const res = await fetch("https://api.cloudinary.com/v1_1/questence/image/upload", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await res.json();
+            document.querySelector("[name='thumbnail']").value = data.secure_url;
+
+            const preview = document.getElementById("thumbnailPreview");
+            preview.src = data.secure_url;
+            preview.style.display = "block";
+        });
 
     </script>
 
