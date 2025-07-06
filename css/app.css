@@ -267,3 +267,27 @@ button[onclick] {
 }
 
 
+
+
+
+
+
+  #megaMenu {
+    max-height: 90vh;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    #megaMenu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      padding-top: 4rem;
+    }
+  }
+
+
+

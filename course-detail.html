@@ -48,19 +48,34 @@
             </button>
         </div>
 
-        <!-- Nav Menu -->
-        <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
-            <ul class="flex justify-center gap-6 text-sm uppercase">
-                <li><a href="#" class="text-primary text-muted font-semibold">Courses</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Guide</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Coming Soon</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Top Seller</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Books</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Author</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Blog</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Contact</a></li>
-            </ul>
-        </nav>
+            <!-- Nav Menu -->
+    <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
+      <ul class="flex justify-center gap-6 text-sm uppercase">
+        <!-- Browse Categories Button -->
+        <li><a href="#" class="text-primary text-muted font-semibold" onclick="toggleMegaMenu()"
+            class="px-4 py-2 bg-gray-800 text-white rounded inline-flex items-center gap-2">
+            ☰ Course Categories</a>
+        </li>
+
+
+
+        <li><a href="courses.html" class="text-primary text-muted font-semibold">Courses</a></li>
+        <li><a href="dashboard.html" class="text-black hover:text-primary">Dashboard</a></li>
+        <li><a href="my-courses.html" class="text-black hover:text-primary">My Courses</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Top Seller</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Books</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Author</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Blog</a></li>
+        <li><a href="#" class="text-black hover:text-primary">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mega Menu -->
+    <div id="megaMenu" class="fixed top-16 left-0 w-full z-50 hidden bg-white shadow-lg px-6 py-8">
+      <h2 class="text-lg font-semibold mb-4">All Categories</h2>
+      <div id="categoryGrid" class="grid grid-cols-2  md:grid-cols-4  gap-4 text-sm"></div>
+    </div>
+
 
 
         <!-- Mobile Nav -->
