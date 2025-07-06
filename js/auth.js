@@ -1,10 +1,10 @@
 // auth utils
 async function hashPassword(password) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
 const defaultUsers = {
@@ -25,75 +25,98 @@ const defaultUsers = {
 
 
 function getUsers() {
-    return JSON.parse(localStorage.getItem("users") || "[]");
+  return JSON.parse(localStorage.getItem("users") || "[]");
 }
 
 function saveUsers(users) {
-    localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("users", JSON.stringify(users));
 }
 
 function setCurrentUser(user) {
-    localStorage.setItem("currentUser", JSON.stringify(user));
+  localStorage.setItem("currentUser", JSON.stringify(user));
 }
 
 function getCurrentUser() {
-    return JSON.parse(localStorage.getItem("currentUser"));
+  return JSON.parse(localStorage.getItem("currentUser"));
 }
 
 function logout() {
-    localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentUser");
+}
+
+
+function redirectAfterLogin() {
+  const user = JSON.parse(localStorage.getItem("current_user"));
+  if (!user) return window.location.href = "/login.html";
+
+  if (user.role === "employee") window.location.href = "/teams/dashboard.html";
+  else if (user.role === "admin") window.location.href = "/admin/dashboard.html";
+  else if (user.role === "student") window.location.href = "/dashboard.html";
+  else if (user.role === "instructor") window.location.href = "/instructor/dashboard.html";
 }
 
 async function signUp(name, email, password, role = "student") {
-    const users = getUsers();
-    if (users.find(u => u.email === email)) return { error: "Email already exists." };
+  const users = getUsers();
+  if (users.find(u => u.email === email)) return { error: "Email already exists." };
 
-    const hashed = await hashPassword(password);
-    const newUser = { name, email, password: hashed, role };
-    users.push(newUser);
-    saveUsers(users);
-    return { success: true };
+  const hashed = await hashPassword(password);
+  const newUser = { name, email, password: hashed, role };
+  users.push(newUser);
+  saveUsers(users);
+  return { success: true };
 }
 
 async function login(email, password) {
-    const users = getUsers();
-    const hashed = await hashPassword(password);
-    const user = users.find(u => u.email === email && u.password === hashed);
+  const users = getUsers();
+  const hashed = await hashPassword(password);
+  const user = users.find(u => u.email === email && u.password === hashed);
 
-    if (!user) return { error: "Invalid email or password" };
+  if (!user) return { error: "Invalid email or password" };
 
-    const token = crypto.randomUUID();
-    user.token = token;
-    saveUsers(users);
-    setCurrentUser({ email: user.email, token, role: user.role , preference: {
-      cardPreference: {paymentMethod: "Master Card"},
-       onboardingCategories:["React", "Frontend Development","Data Structures"],
-       displayName:"***",
-       displayEmail:email,
-       screenReaderEnabled: true
+  const token = crypto.randomUUID();
+  user.token = token;
+  saveUsers(users);
+  setCurrentUser({
+    email: user.email, token, role: user.role,
+    preference: {
+      cardPreference: { paymentMethod: "Master Card" },
+      onboardingCategories: ["React", "Frontend Development", "Data Structures"],
+      displayName: "***",
+      displayEmail: email,
+      screenReaderEnabled: true
+    },
+    //progress
+    // users not assigneed by companies are called students
+    companyId: 'Free Individual',
+    // role: 'student',
+    // enrolledCourses: [],
+    // progress: {
+    //   courseId1: ["mod-1.1", "mod-1.2"],
+    //   courseId2: []
+    // }
 
-    }});
-    return { success: true, user };
+  });
+  return { success: true, user };
 }
 
 function requestReset(email) {
-    const users = getUsers();
-    const user = users.find(u => u.email === email);
-    if (!user) return { error: "User not found" };
-    const code = Math.random().toString().slice(2, 8);
-    user.resetToken = code;
-    saveUsers(users);
-    return { success: true, token: code }; // return code for demo
+  const users = getUsers();
+  const user = users.find(u => u.email === email);
+  if (!user) return { error: "User not found" };
+  const code = Math.random().toString().slice(2, 8);
+  user.resetToken = code;
+  saveUsers(users);
+  return { success: true, token: code }; // return code for demo
 }
 
 async function resetPassword(email, token, newPassword) {
-    const users = getUsers();
-    const user = users.find(u => u.email === email && u.resetToken === token);
-    if (!user) return { error: "Invalid token" };
-    user.password = await hashPassword(newPassword);
-    delete user.resetToken;
-    saveUsers(users);
-    return { success: true };
+  const users = getUsers();
+  const user = users.find(u => u.email === email && u.resetToken === token);
+  if (!user) return { error: "Invalid token" };
+  user.password = await hashPassword(newPassword);
+  delete user.resetToken;
+  saveUsers(users);
+  return { success: true };
 }
 
 
@@ -116,7 +139,7 @@ function requireAuth(role = null) {
     return;
   }
 
-//   document.getElementById("user-name")?.textContent = user.email;
+  //   document.getElementById("user-name")?.textContent = user.email;
 }
 
 

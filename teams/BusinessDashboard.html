@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AntLiteCSS/custom css util Landing Page for E-learning</title>
-    <link href="./css/index.css" rel="stylesheet" />
-    <link href="./css/auth.css" rel="stylesheet" />
+    <link href="../css/index.css" rel="stylesheet" />
+    <link href="../css/auth.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -92,16 +92,31 @@
             <div style="margin-top:70px">
                 <h2 class="text-2xl font-bold ">Welcome, <span id="companyName"></span></h2>
 
+
+                <div id="progressReport" class="mt-10 space-y-4"></div>
+
+
+
                 <!-- Invite Form -->
                 <div class="bg-white p-4 rounded shadow">
                     <h3 class="font-semibold mb-2">📧 Invite Employees</h3>
                     <input type="email" id="inviteEmail" placeholder="Enter employee email" class="input w-full" />
-                    <button onclick="inviteUser()" class="btn bg-green-600 text-white mt-2">Send Invite</button>
+                    <button onclick="inviteUser()" class="rounded-full text-white mt-2">Send Invite</button>
                 </div>
 
                 <!-- Members List -->
                 <div id="memberList" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6"></div>
             </div>
+
+
+            <!-- Select Employee -->
+            <select id="assignUser" class="input w-full mb-2"></select>
+
+            <!-- Select Course -->
+            <select id="assignCourse" class="input w-full mb-4"></select>
+
+            <button onclick="assignCourseToUser()" class="btn bg-indigo-600 text-white w-full">Assign Course</button>
+
 
         </div>
 
@@ -109,9 +124,14 @@
 
     </main>
 
-    <script src="./js/auth.js"></script>
+    <script src="../js/auth.js"></script>
+        <script src="../js/business.js"></script>
     <script>
         function inviteUser() {
+             if(!checkCompanySeatLimit()){
+                // registeration limit exceeded for free trial of no of employees to signup
+                return
+            }
             const email = document.getElementById("inviteEmail").value;
             const company = JSON.parse(localStorage.getItem("current_company"));
 
@@ -146,6 +166,69 @@
 
         window.addEventListener("DOMContentLoaded", renderMembers);
 
+
+
+
+
+        function renderAssignDropdowns() {
+            const company = JSON.parse(localStorage.getItem("current_company"));
+            const teamUsers = JSON.parse(localStorage.getItem("team_users") || "[]")
+                .filter(u => u.companyId === company.id);
+
+            const courses = JSON.parse(localStorage.getItem("created_courses") || "[]")
+                .filter(c => c.ownerId === company.id && c.published);
+
+            document.getElementById("assignUser").innerHTML = teamUsers.map(u =>
+                `<option value="${u.email}">${u.email}</option>`).join("");
+
+            document.getElementById("assignCourse").innerHTML = courses.map(c =>
+                `<option value="${c.id}">${c.title}</option>`).join("");
+        }
+
+        function assignCourseToUser() {
+            const email = document.getElementById("assignUser").value;
+            const courseId = document.getElementById("assignCourse").value;
+
+            const users = JSON.parse(localStorage.getItem("team_users") || "[]");
+            const user = users.find(u => u.email === email);
+
+            if (!user.enrolledCourses.includes(courseId)) {
+                user.enrolledCourses.push(courseId);
+                user.progress[courseId] = [];
+                localStorage.setItem("team_users", JSON.stringify(users));
+                alert("Course assigned ✅");
+            } else {
+                alert("Already assigned!");
+            }
+        }
+
+
+
+        //analytics
+        function renderCompanyAnalytics() {
+            const company = JSON.parse(localStorage.getItem("current_company"));
+            const users = JSON.parse(localStorage.getItem("team_users") || "[]")
+                .filter(u => u.companyId === company.id);
+
+            const courses = JSON.parse(localStorage.getItem("created_courses") || "[]");
+
+            document.getElementById("progressReport").innerHTML = users.map(user => {
+                const rows = user.enrolledCourses.map(cid => {
+                    const course = courses.find(c => c.id === cid);
+                    const totalModules = course.curriculum?.flatMap(s => s.subsections || []).length || 1;
+                    const completed = user.progress[cid]?.length || 0;
+                    const percent = Math.floor((completed / totalModules) * 100);
+                    return `<div class="p-2 bg-gray-50 rounded mb-1">
+        <b>${course.title}</b> – ${percent}% complete
+      </div>`;
+                }).join("");
+
+                return `<div class="p-4 border rounded shadow-sm">
+      <h3 class="font-semibold">${user.email}</h3>
+      ${rows || '<p class="text-sm text-gray-500">No courses assigned.</p>'}
+    </div>`;
+            }).join("");
+        }
 
     </script>
 

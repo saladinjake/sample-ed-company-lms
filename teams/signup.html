@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AntLiteCSS/custom css util Landing Page for E-learning</title>
-    <link href="./css/index.css" rel="stylesheet" />
-        <link href="./css/auth.css" rel="stylesheet" />
+    <link href="../css/index.css" rel="stylesheet" />
+    <link href="../css/auth.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -86,50 +86,76 @@
 
     <main id="home">
 
+        <div class="max-w-xl mx-auto bg-white p-6 rounded shadow space-y-4 p-24 container mx-auto bg-white ">
 
 
+            <div style="margin-top:70px">
+                <div class="max-w-md mx-auto bg-white p-6 rounded shadow space-y-4 mt-12">
+                    <h2 class="text-2xl font-bold">👋 Join Your Company Workspace</h2>
 
-        <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-64 container mx-auto">
-            <div class="max-w-sm w-full md:w-1/2 bg-white shadow-lg p-6 rounded-xl">
-                <h2 class="text-xl font-semibold mb-4">Log in to your account</h2>
+                    <input type="email" id="employeeEmail" placeholder="Work Email" class="input w-full" />
+                    <input type="password" id="employeePassword" placeholder="Create Password" class="input w-full" />
+                    <button onclick="employeeSignup()" class="text-white w-full">Create Account</button>
+                </div>
 
-                <form id="login-form" class="space-y-4">
-                    <input type="email" name="email" placeholder="Email" required class="input w-full mb-6 p-4 " />
-                    <input type="password" name="password" placeholder="Password" required
-                        class="input w-full mb-6 p-4 " />
-
-                    <button type="submit" class="btn btn-primary w-full">Log In</button>
-                    <a href="forgot-password.html" class="text-sm text-blue-500 block text-center mt-2">Forgot password?</a>
-                </form>
-
-                <p class="text-sm mt-4 text-center">
-                    Don’t have an account?
-                    <a href="signup.html" class="text-blue-500">Sign up</a>
-                </p>
             </div>
+
         </div>
 
 
 
     </main>
 
-    <script src="./js/auth.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/business.js"></script>
     <script>
-
-        document.getElementById("login-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const email = e.target.email.value;
-            const password = e.target.password.value;
-
-            const result = await login(email, password);
-            if (result.error) {
-                alert(result.error);
-            } else {
-                alert("Login successful!");
-               
-                redirectAfterLogin()
+        function employeeSignup() {
+            if(!checkCompanySeatLimit()){
+                // registeration limit exceeded for free trial of no of employees to signup
+                return
             }
-        });
+            const email = document.getElementById("employeeEmail").value;
+            const password = document.getElementById("employeePassword").value;
+
+            const companies = JSON.parse(localStorage.getItem("companies") || "[]");
+
+            const company = companies.find(c => c.members.includes(email));
+
+            if (!company) {
+                alert("No invitation found for this email.");
+                return;
+            }
+
+            const teamUsers = JSON.parse(localStorage.getItem("team_users") || "[]");
+
+            // Prevent duplicate
+            if (teamUsers.find(u => u.email === email)) {
+                alert("You already have an account.");
+                return;
+            }
+
+            const newUser = {
+                id: crypto.randomUUID(),
+                email,
+                password,
+                companyId: company.id,
+                role: "employee",
+                enrolledCourses: [],
+                progress: {}
+            };
+
+            teamUsers.push(newUser);
+            localStorage.setItem("team_users", JSON.stringify(teamUsers));
+            localStorage.setItem("current_user", JSON.stringify(newUser));
+
+            alert("You're in!");
+            redirectAfterLogin()
+        }
+
+
+
+      
+
     </script>
 
 </body>
