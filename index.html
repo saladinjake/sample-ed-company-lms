@@ -927,7 +927,7 @@ function renderCategoryGroups(filter = "") {
       <h3 class="font-semibold mb-2 text-gray-700">${group}</h3>
       <ul class="space-y-1">
         ${filtered.map(cat => `
-          <li class="category-pill flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-3  mb-3 py-2 rounded cursor-pointer">
+          <li class="category-pill flex items-center gap-2  hover:bg-gray-200 px-3  mb-3 py-2 rounded cursor-pointer">
             <span class="text-lg ${cat?.icon}"></span>
             <span>${cat.name}</span>
           </li>
