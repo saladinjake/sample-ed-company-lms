@@ -122,11 +122,13 @@
 
 
 
-        <div class="flex items-center gap-3 mt-6">
-            <label class="text-sm">🔁 Auto-Renewal Settings</label>
-            <input type="checkbox" id="autoRenewToggle" onchange="toggleAutoRenew()" />
+        <!--analytics sample-->
+        <div class="bg-white p-4 rounded shadow mt-6">
+            <h3 class="font-semibold mb-2">Team Usage</h3>
+            <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                <div id="teamUsageBar" class="h-full bg-blue-600 text-xs text-white text-center"></div>
+            </div>
         </div>
-
 
     </main>
 
@@ -237,22 +239,20 @@
         }
 
 
-
-        function toggleAutoRenew() {
+        function renderTeamUsageBar() {
             const company = JSON.parse(localStorage.getItem("current_company"));
-            company.subscription.autoRenew = !company.subscription.autoRenew;
+            const users = JSON.parse(localStorage.getItem("team_users") || "[]")
+                .filter(u => u.companyId === company.id);
 
-            localStorage.setItem("current_company", JSON.stringify(company));
+            const plan = company?.subscription?.plan || "free";
+            const limits = { free: 3, pro: 25, enterprise: 100 };
+            const percent = Math.min((users.length / limits[plan]) * 100, 100);
 
-            const all = JSON.parse(localStorage.getItem("companies") || "[]");
-            const idx = all.findIndex(c => c.id === company.id);
-            if (idx > -1) {
-                all[idx] = company;
-                localStorage.setItem("companies", JSON.stringify(all));
-            }
-
-            alert(`Auto-renew is now ${company.subscription.autoRenew ? 'ON' : 'OFF'}`);
+            const bar = document.getElementById("teamUsageBar");
+            bar.style.width = `${percent}%`;
+            bar.textContent = `${users.length} / ${limits[plan]} users`;
         }
+
 
     </script>
 

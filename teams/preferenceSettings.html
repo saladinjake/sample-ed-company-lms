@@ -1,0 +1,25 @@
+<div class="bg-white p-4 rounded shadow mt-6">
+  <h3 class="font-semibold mb-2">💳 Payment Method</h3>
+  <p class="text-gray-500">No card on file.</p>
+  <button class="btn bg-gray-300 text-gray-700 mt-2" disabled>+ Add Card (Coming Soon)</button>
+</div>
+
+
+<script>
+  
+        function toggleAutoRenew() {
+            const company = JSON.parse(localStorage.getItem("current_company"));
+            company.subscription.autoRenew = !company.subscription.autoRenew;
+
+            localStorage.setItem("current_company", JSON.stringify(company));
+
+            const all = JSON.parse(localStorage.getItem("companies") || "[]");
+            const idx = all.findIndex(c => c.id === company.id);
+            if (idx > -1) {
+                all[idx] = company;
+                localStorage.setItem("companies", JSON.stringify(all));
+            }
+
+            alert(`Auto-renew is now ${company.subscription.autoRenew ? 'ON' : 'OFF'}`);
+        }
+</script>
