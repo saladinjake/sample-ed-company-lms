@@ -122,13 +122,19 @@
 
 
 
+        <div class="flex items-center gap-3 mt-6">
+            <label class="text-sm">🔁 Auto-Renewal Settings</label>
+            <input type="checkbox" id="autoRenewToggle" onchange="toggleAutoRenew()" />
+        </div>
+
+
     </main>
 
     <script src="../js/auth.js"></script>
-        <script src="../js/business.js"></script>
+    <script src="../js/business.js"></script>
     <script>
         function inviteUser() {
-             if(!checkCompanySeatLimit()){
+            if (!checkCompanySeatLimit()) {
                 // registeration limit exceeded for free trial of no of employees to signup
                 return
             }
@@ -228,6 +234,24 @@
       ${rows || '<p class="text-sm text-gray-500">No courses assigned.</p>'}
     </div>`;
             }).join("");
+        }
+
+
+
+        function toggleAutoRenew() {
+            const company = JSON.parse(localStorage.getItem("current_company"));
+            company.subscription.autoRenew = !company.subscription.autoRenew;
+
+            localStorage.setItem("current_company", JSON.stringify(company));
+
+            const all = JSON.parse(localStorage.getItem("companies") || "[]");
+            const idx = all.findIndex(c => c.id === company.id);
+            if (idx > -1) {
+                all[idx] = company;
+                localStorage.setItem("companies", JSON.stringify(all));
+            }
+
+            alert(`Auto-renew is now ${company.subscription.autoRenew ? 'ON' : 'OFF'}`);
         }
 
     </script>

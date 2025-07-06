@@ -1,0 +1,32 @@
+<!-- Receipt Button -->
+<button onclick="showInvoiceModal()" class="btn bg-gray-800 text-white">🧾 View Invoice</button>
+
+<!-- Invoice Modal -->
+<div id="invoiceModal" class="fixed inset-0 bg-black/40 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded w-[90%] max-w-md space-y-3">
+        <h2 class="text-lg font-bold">🧾 Invoice</h2>
+        <div id="invoiceContent" class="text-sm text-gray-700"></div>
+        <button onclick="closeInvoice()" class="btn w-full mt-4 bg-gray-700 text-white">Close</button>
+    </div>
+</div>
+
+
+<script>
+    function showInvoiceModal() {
+        const company = JSON.parse(localStorage.getItem("current_company"));
+        const invoice = `
+    <p><b>Company:</b> ${company.name}</p>
+    <p><b>Plan:</b> ${company.subscription?.plan}</p>
+    <p><b>Amount:</b> ₦${company.subscription?.plan === "pro" ? "10,000" : "0"}</p>
+    <p><b>Paid On:</b> ${new Date(company.subscription?.activatedAt).toLocaleString()}</p>
+    <p><b>Ref:</b> ${company.subscription?.paymentRef}</p>
+  `;
+
+        document.getElementById("invoiceContent").innerHTML = invoice;
+        document.getElementById("invoiceModal").classList.remove("hidden");
+    }
+    function closeInvoice() {
+        document.getElementById("invoiceModal").classList.add("hidden");
+    }
+
+</script>
