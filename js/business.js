@@ -1,12 +1,21 @@
-  function checkCompanySeatLimit() {
-            const company = JSON.parse(localStorage.getItem("current_company"));
-            const users = JSON.parse(localStorage.getItem("team_users") || "[]")
-                .filter(u => u.companyId === company.id);
+function checkCompanySeatLimit() {
+    const company = JSON.parse(localStorage.getItem("current_company"));
+    const members = JSON.parse(localStorage.getItem("team_users") || "[]")
+        .filter(u => u.companyId === company.id).length;
 
-            if (users.length > 20) {
-                alert("Seat limit exceeded (20 free). Please upgrade to add more members.");
-                // Optionally redirect to billing modal
-                return false
-            }
-            return true
-        }
+    const plan = company?.subscription?.plan || "free";
+    const limits = { free: 20, pro: 25, enterprise: Infinity };
+
+    if (members < limits[plan]) {
+        alert(`Seat limit exceeded ${limits[plan]}. Please upgrade to add more members.`);
+        // Optionally redirect to billing modal
+        return false
+    }
+    return true
+}
+
+function companyHasRoom() {
+   
+
+    return members < limits[plan];
+}
