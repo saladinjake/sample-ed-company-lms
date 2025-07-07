@@ -149,7 +149,7 @@
         <div id="right">
 
             <main class="flex-1 bg-white p-6 overflow-y-auto">
-                <h1 class="text-2xl font-bold mb-4">Course Content</h1>
+
                 <div id="courseContent">Select a lesson from the left panel.</div>
             </main>
             <div id="handle"></div>
@@ -275,26 +275,128 @@
                 {
                     title: "1. Introduction",
                     subsections: [
-                        { title: "1.1 What is HTML?" },
-                        { title: "1.2 Tags and Elements" }
+                        {
+                            title: "1.1 What is HTML?",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                `<h3>HTML stands for HyperText Markup Language</h3>
+
+                                <p>freestar
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci sed mollis. Duis pellentesque lacus id erat euismod, in porttitor massa blandit. In non sapien eget nunc interdum luctus nec et tortor. Pellentesque id nibh eget ligula volutpat hendrerit ac quis mauris.
+ Mauris tellus arcu, ultricies mollis arcu eu, pretium facilisis mauris. Proin tortor lectus, tincidunt at arcu eget, dapibus luctus nibh. Sed fringilla, ex quis interdum dapibus, est purus commodo massa, quis commodo neque metus quis nisi. Maecenas a urna ut ipsum pulvinar interdum. Suspendisse dui turpis, euismod id sodales elementum, laoreet vitae metus. Sed sodales facilisis leo. Cras nec interdum lorem, eget iaculis magna. Ut facilisis, turpis a rhoncus bibendum, libero eros pulvinar eros, non euismod tortor sem vel felis. Curabitur eu cursus tellus, id hendrerit nulla. Phasellus venenatis enim a eleifend lobortis. Mauris consectetur, turpis hendrerit sollicitudin bibendum, turpis sapien laoreet sem, sit amet maximus orci nibh sit amet neque.
+</p>
+
+<p>Nulla fermentum lorem eu finibus imperdiet. Nullam malesuada sit amet sapien non elementum. In hac habitasse platea dictumst. Curabitur semper nibh id erat ultricies, eu molestie nulla varius. Sed porttitor metus ac ante ultrices, sed pretium tortor tincidunt. Cras pulvinar suscipit fringilla. Praesent lectus est, consectetur sed gravida non, convallis ut ligula. Vivamus sed facilisis risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris dapibus, quam convallis elementum egestas, ligula felis congue neque, non rhoncus tortor velit sed diam. Curabitur rutrum faucibus nulla quis sagittis. Donec quis fermentum sem, non pellentesque lorem. Vestibulum blandit nisi lobortis mauris bibendum luctus. Vestibulum justo justo, sodales nec orci sit amet, aliquet sagittis odio. Pellentesque rutrum, ex nec dapibus ornare, ex enim molestie nisl, ac placerat ex dolor eu magna.
+</p>
+
+<p>Praesent scelerisque lobortis diam a sagittis. Aenean porttitor dolor non magna luctus laoreet. Mauris nec ante efficitur, laoreet magna et, tempor urna. Ut feugiat iaculis dolor, at faucibus eros blandit non. Nulla vel diam fringilla, ultricies tortor eu, congue leo. Sed est arcu, tristique et felis sed, porttitor cursus nisi. Cras fringilla ut nunc in ultrices. Proin elementum porttitor enim in aliquet. Mauris nec sapien aliquet, pulvinar ligula sed, eleifend dolor. Nunc sagittis risus et orci scelerisque, id facilisis neque aliquam. Maecenas id leo odio. Quisque felis ex, tincidunt sit amet enim congue, laoreet ultricies elit. Maecenas et libero nec eros vulputate faucibus.
+</p>
+
+<p>Sed cursus venenatis urna maximus dapibus. Maecenas felis magna, porttitor sit amet velit in, semper interdum sem. Etiam varius, lacus et tempor sodales, mi lacus finibus leo, vitae vehicula nisi lectus in eros. Aenean accumsan arcu id placerat maximus. Quisque vitae ornare purus, at malesuada risus. Quisque et interdum lectus. Cras vel tincidunt velit, ac aliquam tellus. Nam metus nisi, feugiat eget commodo eget, semper a nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat magna in ornare dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+</p>
+
+<p>Nunc placerat, magna sit amet rhoncus luctus, nisi nibh bibendum turpis, et ullamcorper elit lectus eu libero. Integer feugiat ex eget congue aliquam. Cras lectus lorem, laoreet quis felis sit amet, ultricies tempor dui. Etiam imperdiet tempus tortor ac consequat. In hac habitasse platea dictumst. Nulla facilisi. Cras nec eros est.
+   </p>                             
+                                `,
+
+
+                                `
+                                
+                                <p>freestar
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci sed mollis. Duis pellentesque lacus id erat euismod, in porttitor massa blandit. In non sapien eget nunc interdum luctus nec et tortor. Pellentesque id nibh eget ligula volutpat hendrerit ac quis mauris.
+ Mauris tellus arcu, ultricies mollis arcu eu, pretium facilisis mauris. Proin tortor lectus, tincidunt at arcu eget, dapibus luctus nibh. Sed fringilla, ex quis interdum dapibus, est purus commodo massa, quis commodo neque metus quis nisi. Maecenas a urna ut ipsum pulvinar interdum. Suspendisse dui turpis, euismod id sodales elementum, laoreet vitae metus. Sed sodales facilisis leo. Cras nec interdum lorem, eget iaculis magna. Ut facilisis, turpis a rhoncus bibendum, libero eros pulvinar eros, non euismod tortor sem vel felis. Curabitur eu cursus tellus, id hendrerit nulla. Phasellus venenatis enim a eleifend lobortis. Mauris consectetur, turpis hendrerit sollicitudin bibendum, turpis sapien laoreet sem, sit amet maximus orci nibh sit amet neque.
+</p>
+
+<p>Nulla fermentum lorem eu finibus imperdiet. Nullam malesuada sit amet sapien non elementum. In hac habitasse platea dictumst. Curabitur semper nibh id erat ultricies, eu molestie nulla varius. Sed porttitor metus ac ante ultrices, sed pretium tortor tincidunt. Cras pulvinar suscipit fringilla. Praesent lectus est, consectetur sed gravida non, convallis ut ligula. Vivamus sed facilisis risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris dapibus, quam convallis elementum egestas, ligula felis congue neque, non rhoncus tortor velit sed diam. Curabitur rutrum faucibus nulla quis sagittis. Donec quis fermentum sem, non pellentesque lorem. Vestibulum blandit nisi lobortis mauris bibendum luctus. Vestibulum justo justo, sodales nec orci sit amet, aliquet sagittis odio. Pellentesque rutrum, ex nec dapibus ornare, ex enim molestie nisl, ac placerat ex dolor eu magna.
+</p>
+
+<p>Praesent scelerisque lobortis diam a sagittis. Aenean porttitor dolor non magna luctus laoreet. Mauris nec ante efficitur, laoreet magna et, tempor urna. Ut feugiat iaculis dolor, at faucibus eros blandit non. Nulla vel diam fringilla, ultricies tortor eu, congue leo. Sed est arcu, tristique et felis sed, porttitor cursus nisi. Cras fringilla ut nunc in ultrices. Proin elementum porttitor enim in aliquet. Mauris nec sapien aliquet, pulvinar ligula sed, eleifend dolor. Nunc sagittis risus et orci scelerisque, id facilisis neque aliquam. Maecenas id leo odio. Quisque felis ex, tincidunt sit amet enim congue, laoreet ultricies elit. Maecenas et libero nec eros vulputate faucibus.
+</p>
+
+<p>Sed cursus venenatis urna maximus dapibus. Maecenas felis magna, porttitor sit amet velit in, semper interdum sem. Etiam varius, lacus et tempor sodales, mi lacus finibus leo, vitae vehicula nisi lectus in eros. Aenean accumsan arcu id placerat maximus. Quisque vitae ornare purus, at malesuada risus. Quisque et interdum lectus. Cras vel tincidunt velit, ac aliquam tellus. Nam metus nisi, feugiat eget commodo eget, semper a nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat magna in ornare dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+</p>
+
+<p>Nunc placerat, magna sit amet rhoncus luctus, nisi nibh bibendum turpis, et ullamcorper elit lectus eu libero. Integer feugiat ex eget congue aliquam. Cras lectus lorem, laoreet quis felis sit amet, ultricies tempor dui. Etiam imperdiet tempus tortor ac consequat. In hac habitasse platea dictumst. Nulla facilisi. Cras nec eros est.
+   </p>    
+                                `
+                            ],
+                            locked: false
+
+                        },
+
+                        {
+                            title: "1.2 Tags and Elements",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                "<p>HTML stands for HyperText Markup Language...</p>",
+                                "<p>It is the standard language for...</p>"
+                            ],
+                            locked: false
+                        }
                     ]
                 },
                 {
                     title: "2. Styling",
                     subsections: [
-                        { title: "2.1 CSS Basics" },
-                        { title: "2.2 Flexbox and Grid" }
+                        {
+                            title: "2.1 CSS Basics",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                "<p>HTML stands for HyperText Markup Language...</p>",
+                                "<p>It is the standard language for...</p>"
+                            ],
+                            locked: false
+                        },
+                        {
+                            title: "2.2 Flexbox and Grid",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                "<p>HTML stands for HyperText Markup Language...</p>",
+                                "<p>It is the standard language for...</p>"
+                            ],
+                            locked: false
+                        }
                     ]
                 },
                 {
                     title: "3. JavaScript",
                     subsections: [
-                        { title: "3.1 Variables" },
-                        { title: "3.2 Functions" },
-                        { title: "3.3 DOM Manipulation" }
+                        {
+                            title: "3.1 Variables",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                "<p>HTML stands for HyperText Markup Language...</p>",
+                                "<p>It is the standard language for...</p>"
+                            ],
+                            locked: false
+                        },
+                        {
+                            title: "3.2 Functions",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                "<p>HTML stands for HyperText Markup Language...</p>",
+                                "<p>It is the standard language for...</p>"
+                            ],
+                            locked: false
+                        },
+                        {
+                            title: "3.3 DOM Manipulation",
+                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
+                            htmlContent: [
+                                "<p>HTML stands for HyperText Markup Language...</p>",
+                                "<p>It is the standard language for...</p>"
+                            ],
+                            locked: false
+                        }
                     ]
+                },
+                {
+                    title: "Final Quiz",
+                    subsections: [],
+                    isQuiz: true
                 }
-            ]
+            ],
+
         };
 
         const accordionMenu = document.getElementById("accordionMenu");
@@ -312,7 +414,7 @@
         <div id="${sectionId}" class="pl-4 hidden bg-white text-sm p-3">
           ${section.subsections.map((sub, j) => `
             <div class="py-1 pl-3  cursor-pointer"
-                 onclick="loadLesson('${section.title}', '${sub.title}')">
+                 onclick="loadLesson('${section.title}', '${sub.title}'); loadModuleLesson(${i},${j})">
               📄 ${sub.title}
             </div>
           `).join("")}
@@ -361,6 +463,109 @@
 
             renderAccordion({ curriculum: filtered });
         }
+
+
+
+        // load course
+        function loadModuleLesson(sectionIndex, subIndex) {
+            const sub = courses.curriculum[sectionIndex].subsections[subIndex];
+            const key = `progress-${courses.title}-${sub.title}`;
+            const isComplete = localStorage.getItem(key) === "complete";
+
+            if (sub.locked && !isComplete) {
+                courseContent.innerHTML = `<div class="text-red-500 font-bold">🔒 This lesson is locked.</div>`;
+                return;
+            }
+
+            let html = `
+    <h2 class="text-xl font-semibold mb-2">${sub.title}</h2>
+    ${sub.videoUrl ? `
+      <div class="mb-4">
+        <iframe class="w-full h-64" src="${sub.videoUrl}" frameborder="0" allowfullscreen style="height: 400px"></iframe>
+      </div>
+    ` : ''}
+
+    ${sub.htmlContent?.length ? renderSlideShow(sub, key) : ''}
+  `;
+
+            courseContent.innerHTML = html;
+        }
+
+
+        function renderSlideShow(sub, progressKey) {
+            const id = `slide-${progressKey.replace(/[^a-zA-Z0-9]/g, '')}`; // ID-safe
+            const variableName = `slides_${id}`;
+            const slides = sub.htmlContent || [];
+
+            // Store progress (simulate after short delay)
+            setTimeout(() => {
+                localStorage.setItem(progressKey, "complete");
+                checkUnlockQuiz();
+            }, 1000);
+
+            // Register slide content in global scope
+            window[variableName] = slides;
+
+            return `
+    <div id="${id}" data-index="0">
+      <div class="html-slide">${slides[0]}</div>
+      <div class="flex gap-2 mt-4">
+        <button onclick="prevSlide('${id}', '${slides}')" class="px-3 py-1 border">⬅ Prev</button>
+        <button onclick="nextSlide('${id}', '${slides}')" class="px-3 py-1 border">Next ➡</button>
+      </div>
+    </div>
+  `;
+        }
+
+
+        function nextSlide(id, varName) {
+            const container = document.getElementById(id);
+            let index = parseInt(container.dataset.index || '0');
+            const slides = window[varName];
+
+            if (index < slides.length - 1) {
+                index++;
+                container.dataset.index = index;
+                container.querySelector(".html-slide").innerHTML = slides[index];
+                // markSlideRead(course.title, currentSubTitle, index); // Optional tracking
+            }
+        }
+
+        function prevSlide(id, varName) {
+            const container = document.getElementById(id);
+            let index = parseInt(container.dataset.index || '0');
+            const slides = window[varName];
+
+            if (index > 0) {
+                index--;
+                container.dataset.index = index;
+                container.querySelector(".html-slide").innerHTML = slides[index];
+                // markSlideRead(course.title, currentSubTitle, index); // Optional tracking
+            }
+        }
+
+
+
+        function checkUnlockQuiz() {
+            const allSubmodules = courses.curriculum.flatMap(section =>
+                section.subsections || []
+            );
+
+            const allComplete = allSubmodules.every(sub => {
+                const key = `progress-${courses.title}-${sub.title}`;
+                return localStorage.getItem(key) === "complete";
+            });
+
+            if (allComplete) {
+                // Unlock quiz module
+                const quiz = courses.curriculum.find(sec => sec.isQuiz);
+                if (quiz) {
+                    quiz.locked = false;
+                    console.log("Quiz unlocked!");
+                }
+            }
+        }
+
 
 
     </script>
