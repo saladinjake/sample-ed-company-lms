@@ -233,12 +233,26 @@
 
     <!-- 🔲 Video Modal Overlay -->
     <!-- Video Modal -->
-    <div id="videoModal" class="hidden">
+    <!-- <div id="videoModal" class="hidden">
         <div class="modal-box">
             <button onclick="closeVideoModal()" class="close-btn">×</button>
             <iframe id="videoFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </div>
+    </div> -->
+
+    <div id="videoModal" class="hidden">
+  <div class="modal-box">
+    <button onclick="closeVideoModal()" class="close-btn">×</button>
+    <video id="trackableVideo"
+      controls
+      class="w-full h-full rounded bg-black"
+      onplay="startTracking()"
+      ontimeupdate="updateWatchedTime()"
+      onended="markCompleted()"
+    ></video>
+  </div>
+</div>
+
 
 
     </main>

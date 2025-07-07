@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AntLiteCSS/custom css util Landing Page for E-learning</title>
+    <link href="./css/index.css" rel="stylesheet" />
+    <link href="./css/auth.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            display: grid;
+            grid-gap: 0px;
+            grid-template-columns: 10vw 70vw;
+            grid-template-areas: "left right";
+            height: 100vh;
+        
+        }
+
+        #left {
+            grid-area: left;
+            position: absolute;
+                margin-top: 130px;
+            min-height: 100%;
+        }
+
+        #right {
+                margin-top: 130px;
+            grid-area: right;
+            background: #eafaea;
+            
+            position: absolute;
+            right: 0;
+            min-height: 100%;
+        }
+
+        #handle {
+            width: 8px;
+            height: 70px;
+            background: #B3B3B3;
+            border-radius: 4px;
+            vertical-align: top;
+            position: absolute;
+            display: inline-block;
+            user-select: none;
+        }
+
+        #handle:after {
+            content: '';
+            float: left;
+            width: 2px;
+            height: 8px;
+            background: #000;
+            pointer-events: none;
+            margin-top: -40px;
+            margin-left: 3px;
+            border-radius: 4px;
+            transition: all .4s ease 0s;
+        }
+
+        #handle:before {
+            content: '';
+            float: left;
+            width: 8px;
+            height: 70px;
+            background: #777;
+            pointer-events: none;
+            margin-top: 0px;
+            margin-left: 0px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.32);
+            border-radius: 4px;
+            transition: all .4s ease 0s;
+        }
+
+        #handle:hover {
+            background: #888;
+            cursor: col-resize;
+        }
+
+        #handle:hover:after {
+            background: #276EF1;
+        }
+
+        #handle:active:after {
+            background: #276EF1;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+
+</head>
+
+<body class="bg-light text-md font-base text-primary">
+    <header class="bg-white border-b shadow-sm p-3 fixed z-10">
+        
+
+
+
+        <div class="flex justify-between " >
+             <div class="text-center ">
+                <h1 class="text-lg font-bold">UNI<span class="text-warning">CAST</span></h1>
+                <p class="text-muted text-sm">E-LEARNING COMPANY</p>
+            </div>
+            <!-- Trigger Button on Small Screens -->
+            <button class=" left-4 z-50  bg-blue-600 text-black rounded"
+                onclick="toggleDrawer(true)">
+                📚 Browse Lessons
+            </button>
+        </div>
+    </header>
+
+
+
+    <div id="wrap" >
+        
+        <div id="left" class="relative">
+
+
+            <!-- Mobile Drawer -->
+            <div id="mobileDrawer" class=" inset-0   bg-opacity-50 backdrop-blur-sm ">
+                <div
+                    class="">
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="text-lg font-semibold">Course Modules</h2>
+                        <button onclick="toggleDrawer(false)">✖</button>
+                    </div>
+                    <div id="moduleMenu" class="text-sm text-gray-800 space-y-4 p-2 m-1"></div>
+                </div>
+            </div>
+
+        </div>
+        <div id="right">
+            This is the right window
+            <div id="handle"></div>
+        </div>
+    </div>
+
+
+    <script>
+        const left = document.getElementById('left');
+        const right = document.getElementById('right');
+        const handle = document.getElementById('handle');
+        const wrap = document.getElementById('wrap');
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const leftWidth = winWidth * 0.3;
+            const rightWidth = winWidth * 0.7;
+
+            left.style.width = leftWidth + 'px';
+            right.style.width = rightWidth + 'px';
+            handle.style.top = (winHeight / 2 - 35) + 'px';
+            handle.style.right = (rightWidth - 4) + 'px';
+
+            rStartWidth = rightWidth;
+            lStartWidth = leftWidth;
+
+            handle.addEventListener('mousedown', setup, false);
+        });
+
+        let StartX, rStartWidth, lStartWidth;
+
+        function setup(event) {
+            StartX = event.clientX;
+            rStartWidth = parseInt(window.getComputedStyle(right).width, 10);
+            lStartWidth = parseInt(window.getComputedStyle(left).width, 10);
+
+            document.documentElement.addEventListener('mousemove', drag, false);
+            document.documentElement.addEventListener('mouseup', destroy, false);
+        }
+
+        function drag(event) {
+            const newLeft = lStartWidth + event.clientX - StartX;
+            const newRight = rStartWidth - event.clientX + StartX;
+
+            left.style.width = newLeft + 'px';
+            right.style.width = newRight + 'px';
+            handle.style.right = (newRight - 4) + 'px';
+        }
+
+        function destroy() {
+            document.documentElement.removeEventListener('mousemove', drag, false);
+            document.documentElement.removeEventListener('mouseup', destroy, false);
+        }
+
+
+
+        //DEMO MODULES
+        const drawer = document.getElementById('mobileDrawer');
+const menu = document.getElementById('moduleMenu');
+
+function toggleDrawer(open) {
+  drawer.classList.toggle('hidden', !open);
+}
+
+// Example dynamic course
+const course = {
+  title: "Intro to Web Dev",
+  curriculum: [
+    {
+      title: "Section 1: Basics",
+      subsections: [
+        { title: "HTML Intro" },
+        { title: "CSS Overview" },
+        { title: "JS Syntax" },
+      ]
+    },
+    {
+      title: "Section 2: Advanced",
+      subsections: [
+        { title: "React Basics" },
+        { title: "Vue Intro" },
+      ]
+    }
+  ]
+};
+
+// Render module tree
+function renderModuleTree(course) {
+  const html = course.curriculum.map((section, sIdx) => {
+    const subs = section.subsections.map((sub, subIdx) => `
+      <li class="pl-4 py-1 hover:bg-gray-100 cursor-pointer" onclick="selectModule(${sIdx}, ${subIdx})">
+        📄 ${sub.title}
+      </li>
+    `).join("");
+
+    return `
+      <div>
+        <h4 class="font-semibold">${section.title}</h4>
+        <ul class="pl-2">${subs}</ul>
+      </div>
+    `;
+  }).join("");
+
+  menu.innerHTML = html;
+}
+
+function selectModule(sectionIndex, subIndex) {
+  toggleDrawer(false);
+  console.log("Navigate to", sectionIndex, subIndex);
+  //  You can programmatically scroll to or load the submodule
+}
+
+renderModuleTree(course);
+
+    </script>

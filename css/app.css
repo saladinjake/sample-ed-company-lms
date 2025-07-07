@@ -355,3 +355,12 @@ button[onclick] {
     }
   }
 
+
+
+
+/*LMS*/
+@media (min-width: 640px) {
+  /* #mobileDrawer {
+    display: none !important; 
+  } */
+}
