@@ -12,73 +12,22 @@
 </head>
 
 <body class="bg-light text-md font-base text-primary">
-    <header class="bg-white border-b shadow-sm p-3 fixed z-10">
-        <!-- Top Row -->
-        <div
-            class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 ">
+   <header class="bg-white border-b shadow-sm p-3 fixed z-10">
 
-            <!-- Social Icons -->
-            <div class=" gap-2 md:order-2 order-1 items-center mx-auto  hidden md:flex">
-                <a href="#" class="border rounded-full p-2"><i class="fab fa-cart"></i></a>
-                <a href="#" class="border rounded-full p-2"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="border rounded-full p-2"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="border rounded-full p-2"><i class="fab fa-dribbble"></i></a>
-            </div>
 
-            <!-- Logo -->
-            <div class="text-center md:order-1 order-2 w-full sm:w-auto">
+
+
+        <div class="flex justify-between ">
+            <div class="text-center ">
                 <h1 class="text-lg font-bold">UNI<span class="text-warning">CAST</span></h1>
                 <p class="text-muted text-sm">E-LEARNING COMPANY</p>
             </div>
-
-            <!-- Search -->
-            <div class="md:order-3 order-3 w-full w-auto mr-8">
-                <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
-                    <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
-                        id="course-search" />
-                    <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Toggle -->
-        <div class="md:hidden mt-4">
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-                class="text-muted text-md flex items-center gap-2">
-                <i class="fas fa-bars"></i> Browse Categories
+            <!-- Trigger Button on Small Screens -->
+            <button class=" left-4 z-50  bg-blue-600 text-black rounded" onclick="toggleDrawer(true)">
+                📚 Browse Lessons
             </button>
         </div>
-
-        <!-- Nav Menu -->
-        <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
-            <ul class="flex justify-center gap-6 text-sm uppercase">
-                <li><a href="#" class="text-primary text-muted font-semibold">Courses</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Guide</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Coming Soon</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Top Seller</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Books</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Author</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Blog</a></li>
-                <li><a href="#" class="text-black hover:text-primary">Contact</a></li>
-            </ul>
-        </nav>
-
-
-        <!-- Mobile Nav -->
-        <nav class="sm:hidden hidden mt-4 bg-black text-white text-sm uppercase" id="mobile-menu">
-            <!-- <div class="overlay absolute inset-0" style="background: rgba(255,255,255,0.5)"></div> -->
-            <a href="#" class="block py-2 border-b px-3 text-primary">Home</a>
-            <a href="#" class="block py-2 border-b px-3">About</a>
-            <a href="#" class="block py-2 border-b px-3">Coming Soon</a>
-            <a href="#" class="block py-2 border-b px-3">Top Seller</a>
-            <a href="#" class="block py-2 border-b px-3">Books</a>
-            <a href="#" class="block py-2 border-b px-3">Author</a>
-            <a href="#" class="block py-2 border-b px-3">Blog</a>
-            <a href="#" class="block py-2 border-b px-3">Contact</a>
-        </nav>
     </header>
-
-
 
 
 
