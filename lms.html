@@ -527,7 +527,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
                 index++;
                 container.dataset.index = index;
                 container.querySelector(".html-slide").innerHTML = slides[index];
-                // markSlideRead(course.title, currentSubTitle, index); // Optional tracking
+                markSlideRead(course.title, currentSubTitle, index); // Optional tracking
             }
         }
 
@@ -540,7 +540,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
                 index--;
                 container.dataset.index = index;
                 container.querySelector(".html-slide").innerHTML = slides[index];
-                // markSlideRead(course.title, currentSubTitle, index); // Optional tracking
+                markSlideRead(course.title, currentSubTitle, index); // Optional tracking
             }
         }
 
@@ -567,5 +567,85 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
         }
 
 
+        //tracker sample for analytics and resume where user stoped
 
+        /*{
+  "progress-Frontend Bootcamp": {
+    lastViewed: {
+      sectionIndex: 0,
+      subIndex: 1
+    },
+    modules: {
+      "1.1 What is HTML?": {
+        videoWatched: true,
+        slidesRead: [0, 1], // indexes of read slides
+        completed: true
+      },
+      "1.2 Tags and Elements": {
+        videoWatched: false,
+        slidesRead: [0],
+        completed: false
+      }
+    }
+  }
+}
+*/
+
+        function setLastViewed(courseTitle, sectionIndex, subIndex) {
+            const key = `progress-${courseTitle}`;
+            const data = JSON.parse(localStorage.getItem(key)) || {};
+            data.lastViewed = { sectionIndex, subIndex };
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        function getLastViewed(courseTitle) {
+            const data = JSON.parse(localStorage.getItem(`progress-${courseTitle}`));
+            return data?.lastViewed;
+        }
+
+
+        function markVideoWatched(courseTitle, subTitle) {
+            const key = `progress-${courseTitle}`;
+            const data = JSON.parse(localStorage.getItem(key)) || { modules: {} };
+            if (!data.modules) data.modules = {};
+            if (!data.modules[subTitle]) data.modules[subTitle] = {};
+            data.modules[subTitle].videoWatched = true;
+            checkIfSubmoduleCompleted(data, subTitle);
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        function markSlideRead(courseTitle, subTitle, slideIndex) {
+            const key = `progress-${courseTitle}`;
+            const data = JSON.parse(localStorage.getItem(key)) || { modules: {} };
+            if (!data.modules) data.modules = {};
+            if (!data.modules[subTitle]) data.modules[subTitle] = { slidesRead: [] };
+            data.modules[subTitle].slidesRead = Array.from(new Set([
+                ...(data.modules[subTitle].slidesRead || []),
+                slideIndex
+            ]));
+            checkIfSubmoduleCompleted(data, subTitle);
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        function checkIfSubmoduleCompleted(data, subTitle) {
+            const sub = data.modules[subTitle];
+            if (sub.videoWatched && sub.slidesRead?.length >= getSlideCount(subTitle)) {
+                sub.completed = true;
+            }
+        }
+
+        //onload
+        function resumeLastLesson(courseTitle) {
+            const last = getLastViewed(courseTitle);
+            if (last) {
+                loadLesson(last.sectionIndex, last.subIndex);
+            } else {
+                loadLesson(0, 0); // Start fresh
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            resumeLastLesson("Frontend Bootcamp")
+        })
     </script>
