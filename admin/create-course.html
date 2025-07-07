@@ -255,7 +255,7 @@
         function renderCurriculum() {
             const wrapper = document.getElementById("curriculumBuilder");
             wrapper.innerHTML = tempCurriculum.map((s, si) => `
-    <div class="border p-3 rounded">
+    <div class="border p-3 rounded p-6">
         <h3> Module ${si + 1}</h3>
       <input class="input w-full  mb-2" value="${s.title}" onchange="updateSectionTitle(${si}, this.value)" />
        <div class="flex flex-end justify-end gap-2">
@@ -266,7 +266,7 @@
       <div class="space-y-1">
         ${s.children.map((c, ci) => `
            <h3> Lesson ${ci + 1}</h3>
-          <div class="grid grid-cols-1  md:grid-cols-2 gap-12">
+          <div class="grid grid-cols-1  md:grid-cols-2 gap-12 p-6">
             <input class="input" placeholder="Lesson Title" value="${c.title}" onchange="updateLessonTitle(${si}, ${ci}, this.value)" />
             <input class="input " placeholder="Video URL" value="${c.video}" onchange="updateLessonVideo(${si}, ${ci}, this.value)" />
            <input type="file"
