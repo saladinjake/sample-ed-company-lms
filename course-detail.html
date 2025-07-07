@@ -440,7 +440,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
                 children: Array.from({ length: 3 + (seed % 2) }, (_, c) => ({
                     title: `Lesson ${s + 1}.${c + 1}`,
                     unlocked: c === 0, // unlock only first lesson
-                    video: random_videoS[i % random_videoS.length]  //|| "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+                    video: random_videoS[c % random_videoS.length]  //|| "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
                 }))
             }));
         }
@@ -571,7 +571,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
 
             
             const description = document.getElementById("course_info")
-            description.innerHTML = course.description
+            description.innerHTML = course.description.substring(0,100) + "..."
 
             wrapper.innerHTML = renderVideoByType(url);
 
