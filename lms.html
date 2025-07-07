@@ -28,7 +28,7 @@
         #left {
             grid-area: left;
             position: absolute;
-            margin-top: 190px;
+            margin-top: 140px;
             min-height: 100%;
         }
 
@@ -126,7 +126,9 @@
     <div id="wrap">
 
         <div id="left" class="relative">
-
+            <input style="width:388px; padding:12px; margin:10px" type="text" placeholder="Search lessons..."
+                class="p-3 py-2 mb-4 rounded bg-white text-white placeholder-gray-400 focus:outline-none mr-9"
+                oninput="handleSearch(this.value)" />
             <aside class="hidden sm:block w-[230px]  text-white p-4 overflow-y-auto">
                 <h2 class="text-lg font-semibold mb-4">Course Modules</h2>
                 <div id="accordionMenu" class="space-y-2"></div>
@@ -333,5 +335,32 @@
         }
 
         renderAccordion(courses);
+
+        // search mockup
+        const originalCurriculum = [...courses.curriculum]; // Keep a copy of the full curriculum
+
+        function handleSearch(query) {
+            const filtered = courses.curriculum.map(section => {
+                // Match section or any subsection
+                const matchedSubsections = section.subsections.filter(sub =>
+                    sub.title.toLowerCase().includes(query.toLowerCase())
+                );
+
+                if (
+                    section.title.toLowerCase().includes(query.toLowerCase()) ||
+                    matchedSubsections.length > 0
+                ) {
+                    return {
+                        title: section.title,
+                        subsections: matchedSubsections.length > 0 ? matchedSubsections : section.subsections
+                    };
+                }
+
+                return null;
+            }).filter(Boolean);
+
+            renderAccordion({ curriculum: filtered });
+        }
+
 
     </script>
