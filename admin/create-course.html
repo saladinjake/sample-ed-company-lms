@@ -282,7 +282,7 @@
             const wrapper = document.getElementById("curriculumBuilder");
             wrapper.innerHTML = tempCurriculum.map((s, si) => `
     <div class="border p-3 rounded">
-        <h3> Module ${si +  1}</h3>
+        <h3> Module ${si + 1}</h3>
       <input class="input w-full  mb-2" value="${s.title}" onchange="updateSectionTitle(${si}, this.value)" />
        <div class="flex flex-end justify-end gap-2">
             <button onclick="moveSection(${si}, ${si - 1})" class="text-sm bg-gray-200 px-2 rounded">↑</button>
@@ -295,7 +295,10 @@
           <div class="grid grid-cols-1  md:grid-cols-2 gap-12">
             <input class="input" placeholder="Lesson Title" value="${c.title}" onchange="updateLessonTitle(${si}, ${ci}, this.value)" />
             <input class="input " placeholder="Video URL" value="${c.video}" onchange="updateLessonVideo(${si}, ${ci}, this.value)" />
-           
+           <input type="file"
+  accept="video/*"
+  class="block text-sm text-gray-600"
+  onchange="handleVideoUpload(event, ${si}, ${ci})" />
 <textarea
               class="w-full px-3 py-2 border rounded text-sm"
               placeholder="Optional HTML content"
@@ -623,6 +626,52 @@
             document.execCommand("insertHTML", false, imgTag);
         });
 
+
+
+        // video cloudinary upload
+        async function uploadVideoToCloudinary(file, onSuccess) {
+            const cloudName = "questence";
+            const preset = "hpvklb3p";
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", preset);
+
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+            if (data.secure_url) {
+                onSuccess(data.secure_url);
+            } else {
+                alert("Upload failed");
+            }
+        }
+
+        function handleVideoUpload(e, sectionIndex, subIndex) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            uploadVideoToCloudinary(file, (url) => {
+                curriculum[sectionIndex].subsections[subIndex].video = url;
+                saveToLocal();
+                renderCurriculum();
+            });
+        }
+
+        function saveToLocal() {
+            localStorage.setItem("draftCurriculum", JSON.stringify(curriculum));
+        }
+
+        //draft onload
+        function loadCurriculum() {
+            const stored = localStorage.getItem("draftCurriculum");
+            curriculum = stored ? JSON.parse(stored) : [];
+            renderCurriculum();
+        }
+        window.onload = loadCurriculum;
 
 
     </script>
