@@ -230,6 +230,17 @@
     <div id="previewBox" class="hidden border border-gray-200 p-4 mt-4 rounded bg-gray-50 text-sm prose max-w-none">
     </div>
 
+
+    <!-- 🔲 Video Modal Overlay -->
+    <!-- Video Modal -->
+    <div id="videoModal" class="hidden">
+        <div class="modal-box">
+            <button onclick="closeVideoModal()" class="close-btn">×</button>
+            <iframe id="videoFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
     </main>
 
     <script src="../js/auth.js"></script>
@@ -313,6 +324,21 @@
                   ${c.content || "<i>No HTML content</i>"}
                 </div>
               ` : ""}
+
+              ${c.video
+                    ? `<div class="mt-2">
+         <video src="${c.video}" class="rounded w-full max-h-52 object-cover" controls muted></video>
+       </div>`
+                    : ""
+                }
+
+              ${c.video
+                    ? `<button onclick="openVideoModal('${c.video}')" class="text-sm bg-black text-white px-3 py-1 rounded">
+        ▶️ Preview Video
+      </button>`
+                    : ""
+                }
+
             
            <button onclick="removeLesson(${si}, ${ci})" class="text-sm text-red-600 ml-2">🗑</button>
          
@@ -655,7 +681,7 @@
             if (!file) return;
 
             uploadVideoToCloudinary(file, (url) => {
-                curriculum[sectionIndex].subsections[subIndex].video = url;
+                tempCurriculum[sectionIndex].children[subIndex].video = url;
                 saveToLocal();
                 renderCurriculum();
             });
@@ -672,6 +698,45 @@
             renderCurriculum();
         }
         window.onload = loadCurriculum;
+
+
+
+        function openVideoModal(url) {
+            const modal = document.getElementById("videoModal");
+            const frame = document.getElementById("videoFrame");
+            frame.src = url.includes("youtube") || url.includes("vimeo")
+                ? url
+                : `${url}?autoplay=1`;
+
+            modal.classList.add("show");
+            modal.classList.remove("hidden");
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById("videoModal");
+            const frame = document.getElementById("videoFrame");
+            modal.classList.remove("show");
+            modal.classList.add("hidden");
+            frame.src = ""; // stop video
+        }
+
+
+
+        // close video previoew modal on click outside
+        document.addEventListener("click", (e) => {
+            const modal = document.getElementById("videoModal");
+            if (!modal.classList.contains("hidden") &&
+                !document.getElementById("videoFrame").contains(e.target) &&
+                !e.target.closest("button[onclick^='openVideoModal']")) {
+                closeVideoModal();
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeVideoModal();
+            }
+        });
 
 
     </script>
