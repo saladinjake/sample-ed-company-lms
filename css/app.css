@@ -41,7 +41,8 @@ form.rounded-full input.input {
   font-size: var(--font-size-md);
   background: transparent;
   flex-grow: 1;
-  min-width: 300px;
+  min-width: 100%;
+  width: 100%;
 
 }
 form.rounded-full button {
@@ -291,3 +292,7 @@ button[onclick] {
 
 
 
+.prose {
+  line-height: 1.6;
+  color: #333;
+}

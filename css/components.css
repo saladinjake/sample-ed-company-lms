@@ -44,7 +44,7 @@
   font-size: var(--font-size-md);
   font-family: var(--font-base);
   transition: border-color 0.2s ease;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .input:focus {
