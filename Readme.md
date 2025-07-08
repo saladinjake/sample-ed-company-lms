@@ -1,6 +1,25 @@
 #### LMS E-LEARNING SAMPLE APPLICATION  FRONTEND- FULL FUNCTIONALITY ONLY
 
-#### MVP Features
+
+# Project Name
+
+MVP OPEN SOURCE CODE  BASE FOR ED TECH.
+
+---
+
+## 📂 Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Issue Reporting](#issue-reporting)
+- [License](#license)
+
+---
+
+## ✨ MVP Features
+
 - landing page with some courses
 - courses page with search filter functionality, load more after 200 products then show pagination for the rest
 - course detail page with enroll functionality
@@ -17,6 +36,17 @@
 - user profile edit
 - Business registration and onboarding invite for staff
 - Company assign course to staff
+- course/lms sessions and analytics tracking for course. resume last viewed course
+---
+
+## 🚀 Installation
+
+```bash
+git clone this repo
+cd your-repo-name
+npm install  # or yarn
+
+
 
 ### Enjoy the demo
 -- for full functionality contact juwavictor@gmail.com

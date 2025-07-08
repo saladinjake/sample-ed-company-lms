@@ -156,7 +156,7 @@
         </div>
     </div>
 
-
+  <script src="./js/init.js"></script>
     <script>
         const left = document.getElementById('left');
         const right = document.getElementById('right');
@@ -221,7 +221,7 @@
         //   curriculum: [
         //     {
         //       title: "Section 1: Basics",
-        //       subsections: [
+        //       children: [
         //         { title: "HTML Intro" },
         //         { title: "CSS Overview" },
         //         { title: "JS Syntax" },
@@ -229,7 +229,7 @@
         //     },
         //     {
         //       title: "Section 2: Advanced",
-        //       subsections: [
+        //       children: [
         //         { title: "React Basics" },
         //         { title: "Vue Intro" },
         //       ]
@@ -240,7 +240,7 @@
         // // Render module tree
         // function renderModuleTree(course) {
         //   const html = course.curriculum.map((section, sIdx) => {
-        //     const subs = section.subsections.map((sub, subIdx) => `
+        //     const subs = section.children.map((sub, subIdx) => `
         //       <li class="pl-4 py-1 hover:bg-gray-100 cursor-pointer" onclick="selectModule(${sIdx}, ${subIdx})">
         //         📄 ${sub.title}
         //       </li>
@@ -268,136 +268,8 @@
 
 
 
-
-        const courses = {
-            title: "Frontend Bootcamp",
-            curriculum: [
-                {
-                    title: "1. Introduction",
-                    subsections: [
-                        {
-                            title: "1.1 What is HTML?",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                `<h3>HTML stands for HyperText Markup Language</h3>
-
-                                <p>freestar
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci sed mollis. Duis pellentesque lacus id erat euismod, in porttitor massa blandit. In non sapien eget nunc interdum luctus nec et tortor. Pellentesque id nibh eget ligula volutpat hendrerit ac quis mauris.
- Mauris tellus arcu, ultricies mollis arcu eu, pretium facilisis mauris. Proin tortor lectus, tincidunt at arcu eget, dapibus luctus nibh. Sed fringilla, ex quis interdum dapibus, est purus commodo massa, quis commodo neque metus quis nisi. Maecenas a urna ut ipsum pulvinar interdum. Suspendisse dui turpis, euismod id sodales elementum, laoreet vitae metus. Sed sodales facilisis leo. Cras nec interdum lorem, eget iaculis magna. Ut facilisis, turpis a rhoncus bibendum, libero eros pulvinar eros, non euismod tortor sem vel felis. Curabitur eu cursus tellus, id hendrerit nulla. Phasellus venenatis enim a eleifend lobortis. Mauris consectetur, turpis hendrerit sollicitudin bibendum, turpis sapien laoreet sem, sit amet maximus orci nibh sit amet neque.
-</p>
-
-<p>Nulla fermentum lorem eu finibus imperdiet. Nullam malesuada sit amet sapien non elementum. In hac habitasse platea dictumst. Curabitur semper nibh id erat ultricies, eu molestie nulla varius. Sed porttitor metus ac ante ultrices, sed pretium tortor tincidunt. Cras pulvinar suscipit fringilla. Praesent lectus est, consectetur sed gravida non, convallis ut ligula. Vivamus sed facilisis risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris dapibus, quam convallis elementum egestas, ligula felis congue neque, non rhoncus tortor velit sed diam. Curabitur rutrum faucibus nulla quis sagittis. Donec quis fermentum sem, non pellentesque lorem. Vestibulum blandit nisi lobortis mauris bibendum luctus. Vestibulum justo justo, sodales nec orci sit amet, aliquet sagittis odio. Pellentesque rutrum, ex nec dapibus ornare, ex enim molestie nisl, ac placerat ex dolor eu magna.
-</p>
-
-<p>Praesent scelerisque lobortis diam a sagittis. Aenean porttitor dolor non magna luctus laoreet. Mauris nec ante efficitur, laoreet magna et, tempor urna. Ut feugiat iaculis dolor, at faucibus eros blandit non. Nulla vel diam fringilla, ultricies tortor eu, congue leo. Sed est arcu, tristique et felis sed, porttitor cursus nisi. Cras fringilla ut nunc in ultrices. Proin elementum porttitor enim in aliquet. Mauris nec sapien aliquet, pulvinar ligula sed, eleifend dolor. Nunc sagittis risus et orci scelerisque, id facilisis neque aliquam. Maecenas id leo odio. Quisque felis ex, tincidunt sit amet enim congue, laoreet ultricies elit. Maecenas et libero nec eros vulputate faucibus.
-</p>
-
-<p>Sed cursus venenatis urna maximus dapibus. Maecenas felis magna, porttitor sit amet velit in, semper interdum sem. Etiam varius, lacus et tempor sodales, mi lacus finibus leo, vitae vehicula nisi lectus in eros. Aenean accumsan arcu id placerat maximus. Quisque vitae ornare purus, at malesuada risus. Quisque et interdum lectus. Cras vel tincidunt velit, ac aliquam tellus. Nam metus nisi, feugiat eget commodo eget, semper a nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat magna in ornare dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-</p>
-
-<p>Nunc placerat, magna sit amet rhoncus luctus, nisi nibh bibendum turpis, et ullamcorper elit lectus eu libero. Integer feugiat ex eget congue aliquam. Cras lectus lorem, laoreet quis felis sit amet, ultricies tempor dui. Etiam imperdiet tempus tortor ac consequat. In hac habitasse platea dictumst. Nulla facilisi. Cras nec eros est.
-   </p>                             
-                                `,
-
-
-                                `
-                                
-                                <p>freestar
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci sed mollis. Duis pellentesque lacus id erat euismod, in porttitor massa blandit. In non sapien eget nunc interdum luctus nec et tortor. Pellentesque id nibh eget ligula volutpat hendrerit ac quis mauris.
- Mauris tellus arcu, ultricies mollis arcu eu, pretium facilisis mauris. Proin tortor lectus, tincidunt at arcu eget, dapibus luctus nibh. Sed fringilla, ex quis interdum dapibus, est purus commodo massa, quis commodo neque metus quis nisi. Maecenas a urna ut ipsum pulvinar interdum. Suspendisse dui turpis, euismod id sodales elementum, laoreet vitae metus. Sed sodales facilisis leo. Cras nec interdum lorem, eget iaculis magna. Ut facilisis, turpis a rhoncus bibendum, libero eros pulvinar eros, non euismod tortor sem vel felis. Curabitur eu cursus tellus, id hendrerit nulla. Phasellus venenatis enim a eleifend lobortis. Mauris consectetur, turpis hendrerit sollicitudin bibendum, turpis sapien laoreet sem, sit amet maximus orci nibh sit amet neque.
-</p>
-
-<p>Nulla fermentum lorem eu finibus imperdiet. Nullam malesuada sit amet sapien non elementum. In hac habitasse platea dictumst. Curabitur semper nibh id erat ultricies, eu molestie nulla varius. Sed porttitor metus ac ante ultrices, sed pretium tortor tincidunt. Cras pulvinar suscipit fringilla. Praesent lectus est, consectetur sed gravida non, convallis ut ligula. Vivamus sed facilisis risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris dapibus, quam convallis elementum egestas, ligula felis congue neque, non rhoncus tortor velit sed diam. Curabitur rutrum faucibus nulla quis sagittis. Donec quis fermentum sem, non pellentesque lorem. Vestibulum blandit nisi lobortis mauris bibendum luctus. Vestibulum justo justo, sodales nec orci sit amet, aliquet sagittis odio. Pellentesque rutrum, ex nec dapibus ornare, ex enim molestie nisl, ac placerat ex dolor eu magna.
-</p>
-
-<p>Praesent scelerisque lobortis diam a sagittis. Aenean porttitor dolor non magna luctus laoreet. Mauris nec ante efficitur, laoreet magna et, tempor urna. Ut feugiat iaculis dolor, at faucibus eros blandit non. Nulla vel diam fringilla, ultricies tortor eu, congue leo. Sed est arcu, tristique et felis sed, porttitor cursus nisi. Cras fringilla ut nunc in ultrices. Proin elementum porttitor enim in aliquet. Mauris nec sapien aliquet, pulvinar ligula sed, eleifend dolor. Nunc sagittis risus et orci scelerisque, id facilisis neque aliquam. Maecenas id leo odio. Quisque felis ex, tincidunt sit amet enim congue, laoreet ultricies elit. Maecenas et libero nec eros vulputate faucibus.
-</p>
-
-<p>Sed cursus venenatis urna maximus dapibus. Maecenas felis magna, porttitor sit amet velit in, semper interdum sem. Etiam varius, lacus et tempor sodales, mi lacus finibus leo, vitae vehicula nisi lectus in eros. Aenean accumsan arcu id placerat maximus. Quisque vitae ornare purus, at malesuada risus. Quisque et interdum lectus. Cras vel tincidunt velit, ac aliquam tellus. Nam metus nisi, feugiat eget commodo eget, semper a nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat magna in ornare dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-</p>
-
-<p>Nunc placerat, magna sit amet rhoncus luctus, nisi nibh bibendum turpis, et ullamcorper elit lectus eu libero. Integer feugiat ex eget congue aliquam. Cras lectus lorem, laoreet quis felis sit amet, ultricies tempor dui. Etiam imperdiet tempus tortor ac consequat. In hac habitasse platea dictumst. Nulla facilisi. Cras nec eros est.
-   </p>    
-                                `
-                            ],
-                            locked: false
-
-                        },
-
-                        {
-                            title: "1.2 Tags and Elements",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                "<p>HTML stands for HyperText Markup Language...</p>",
-                                "<p>It is the standard language for...</p>"
-                            ],
-                            locked: false
-                        }
-                    ]
-                },
-                {
-                    title: "2. Styling",
-                    subsections: [
-                        {
-                            title: "2.1 CSS Basics",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                "<p>HTML stands for HyperText Markup Language...</p>",
-                                "<p>It is the standard language for...</p>"
-                            ],
-                            locked: false
-                        },
-                        {
-                            title: "2.2 Flexbox and Grid",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                "<p>HTML stands for HyperText Markup Language...</p>",
-                                "<p>It is the standard language for...</p>"
-                            ],
-                            locked: false
-                        }
-                    ]
-                },
-                {
-                    title: "3. JavaScript",
-                    subsections: [
-                        {
-                            title: "3.1 Variables",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                "<p>HTML stands for HyperText Markup Language...</p>",
-                                "<p>It is the standard language for...</p>"
-                            ],
-                            locked: false
-                        },
-                        {
-                            title: "3.2 Functions",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                "<p>HTML stands for HyperText Markup Language...</p>",
-                                "<p>It is the standard language for...</p>"
-                            ],
-                            locked: false
-                        },
-                        {
-                            title: "3.3 DOM Manipulation",
-                            videoUrl: "https://www.youtube.com/embed/dD2EISBDjWM",
-                            htmlContent: [
-                                "<p>HTML stands for HyperText Markup Language...</p>",
-                                "<p>It is the standard language for...</p>"
-                            ],
-                            locked: false
-                        }
-                    ]
-                },
-                {
-                    title: "Final Quiz",
-                    subsections: [],
-                    isQuiz: true
-                }
-            ],
-
-        };
+        const freeCourse = pickRandomSubset(getMockDatabaseCourses(), 2)[0]
+        const courses = localStorage.getItem("study_course_lms") ?  JSON.parse( localStorage.getItem("study_course_lms")) :  freeCourse
 
         const accordionMenu = document.getElementById("accordionMenu");
         const contentArea = document.getElementById("courseContent");
@@ -412,7 +284,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
           ${section.title}
         </button>
         <div id="${sectionId}" class="pl-4 hidden bg-white text-sm p-3">
-          ${section.subsections.map((sub, j) => `
+          ${section.children.map((sub, j) => `
             <div class="py-1 pl-3  cursor-pointer"
                  onclick="loadLesson('${section.title}', '${sub.title}'); loadModuleLesson(${i},${j})">
               📄 ${sub.title}
@@ -444,17 +316,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
         function handleSearch(query) {
             const filtered = courses.curriculum.map(section => {
                 // Match section or any subsection
-                const matchedSubsections = section.subsections.filter(sub =>
+                const matchedchildren = section.children.filter(sub =>
                     sub.title.toLowerCase().includes(query.toLowerCase())
                 );
 
                 if (
                     section.title.toLowerCase().includes(query.toLowerCase()) ||
-                    matchedSubsections.length > 0
+                    matchedchildren.length > 0
                 ) {
                     return {
                         title: section.title,
-                        subsections: matchedSubsections.length > 0 ? matchedSubsections : section.subsections
+                        children: matchedchildren.length > 0 ? matchedchildren : section.children
                     };
                 }
 
@@ -468,7 +340,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
 
         // load course
         function loadModuleLesson(sectionIndex, subIndex) {
-            const sub = courses.curriculum[sectionIndex].subsections[subIndex];
+            const sub = courses.curriculum[sectionIndex].children[subIndex];
             const key = `progress-${courses.title}-${sub.title}`;
             const isComplete = localStorage.getItem(key) === "complete";
 
@@ -479,13 +351,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
 
             let html = `
     <h2 class="text-xl font-semibold mb-2">${sub.title}</h2>
-    ${sub.videoUrl ? `
+    ${sub.video ? `
       <div class="mb-4">
-        <iframe class="w-full h-64" src="${sub.videoUrl}" frameborder="0" allowfullscreen style="height: 400px"></iframe>
+        <iframe class="w-full h-64" src="${sub.video}" frameborder="0" allowfullscreen style="height: 400px"></iframe>
       </div>
     ` : ''}
 
-    ${sub.htmlContent?.length ? renderSlideShow(sub, key) : ''}
+    ${sub.htmlSlides?.length ? renderSlideShow(sub, key) : ''}
   `;
 
             courseContent.innerHTML = html;
@@ -495,7 +367,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
         function renderSlideShow(sub, progressKey) {
             const id = `slide-${progressKey.replace(/[^a-zA-Z0-9]/g, '')}`; // ID-safe
             const variableName = `slides_${id}`;
-            const slides = sub.htmlContent || [];
+            const slides = sub.htmlSlides || [];
 
             // Store progress (simulate after short delay)
             setTimeout(() => {
@@ -548,7 +420,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
 
         function checkUnlockQuiz() {
             const allSubmodules = courses.curriculum.flatMap(section =>
-                section.subsections || []
+                section.children || []
             );
 
             const allComplete = allSubmodules.every(sub => {

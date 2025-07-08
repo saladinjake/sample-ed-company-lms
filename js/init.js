@@ -221,9 +221,50 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
       const random_videoS = [
         "https://www.w3schools.com/html/mov_bbb.mp4",
         "https://www.youtube.com/embed/zJSY8tbf_ys",
-             "https://vimeo.com/76979871",
+            //  "https://vimeo.com/76979871",
+             "https://www.youtube.com/embed/dD2EISBDjWM"
 
       ]
+
+      const readableSlides = 
+                                `<h3>HTML stands for HyperText Markup Language</h3>
+
+                                <p>freestar
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci sed mollis. Duis pellentesque lacus id erat euismod, in porttitor massa blandit. In non sapien eget nunc interdum luctus nec et tortor. Pellentesque id nibh eget ligula volutpat hendrerit ac quis mauris.
+ Mauris tellus arcu, ultricies mollis arcu eu, pretium facilisis mauris. Proin tortor lectus, tincidunt at arcu eget, dapibus luctus nibh. Sed fringilla, ex quis interdum dapibus, est purus commodo massa, quis commodo neque metus quis nisi. Maecenas a urna ut ipsum pulvinar interdum. Suspendisse dui turpis, euismod id sodales elementum, laoreet vitae metus. Sed sodales facilisis leo. Cras nec interdum lorem, eget iaculis magna. Ut facilisis, turpis a rhoncus bibendum, libero eros pulvinar eros, non euismod tortor sem vel felis. Curabitur eu cursus tellus, id hendrerit nulla. Phasellus venenatis enim a eleifend lobortis. Mauris consectetur, turpis hendrerit sollicitudin bibendum, turpis sapien laoreet sem, sit amet maximus orci nibh sit amet neque.
+</p>
+
+<p>Nulla fermentum lorem eu finibus imperdiet. Nullam malesuada sit amet sapien non elementum. In hac habitasse platea dictumst. Curabitur semper nibh id erat ultricies, eu molestie nulla varius. Sed porttitor metus ac ante ultrices, sed pretium tortor tincidunt. Cras pulvinar suscipit fringilla. Praesent lectus est, consectetur sed gravida non, convallis ut ligula. Vivamus sed facilisis risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris dapibus, quam convallis elementum egestas, ligula felis congue neque, non rhoncus tortor velit sed diam. Curabitur rutrum faucibus nulla quis sagittis. Donec quis fermentum sem, non pellentesque lorem. Vestibulum blandit nisi lobortis mauris bibendum luctus. Vestibulum justo justo, sodales nec orci sit amet, aliquet sagittis odio. Pellentesque rutrum, ex nec dapibus ornare, ex enim molestie nisl, ac placerat ex dolor eu magna.
+</p>
+
+<p>Praesent scelerisque lobortis diam a sagittis. Aenean porttitor dolor non magna luctus laoreet. Mauris nec ante efficitur, laoreet magna et, tempor urna. Ut feugiat iaculis dolor, at faucibus eros blandit non. Nulla vel diam fringilla, ultricies tortor eu, congue leo. Sed est arcu, tristique et felis sed, porttitor cursus nisi. Cras fringilla ut nunc in ultrices. Proin elementum porttitor enim in aliquet. Mauris nec sapien aliquet, pulvinar ligula sed, eleifend dolor. Nunc sagittis risus et orci scelerisque, id facilisis neque aliquam. Maecenas id leo odio. Quisque felis ex, tincidunt sit amet enim congue, laoreet ultricies elit. Maecenas et libero nec eros vulputate faucibus.
+</p>
+
+<p>Sed cursus venenatis urna maximus dapibus. Maecenas felis magna, porttitor sit amet velit in, semper interdum sem. Etiam varius, lacus et tempor sodales, mi lacus finibus leo, vitae vehicula nisi lectus in eros. Aenean accumsan arcu id placerat maximus. Quisque vitae ornare purus, at malesuada risus. Quisque et interdum lectus. Cras vel tincidunt velit, ac aliquam tellus. Nam metus nisi, feugiat eget commodo eget, semper a nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat magna in ornare dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+</p>
+
+<p>Nunc placerat, magna sit amet rhoncus luctus, nisi nibh bibendum turpis, et ullamcorper elit lectus eu libero. Integer feugiat ex eget congue aliquam. Cras lectus lorem, laoreet quis felis sit amet, ultricies tempor dui. Etiam imperdiet tempus tortor ac consequat. In hac habitasse platea dictumst. Nulla facilisi. Cras nec eros est.
+   </p>                             
+                                `
+      const readableSlides2 =   `
+                                
+                                <p>freestar
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci sed mollis. Duis pellentesque lacus id erat euismod, in porttitor massa blandit. In non sapien eget nunc interdum luctus nec et tortor. Pellentesque id nibh eget ligula volutpat hendrerit ac quis mauris.
+ Mauris tellus arcu, ultricies mollis arcu eu, pretium facilisis mauris. Proin tortor lectus, tincidunt at arcu eget, dapibus luctus nibh. Sed fringilla, ex quis interdum dapibus, est purus commodo massa, quis commodo neque metus quis nisi. Maecenas a urna ut ipsum pulvinar interdum. Suspendisse dui turpis, euismod id sodales elementum, laoreet vitae metus. Sed sodales facilisis leo. Cras nec interdum lorem, eget iaculis magna. Ut facilisis, turpis a rhoncus bibendum, libero eros pulvinar eros, non euismod tortor sem vel felis. Curabitur eu cursus tellus, id hendrerit nulla. Phasellus venenatis enim a eleifend lobortis. Mauris consectetur, turpis hendrerit sollicitudin bibendum, turpis sapien laoreet sem, sit amet maximus orci nibh sit amet neque.
+</p>
+
+<p>Nulla fermentum lorem eu finibus imperdiet. Nullam malesuada sit amet sapien non elementum. In hac habitasse platea dictumst. Curabitur semper nibh id erat ultricies, eu molestie nulla varius. Sed porttitor metus ac ante ultrices, sed pretium tortor tincidunt. Cras pulvinar suscipit fringilla. Praesent lectus est, consectetur sed gravida non, convallis ut ligula. Vivamus sed facilisis risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris dapibus, quam convallis elementum egestas, ligula felis congue neque, non rhoncus tortor velit sed diam. Curabitur rutrum faucibus nulla quis sagittis. Donec quis fermentum sem, non pellentesque lorem. Vestibulum blandit nisi lobortis mauris bibendum luctus. Vestibulum justo justo, sodales nec orci sit amet, aliquet sagittis odio. Pellentesque rutrum, ex nec dapibus ornare, ex enim molestie nisl, ac placerat ex dolor eu magna.
+</p>
+
+<p>Praesent scelerisque lobortis diam a sagittis. Aenean porttitor dolor non magna luctus laoreet. Mauris nec ante efficitur, laoreet magna et, tempor urna. Ut feugiat iaculis dolor, at faucibus eros blandit non. Nulla vel diam fringilla, ultricies tortor eu, congue leo. Sed est arcu, tristique et felis sed, porttitor cursus nisi. Cras fringilla ut nunc in ultrices. Proin elementum porttitor enim in aliquet. Mauris nec sapien aliquet, pulvinar ligula sed, eleifend dolor. Nunc sagittis risus et orci scelerisque, id facilisis neque aliquam. Maecenas id leo odio. Quisque felis ex, tincidunt sit amet enim congue, laoreet ultricies elit. Maecenas et libero nec eros vulputate faucibus.
+</p>
+
+<p>Sed cursus venenatis urna maximus dapibus. Maecenas felis magna, porttitor sit amet velit in, semper interdum sem. Etiam varius, lacus et tempor sodales, mi lacus finibus leo, vitae vehicula nisi lectus in eros. Aenean accumsan arcu id placerat maximus. Quisque vitae ornare purus, at malesuada risus. Quisque et interdum lectus. Cras vel tincidunt velit, ac aliquam tellus. Nam metus nisi, feugiat eget commodo eget, semper a nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat magna in ornare dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+</p>
+
+<p>Nunc placerat, magna sit amet rhoncus luctus, nisi nibh bibendum turpis, et ullamcorper elit lectus eu libero. Integer feugiat ex eget congue aliquam. Cras lectus lorem, laoreet quis felis sit amet, ultricies tempor dui. Etiam imperdiet tempus tortor ac consequat. In hac habitasse platea dictumst. Nulla facilisi. Cras nec eros est.
+   </p>    
+                                `
       const sectionCount = 2 + (seed % 3); // 2–4 sections
       return Array.from({ length: sectionCount }, (_, s) => ({
         title: `Section ${s + 1}`,
@@ -232,6 +273,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
           title: `Lesson ${s + 1}.${c + 1}`,
           unlocked: c === 0, // unlock only first lesson
           video: random_videoS[c % random_videoS.length],
+
+          htmlContent: [readableSlides,readableSlides2],
         }))
       }));
     }

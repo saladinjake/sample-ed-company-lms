@@ -402,11 +402,11 @@
     function viewCourse(courseId) {
       // const allCourses = generateMockCourses(1000); // You can replace with real data
       // console.log(allCourses, ">>>")
-      const course = allCourses.find(c => parseInt(c.id) === parseInt(courseId));
+      const course = allCourses.find(c => parseInt(c.id) == parseInt(courseId));
       if (!course) return alert("Course not found!");
 
       localStorage.setItem("selected_course", JSON.stringify(course));
-      window.location.href = "course-detail.html";
+      window.location.href = "course-detail.html?id="+ course?.id ;
     }
 
     function applyFilters() {

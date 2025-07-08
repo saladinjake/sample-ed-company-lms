@@ -280,8 +280,8 @@
 
     function viewCourse(courseId) {
       const course = allCourses.find(c => c.id == courseId);
-      localStorage.setItem("selected_course", JSON.stringify(course));
-      window.location.href = "course-detail.html";
+      localStorage.setItem("study_course_lms", JSON.stringify(course));
+      window.location.href = "lms.html?lms="+ course?.id;
     }
 
 
