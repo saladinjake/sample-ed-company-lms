@@ -7,82 +7,19 @@ async function hashPassword(password) {
   return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
-const defaultUsers = {
-  // mocks user db table in real life
-  "users": [
-    {
-      "email": "john@example.com",
-      "password": "hashedpassword", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "student"
-    },
-
-    {
-      "email": "victor@kuda.com",
-      "password": "hashedpassword", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "employee"
-    },
-
-     {
-      "email": "admin@kuda.com",
-      "password": "hashedpassword", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-       role: "admin"
-    },
-
-    {
-      "email": "instructor@example.com",
-      "password": "hashedpassword", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-       role: "instructor"
-    },
-
-
-  ],
-  "currentUser": {
-    // get user info from user db table
-    "email": "Guest 1001",
-    "token": "uuid-session-token",
-     role: 'student',
-    companyId: 'Free Individual',
-    //mocks get user prefrences from prefrence table or profile table
-    preference: {
-      cardPreference: { paymentMethod: "Master Card" },
-      onboardingCategories: ["React", "Frontend Development", "Data Structures"],
-      displayName: "***",
-      displayEmail: "Guest 1001",
-      screenReaderEnabled: true
-    },
-    //progress
-    // users not assigneed by companies are called students while those assigned courses by employess are  employee by role
-   //mocks  get courses and analytics from enrolled course api 
-    enrolledCourses: [],
-    progress: {
-      courseId1: ["mod-1.1", "mod-1.2"],
-      courseId2: []
-    }
-
-  }
-}
+(async () => {
+  console.log(await hashPassword("user123"))
+  console.log(await hashPassword("instructor123"))
+  console.log(await hashPassword("admin123"))
+  console.log(await hashPassword("company123"))
+})()
 
 
 function getUsers() {
-  if(localStorage.getItem("users")){
-     return JSON.parse(localStorage.getItem("users") ); 
-  }
-  return JSON.parse(JSON.stringify(defaultUsers.users))
+
+  return JSON.parse(localStorage.getItem("üsers"))
 }
-//load default users
-getUsers()
+
 
 function saveUsers(users) {
   localStorage.setItem("users", JSON.stringify(users));
@@ -112,7 +49,7 @@ function redirectAfterLogin() {
 }
 
 async function signUp(name, email, password, role = "student") {
-  
+
   const users = getUsers();
   // ORDINARY STUDENTS 
   if (users.find(u => u.email === email)) return { error: "Email already exists." };
@@ -145,7 +82,8 @@ async function signUp(name, email, password, role = "student") {
 async function login(email, password) {
   const users = getUsers();
   const hashed = await hashPassword(password);
-  const user = users.find(u => u.email === email && u.password === hashed);
+  console.log(hashed, email,password)
+  const user = users.find(u => u.email == email && u.password === hashed);
 
   if (!user) return { error: "Invalid email or password" };
 
@@ -156,20 +94,19 @@ async function login(email, password) {
     email: user.email, token, role: user.role,
     // TODO LOAD PREVIOUS SESSIONS DATA
     preference: {
-      cardPreference: { paymentMethod: "Master Card" },
-      onboardingCategories: ["React", "Frontend Development", "Data Structures"],
-      displayName: "***",
+      cardPreference: user.preference.cardPreference,
+      onboardingCategories: user.preference.onboardingCategories || ["React", "Frontend Development", "Data Structures"],
+      displayName:  user.preference.displayName || "***",
       displayEmail: email,
-      screenReaderEnabled: true
+      screenReaderEnabled: user.preference.screenReaderEnabled || true
     },
     //progress
     // users not assigneed by companies are called students
-    companyId: 'Free Individual',
-    role: 'student',
-    enrolledCourses: [],
+    companyId: user.companyId || 'Free Individual',
+    role: user.role || 'student',
+    enrolledCourses: Array.isArray(user.enrolledCourses)? [...user.enrolledCourses] : [],
     progress: {
-      courseId1: ["mod-1.1", "mod-1.2"],
-      courseId2: []
+      ...user.progress
     }
 
   });
@@ -226,7 +163,7 @@ function requireAuth(role = null) {
 function enrollCourse(courseId) {
   const current = getCurrentUser();
   if (!current) {
-  
+
     return { error: "Login required" };
   }
 

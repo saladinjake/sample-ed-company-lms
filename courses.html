@@ -33,7 +33,8 @@
 
       <!-- Search -->
       <div class="md:order-3 order-3 w-full w-auto mr-8 flex justify-end gap-4">
-        <span><i class="cart fas fa-shopping-cart" id="cart"></i><i id="cart-count">0</i></span>
+        <span><i class="cart fas fa-shopping-cart" id="cart" onclick="toggleCartModal(true)"></i><i
+            id="cart-count">0</i></span>
         <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
 
           <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
@@ -352,18 +353,29 @@
 
 
   <!-- Inside #cart-modal -->
-  <div id="cart-modal" class="fixed inset-0  bg-opacity-50 flex items-center justify-center  z-50" >
-    <div class="bg-white w-full max-w-lg p-6 rounded shadow-lg relative modal-box" style="background:#fff;height:400px; overflow-y:scroll">
-      <h2 class="text-lg font-semibold mb-4">Your Cart</h2>
+  <div id="cart-modal" class="fixed inset-0  bg-opacity-50 flex items-center justify-center  z-50">
+    <div class="bg-white w-full max-w-lg p-6 rounded shadow-lg relative modal-box mb-8"
+      style="background:#fff;height:400px; overflow-y:scroll">
+      
+
+      <div class="mt-4 text-right flex justify-between gap-4 hasCart  border-b mb-3">
+        <h2 class="text-lg font-semibold mb-4 ">Your Cart</h2>
+        <div>
+        <button onclick="clearCart()" class="btn btn-primary mt-4 w-full hidden"
+          style="background:red; width:200px;color:#fff; height:40px">Clear Cart</button>
+        <button onclick='payWithPaystack()' class="btn btn-primary mt-4 w-full hidden"
+          style="background:blue; width:200px;color:#fff; height:40px">
+          Checkout
+        </button>
+        </div>
+      </div>
       <div id="cart-items" class="space-y-4"></div>
 
       <div id="cart-subtotal" class="mt-4 text-right font-semibold text-md"></div>
 
-      <button onclick="toggleCartModal(false)" id="" class="absolute top-2 right-2 text-lg close-btn">✖</button>
+      <button onclick="toggleCartModal(false)" id="" class="right-2 text-lg close-btn">✖</button>
       <!-- Below cart-subtotal -->
-      <div class="mt-4 text-right">
-        <button onclick="clearCart()" class="btn btn-danger text-sm">Clear Cart</button>
-      </div>
+     
 
     </div>
   </div>
@@ -456,9 +468,7 @@
       }
 
     }
-    //   <!--<button onclick='payWithPaystack(${JSON.stringify(course)})' class="btn btn-primary mt-4 w-full">
-    //   Enroll ₦${course.price}
-    // </button>-->
+
     function handleLoadControls() {
       const shown = (page - 1) * perPage;
       const total = filteredCourses.length;
@@ -535,21 +545,24 @@
   <script src="https://js.paystack.co/v1/inline.js"></script>
 
   <script type="text/javascript">
-    function payWithPaystack(course) {
+    function payWithPaystack() {
+      const myCart = JSON.parse(localStorage.getItem("cart")) || []
+      console.log(myCart, "<<<<")
+      const total = myCart.reduce((item, acc) => item.price + acc, 0)
       const handler = PaystackPop.setup({
         publicKey: "pk_test_5dca9a796da0a59391c7f15c6cdc0275db4c8093",
         reference: new Date().getTime(),
         email: 'juwavictor@gmail.com',
-        amount: course.price * 100, // in kobo
+        amount: total * 100, // in kobo
         currency: 'NGN',
         ref: 'COURSE_' + new Date().getTime(),
 
         metadata: {
           custom_fields: [
             {
-              display_name: course.title,
+              display_name: myCart.length > 1 ? "Multiple Course Enrolement" : myCart.length == 1 ? myCart[0].title : "Course Enrollment",
               variable_name: 'course_id',
-              value: course.title,
+              value: myCart.length > 1 ? "Multiple Course Enrolement" : myCart.length == 1 ? myCart[0].title : "Course Enrollment",
             },
           ],
         },
@@ -596,14 +609,29 @@
 
 
     function toggleCartModal(show) {
-      if(show){
-          document.getElementById("cart-modal").classList.remove("hidden")
-      }else{
-   document.getElementById("cart-modal").classList.add("hidden")
+      let cartItems = []
+      if (localStorage.getItem("cart")) {
+        cartItems = JSON.parse(localStorage.getItem("cart"))
       }
-       document.getElementById("cart-modal").classList.toggle("show")
+
+
+      console.log(cartItems, ">>>>")
+      if (show) {
+        document.getElementById("cart-modal").classList.remove("hidden")
+      } else {
+        document.getElementById("cart-modal").classList.add("hidden")
+      }
+      document.getElementById("cart-modal").classList.toggle("show")
       // document.getElementById("cart-modal").classList.toggle("hidden", !show);
       document.getElementById("cart-count").textContent = cart.length;
+
+
+      if (cartItems.length > 0) {
+        document.querySelectorAll(".cart-modal .hasCart").forEach(el => el.classList.remove("hidden"))
+      } else {
+        document.querySelectorAll(".cart-modal .hasCart").forEach(el => el.classList.add("hidden"))
+      }
+
     }
 
     function renderCartItems() {
@@ -630,8 +658,9 @@
          <div class="text-sm mt-2">
          • ${course.level} • ${course.category}
         </div>
+           <button class="text-red-500 text-sm" style="background:red; width:150px;color:#fff; height:40px;margin-top:10px" onclick="removeFromCart('${course.title}')">Remove</button>
       </div>
-      <button class="text-red-500 text-sm" onclick="removeFromCart('${course.title}')">Remove</button>
+   
     `;
         container.appendChild(item);
       });
