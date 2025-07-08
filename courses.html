@@ -352,8 +352,8 @@
 
 
   <!-- Inside #cart-modal -->
-  <div id="cart-modal" class="fixed inset-0  bg-opacity-50 flex items-center justify-center  z-50" style="background:#fff">
-    <div class="bg-white w-full max-w-lg p-6 rounded shadow-lg relative modal-box" style="background:#fff">
+  <div id="cart-modal" class="fixed inset-0  bg-opacity-50 flex items-center justify-center  z-50" >
+    <div class="bg-white w-full max-w-lg p-6 rounded shadow-lg relative modal-box" style="background:#fff;height:400px; overflow-y:scroll">
       <h2 class="text-lg font-semibold mb-4">Your Cart</h2>
       <div id="cart-items" class="space-y-4"></div>
 
@@ -617,11 +617,19 @@
 
       cart.forEach(course => {
         const item = document.createElement("div");
-        item.className = "flex justify-between items-center border-b pb-2";
+        item.className = "flex  border-b pb-2";
         item.innerHTML = `
-      <div>
-        <h4 class="font-semibold">${course.title}</h4>
-        <p class="text-sm text-muted">₦${course.price}</p>
+      <div class="flex flex-rows justify-start">
+        <div>
+            <img src="${course.image}" class="rounded-t-xl w-full p-4" style="width:200px; height:200px" />
+          </div>
+          <div class="flex flex-cols  p-8">
+             <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
+        <span class="text-md  mb-3 text-black">${course.description.substring(0, 140) + "..."}</span>
+        <p class="text-xs text-muted">By ${course.instructor}</p>
+         <div class="text-sm mt-2">
+         • ${course.level} • ${course.category}
+        </div>
       </div>
       <button class="text-red-500 text-sm" onclick="removeFromCart('${course.title}')">Remove</button>
     `;
@@ -636,7 +644,7 @@
       cart = cart.filter(c => c.title !== title);
       saveCart();
       renderCartItems();
-      toggleCartModal(true);
+      // toggleCartModal(true);
     }
 
     function saveCart() {
