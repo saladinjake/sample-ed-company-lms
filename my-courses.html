@@ -116,8 +116,11 @@
 
 
     <div class="min-h-screen bg-gray-50 p-6">
-      <h2 class="text-2xl font-bold mb-6">My Courses</h2>
-      <div id="my-course-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 container mt-10"></div>
+      <div class="relative" style="margin-top:180px">
+        <h2 class="text-2xl font-bold mb-6 mt-8">My Courses</h2>
+        <div id="my-course-list" class="grid grid-cols-1  md:grid-cols-3 gap-6 p-4 "></div>
+      </div>
+
     </div>
 
 
@@ -243,29 +246,40 @@
 
     const courseList = document.getElementById("my-course-list");
     const user = getCurrentUser();
-    const allCourses = pickRandomSubset(getMockDatabaseCourses(), 400); // You can replace with real data
+    const allCourses = getMockDatabaseCourses(); // You can replace with real data
 
     const users = getUsers();
-    const current = users.find(u => u.email === user?.email);
-    const enrolledIds = current?.enrolledCourses || [];
+    const current = users.find(u => u.email == user?.email);
+    const enrolledIds = user?.enrolledCourses.map(id => id)
 
-    const enrolledCourses = allCourses.filter(c => enrolledIds.includes(c.id));
+
+    console.log(user)
+
+    const enrolledCourses = user?.enrolledCourses
+    console.log(enrolledCourses, "<<<")
 
     if (enrolledCourses.length === 0) {
       courseList.innerHTML = `<p class="text-gray-500 text-xl w-full">You haven't enrolled in any courses yet.</p>`;
     } else {
       courseList.innerHTML = enrolledCourses.map(course => `
     <div class="bg-white p-4 shadow rounded-xl">
-      <h3 class="font-semibold text-lg">${course.title}</h3>
-      <p class="text-sm text-gray-500">${course.description}</p>
-      <p class="text-sm mt-1 text-gray-700">$${course.price} • ${course.level}</p>
-      <button class="btn btn-primary mt-3 w-full" onclick="viewCourse('${course.id}')">Continue</button>
+  <img src="${course.image}" class="rounded-t-xl w-full" />
+      <div class="p-4">
+        <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
+        <span class="text-md  mb-3 text-black">${course.description.substring(0, 140) + "..."}</span>
+        <p class="text-xs text-muted">By ${course.instructor}</p>
+         <div class="text-sm mt-2">
+         • ${course.level} • ${course.category}
+      </div>
+      <div class="flex justify-between">
+   <button class="p-4 mt-3 border-2" onclick="viewCourse('${course.id}')">View Course</button>
+       
     </div>
   `).join("");
     }
 
     function viewCourse(courseId) {
-      const course = allCourses.find(c => c.id === courseId);
+      const course = allCourses.find(c => c.id == courseId);
       localStorage.setItem("selected_course", JSON.stringify(course));
       window.location.href = "course-detail.html";
     }
@@ -284,7 +298,7 @@
     }
 
     function populateCategories() {
-      const grid = document.getElementById("categoryGrid");
+      const grid = document.getElementById("categoryGroupsContainer");
       if (grid.children.length > 0) return; // Only populate once
 
       const html = categories.map(cat => `

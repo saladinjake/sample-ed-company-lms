@@ -34,7 +34,7 @@ function getCurrentUser() {
 }
 
 function logout() {
-  localStorage.removeItem("currentUser");
+  localStorage.clear()
 }
 
 // saas based mock up rediection for authentication
@@ -94,17 +94,17 @@ async function login(email, password) {
     email: user.email, token, role: user.role,
     // TODO LOAD PREVIOUS SESSIONS DATA
     preference: {
-      cardPreference: user.preference.cardPreference,
-      onboardingCategories: user.preference.onboardingCategories || ["React", "Frontend Development", "Data Structures"],
-      displayName:  user.preference.displayName || "***",
+      cardPreference: ["Master Card"],
+      onboardingCategories:  ["React", "Frontend Development", "Data Structures"],
+      displayName:  "***",
       displayEmail: email,
-      screenReaderEnabled: user.preference.screenReaderEnabled || true
+      screenReaderEnabled:  true
     },
     //progress
     // users not assigneed by companies are called students
-    companyId: user.companyId || 'Free Individual',
+    companyId: user?.companyId || 'Free Individual',
     role: user.role || 'student',
-    enrolledCourses: Array.isArray(user.enrolledCourses)? [...user.enrolledCourses] : [],
+    enrolledCourses: [],
     progress: {
       ...user.progress
     }

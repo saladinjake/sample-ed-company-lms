@@ -142,7 +142,7 @@
                 <h1 class="text-2xl  text-black mb-4 pl-4">Advanced UI Design Course</h1>
                 <p class="text-muted mb-6">Master the art of creating stunning user interfaces with real-world projects
                     and interactive walkthroughs.</p>
-                
+
                 <div id="video-wrapper" class="rounded-xl overflow-hidden w-full aspect-video mb-4">
                     <!-- dynamically  injected here -->
                 </div>
@@ -390,7 +390,7 @@
 
 
 
-        const currentCourse = localStorage.getItem("selected_course") ? JSON.parse(localStorage.getItem("selected_course")) : pickRandomSubset(getMockDatabaseCourses(), 5)[0] // You can replace with real data
+        const currentCourse = localStorage.getItem("selected_course") ? JSON.parse(localStorage.getItem("selected_course")) : pickRandomSubset(getMockDatabaseCourses(), 450)[0] // You can replace with real data
         if (!currentCourse) {
             alert("cant find course")
             window.location.href = "./courses.html"
@@ -540,7 +540,7 @@
             const child = modules[sectionIndex].children[childIndex];
             const locked = !child.unlocked && !isEnrolled;
 
-            console.log(child, locked,">>>")
+            console.log(child, locked, ">>>")
 
             if (locked) {
                 alert("This video is locked. Please enroll to access it.");
@@ -621,11 +621,6 @@
         }
 
 
-        //auto play
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     const last = JSON.parse(localStorage.getItem("last_watched_video"));
-        //     if (last) playVideo(last.sectionIndex, last.childIndex);
-        // });
 
 
 
@@ -648,6 +643,7 @@
                 modules.forEach((m, i) => m.collapsed = saved[i]);
             }
 
+            //auto play
             const last = JSON.parse(localStorage.getItem("last_watched_video"));
             if (last) playVideo(last.sectionIndex, last.childIndex);
 
@@ -700,15 +696,18 @@
                 alert(result.error);
             } else {
                 alert("Login successful!");
+                const user = getCurrentUser()
+                user.enrolledCourses.push(currentCourse)
+                setCurrentUser({...user,enrolledCourses: [...user.enrolledCourses]});
                 closeAuthPromptModal()
 
                 // redirectAfterLogin()
             }
         });
 
-//         document.getElementById("video-wrapper").innerHTML = `
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/7zLyVzItZlQ"
-// frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        //         document.getElementById("video-wrapper").innerHTML = `
+        // <iframe width="560" height="315" src="https://www.youtube.com/embed/7zLyVzItZlQ"
+        // frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
 
     </script>
 </body>
