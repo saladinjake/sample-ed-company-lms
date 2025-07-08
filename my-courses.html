@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AntLiteCSS/custom css util Landing Page for E-learning</title>
-    <link href="./css/index.css" rel="stylesheet" />
-    <link href="./css/auth.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AntLiteCSS/custom css util Landing Page for E-learning</title>
+  <link href="./css/index.css" rel="stylesheet" />
+  <link href="./css/auth.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-light text-md font-base text-primary">
-     <header class="bg-white border-b shadow-sm p-3 fixed z-10">
+  <header class="bg-white border-b shadow-sm p-3 fixed z-10">
     <!-- Top Row -->
     <div
       class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 ">
@@ -27,7 +27,8 @@
 
       <!-- Logo -->
       <div class="text-center md:order-1 order-2 w-full sm:w-auto">
-        <h1 class="text-lg font-bold"><a href="./index.html"></a>UNI<span class="text-warning">CAST</span></h1> </a></h1>
+        <h1 class="text-lg font-bold"><a href="./index.html"></a>UNI<span class="text-warning">CAST</span></h1> </a>
+        </h1>
         <p class="text-muted text-sm"><a href="./index.html">E-LEARNING COMPANY</a></p>
       </div>
 
@@ -68,26 +69,26 @@
         <li><a href="my-courses.html" class="text-black hover:text-primary">My Courses</a></li>
         <li><a href="./teams/business.html" class="text-black hover:text-primary">For Business</a></li>
         <li><a href="./cart.html" class="text-black hover:text-primary">Cart</a></li>
-     
+
         <li><a href="./login.html" class="text-black hover:text-primary">Login</a></li>
         <li><a href="./signup.html" class="text-black hover:text-primary">Signup</a></li>
       </ul>
     </nav>
 
     <!-- Mega Menu -->
-   <!-- Mega Menu Panel -->
-<div id="megaMenu" class="fixed top-16 left-0 w-full z-50 hidden bg-white shadow-lg px-6 py-8">
-  <div class="max-w-6xl mx-auto">
-    <div class="mb-4">
-      <input type="text" oninput="filterCategories(this.value)" placeholder="Search categories..."
-        class="w-full mr-4 px-4 py-2 border rounded focus:outline-none focus:ring" />
-    </div>
+    <!-- Mega Menu Panel -->
+    <div id="megaMenu" class="fixed top-16 left-0 w-full z-50 hidden bg-white shadow-lg px-6 py-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-4">
+          <input type="text" oninput="filterCategories(this.value)" placeholder="Search categories..."
+            class="w-full mr-4 px-4 py-2 border rounded focus:outline-none focus:ring" />
+        </div>
 
-    <div id="categoryGroupsContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-sm">
-      <!-- Filled by JS -->
+        <div id="categoryGroupsContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-sm">
+          <!-- Filled by JS -->
+        </div>
+      </div>
     </div>
-  </div>
-</div>
     <!-- Mobile Nav -->
     <nav class="sm:hidden hidden mt-4 bg-black text-white text-sm uppercase" id="mobile-menu">
       <!-- <div class="overlay absolute inset-0" style="background: rgba(255,255,255,0.5)"></div> -->
@@ -96,9 +97,9 @@
       <a href="./courses.html" class="block py-2 border-b px-3">All Courses</a>
       <a href="./teams/business.html" class="block py-2 border-b px-3">For Business</a>
       <a href="./cart.html" class="block py-2 border-b px-3">Cart</a>
-     
-       <li><a href="./login.html" class="block py-2 border-b px-3">Login</a></li>
-        <li><a href="./signup.html" class="block py-2 border-b px-3">Signup</a></li>
+
+      <li><a href="./login.html" class="block py-2 border-b px-3">Login</a></li>
+      <li><a href="./signup.html" class="block py-2 border-b px-3">Signup</a></li>
     </nav>
   </header>
 
@@ -108,192 +109,152 @@
 
 
 
-    <main id="home">
+  <main id="home">
 
 
 
 
 
-        <div class="min-h-screen bg-gray-50 p-6">
-            <h2 class="text-2xl font-bold mb-6">My Courses</h2>
-            <div id="my-course-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 container mt-10"></div>
+    <div class="min-h-screen bg-gray-50 p-6">
+      <h2 class="text-2xl font-bold mb-6">My Courses</h2>
+      <div id="my-course-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 container mt-10"></div>
+    </div>
+
+
+
+  </main>
+
+
+
+  <footer class="bg-gray-100  px-6 py-10" style="background-color:#eafaea">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3  gap-8">
+        <!-- Technical Skills -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Technical Skills</h3>
+          <ul class="space-y-1 text-sm ">
+            <li>ChatGPT</li>
+            <li>Coding</li>
+            <li>Computer Science</li>
+            <li>Cybersecurity</li>
+            <li>DevOps</li>
+            <li>Ethical Hacking</li>
+            <li>Generative AI</li>
+            <li>Java Programming</li>
+            <li>Python</li>
+            <li>Web Development</li>
+          </ul>
         </div>
 
+        <!-- Analytical Skills -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Analytical Skills</h3>
+          <ul class="space-y-1 text-sm ">
+            <li>Artificial Intelligence</li>
+            <li>Big Data</li>
+            <li>Business Analysis</li>
+            <li>Data Analytics</li>
+            <li>Data Science</li>
+            <li>Financial Modeling</li>
+            <li>Machine Learning</li>
+            <li>Microsoft Excel</li>
+            <li>Power BI</li>
+            <li>SQL</li>
+          </ul>
+        </div>
 
+        <!-- Business Skills -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Business Skills</h3>
+          <ul class="space-y-1 text-sm ">
+            <li>Accounting</li>
+            <li>Digital Marketing</li>
+            <li>E-commerce</li>
+            <li>Finance</li>
+            <li>Google</li>
+            <li>Graphic Design</li>
+            <li>IBM</li>
+            <li>Marketing</li>
+            <li>Project Management</li>
+            <li>Social Media Marketing</li>
+          </ul>
+        </div>
 
-    </main>
+        <!-- Career Resources -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Career Resources</h3>
+          <ul class="space-y-1 text-sm ">
+            <li>Essential IT Certifications</li>
+            <li>High-Income Skills</li>
+            <li>Get a PMP Certification</li>
+            <li>Learn Artificial Intelligence</li>
+            <li>Cybersecurity Certifications</li>
+            <li>Data Analytics Certifications</li>
+            <li>What Does a Data Analyst Do?</li>
+            <li>Career Development</li>
+            <li>Career Aptitude Test</li>
+            <li>Share Your Learning Story</li>
+          </ul>
+        </div>
 
-    
-
-<footer class="bg-gray-100  px-6 py-10" style="background-color:#eafaea">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-3  gap-8">
-      <!-- Technical Skills -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Technical Skills</h3>
-        <ul class="space-y-1 text-sm ">
-          <li>ChatGPT</li>
-          <li>Coding</li>
-          <li>Computer Science</li>
-          <li>Cybersecurity</li>
-          <li>DevOps</li>
-          <li>Ethical Hacking</li>
-          <li>Generative AI</li>
-          <li>Java Programming</li>
-          <li>Python</li>
-          <li>Web Development</li>
-        </ul>
+        <!-- Coursera / Platform Info -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Coursera</h3>
+          <ul class="space-y-1 text-sm ">
+            <li>About</li>
+            <li>What We Offer</li>
+            <li>Leadership</li>
+            <li>Careers</li>
+            <li>Catalog</li>
+            <li>Coursera Plus</li>
+            <li>Professional Certificates</li>
+            <li>MasterTrack® Certificates</li>
+            <li>Degrees</li>
+            <li>For Enterprise, Campus, Gov</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Analytical Skills -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Analytical Skills</h3>
-        <ul class="space-y-1 text-sm ">
-          <li>Artificial Intelligence</li>
-          <li>Big Data</li>
-          <li>Business Analysis</li>
-          <li>Data Analytics</li>
-          <li>Data Science</li>
-          <li>Financial Modeling</li>
-          <li>Machine Learning</li>
-          <li>Microsoft Excel</li>
-          <li>Power BI</li>
-          <li>SQL</li>
-        </ul>
-      </div>
-
-      <!-- Business Skills -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Business Skills</h3>
-        <ul class="space-y-1 text-sm ">
-          <li>Accounting</li>
-          <li>Digital Marketing</li>
-          <li>E-commerce</li>
-          <li>Finance</li>
-          <li>Google</li>
-          <li>Graphic Design</li>
-          <li>IBM</li>
-          <li>Marketing</li>
-          <li>Project Management</li>
-          <li>Social Media Marketing</li>
-        </ul>
-      </div>
-
-      <!-- Career Resources -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Career Resources</h3>
-        <ul class="space-y-1 text-sm ">
-          <li>Essential IT Certifications</li>
-          <li>High-Income Skills</li>
-          <li>Get a PMP Certification</li>
-          <li>Learn Artificial Intelligence</li>
-          <li>Cybersecurity Certifications</li>
-          <li>Data Analytics Certifications</li>
-          <li>What Does a Data Analyst Do?</li>
-          <li>Career Development</li>
-          <li>Career Aptitude Test</li>
-          <li>Share Your Learning Story</li>
-        </ul>
-      </div>
-
-      <!-- Coursera / Platform Info -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Coursera</h3>
-        <ul class="space-y-1 text-sm ">
-          <li>About</li>
-          <li>What We Offer</li>
-          <li>Leadership</li>
-          <li>Careers</li>
-          <li>Catalog</li>
-          <li>Coursera Plus</li>
-          <li>Professional Certificates</li>
-          <li>MasterTrack® Certificates</li>
-          <li>Degrees</li>
-          <li>For Enterprise, Campus, Gov</li>
-        </ul>
+      <!-- Bottom Links -->
+      <div class="border-t mt-10 pt-6 text-sm text-gray-400 flex flex-col sm:flex-row justify-between gap-4">
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+          <a href="#">Blog</a>
+          <a href="#">Podcast</a>
+          <a href="#">Tech Blog</a>
+          <a href="#">Help</a>
+          <a href="#">Contact</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Affiliates</a>
+        </div>
+        <div class="text-right">
+          <p></p>
+        </div>
       </div>
     </div>
-
-    <!-- Bottom Links -->
-    <div class="border-t mt-10 pt-6 text-sm text-gray-400 flex flex-col sm:flex-row justify-between gap-4">
-      <div class="flex flex-wrap gap-x-4 gap-y-2">
-        <a href="#">Blog</a>
-        <a href="#">Podcast</a>
-        <a href="#">Tech Blog</a>
-        <a href="#">Help</a>
-        <a href="#">Contact</a>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#">Accessibility</a>
-        <a href="#">Affiliates</a>
-      </div>
-      <div class="text-right">
-        <p></p>
-      </div>
-    </div>
-  </div>
-</footer>
-    <script src="./js/auth.js"></script>
-    <script>
+  </footer>
+  <script src="./js/auth.js"></script>
+  <script src="./js/init.js"></script>
+  <script>
 
 
 
-        function generateMockCourses(count) {
-            const categories = ['Design', 'Development', 'Marketing', 'Business'];
-            const styles = ['video', 'text', 'interactive'];
-            const levels = ["Beginner", "Intermediate", "Advanced"];
 
-            const list = [];
-            for (let i = 1; i <= count; i++) {
-                const id = `course-${i}`;
-                const category = categories[i % categories.length];
-                const level = levels[i % levels.length];
-                const curriculum = generateCurriculum(i);
+    const courseList = document.getElementById("my-course-list");
+    const user = getCurrentUser();
+    const allCourses = pickRandomSubset(getMockDatabaseCourses(), 400); // You can replace with real data
 
-                list.push({
-                    id: i,
-                    title: `Course ${i}`,
-                    description: `This is a description of Course ${i}.`,
-                    category: categories[i % 4],
-                    style: styles[i % 3],
-                    level,
-                    price: Math.floor(Math.random() * 500),
-                    image: `https://img-c.udemycdn.com/course/480x270/382300_f75b_3.jpg?text=Course+${i}`,
-                    instructor: `Instructor ${i}`,
-                    introVideo: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-                    tags: [category, level],
-                    curriculum
-                });
-            }
-            return list;
-        }
-        function generateCurriculum(seed = 1) {
-            const sectionCount = 2 + (seed % 3); // 2–4 sections
-            return Array.from({ length: sectionCount }, (_, s) => ({
-                title: `Section ${s + 1}`,
-                collapsed: true,
-                children: Array.from({ length: 3 + (seed % 2) }, (_, c) => ({
-                    title: `Lesson ${s + 1}.${c + 1}`,
-                    unlocked: c === 0, // unlock only first lesson
-                    video: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
-                }))
-            }));
-        }
+    const users = getUsers();
+    const current = users.find(u => u.email === user?.email);
+    const enrolledIds = current?.enrolledCourses || [];
 
-        const courseList = document.getElementById("my-course-list");
-        const user = getCurrentUser();
-        const allCourses = generateMockCourses(1000); // load the same array used in search
+    const enrolledCourses = allCourses.filter(c => enrolledIds.includes(c.id));
 
-        const users = getUsers();
-        const current = users.find(u => u.email === user?.email);
-        const enrolledIds = current?.enrolledCourses || [];
-
-        const enrolledCourses = allCourses.filter(c => enrolledIds.includes(c.id));
-
-        if (enrolledCourses.length === 0) {
-            courseList.innerHTML = `<p class="text-gray-500 text-xl w-full">You haven't enrolled in any courses yet.</p>`;
-        } else {
-            courseList.innerHTML = enrolledCourses.map(course => `
+    if (enrolledCourses.length === 0) {
+      courseList.innerHTML = `<p class="text-gray-500 text-xl w-full">You haven't enrolled in any courses yet.</p>`;
+    } else {
+      courseList.innerHTML = enrolledCourses.map(course => `
     <div class="bg-white p-4 shadow rounded-xl">
       <h3 class="font-semibold text-lg">${course.title}</h3>
       <p class="text-sm text-gray-500">${course.description}</p>
@@ -301,13 +262,13 @@
       <button class="btn btn-primary mt-3 w-full" onclick="viewCourse('${course.id}')">Continue</button>
     </div>
   `).join("");
-        }
+    }
 
-        function viewCourse(courseId) {
-            const course = allCourses.find(c => c.id === courseId);
-            localStorage.setItem("selected_course", JSON.stringify(course));
-            window.location.href = "course-detail.html";
-        }    </script>
+    function viewCourse(courseId) {
+      const course = allCourses.find(c => c.id === courseId);
+      localStorage.setItem("selected_course", JSON.stringify(course));
+      window.location.href = "course-detail.html";
+    }
 
 
 
@@ -332,6 +293,8 @@
 
       grid.innerHTML = html;
     }
+
+  </script>
 
 </body>
 

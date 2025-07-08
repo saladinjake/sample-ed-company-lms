@@ -8,25 +8,81 @@ async function hashPassword(password) {
 }
 
 const defaultUsers = {
+  // mocks user db table in real life
   "users": [
     {
       "email": "john@example.com",
       "password": "hashedpassword", // We'll just store raw for now
       "name": "John Doe",
       "resetToken": "abc123", // optional
-      "token": "uuid-session-token"
-    }
+      "token": "uuid-session-token",
+      role: "student"
+    },
+
+    {
+      "email": "victor@kuda.com",
+      "password": "hashedpassword", // We'll just store raw for now
+      "name": "John Doe",
+      "resetToken": "abc123", // optional
+      "token": "uuid-session-token",
+      role: "employee"
+    },
+
+     {
+      "email": "admin@kuda.com",
+      "password": "hashedpassword", // We'll just store raw for now
+      "name": "John Doe",
+      "resetToken": "abc123", // optional
+      "token": "uuid-session-token",
+       role: "admin"
+    },
+
+    {
+      "email": "instructor@example.com",
+      "password": "hashedpassword", // We'll just store raw for now
+      "name": "John Doe",
+      "resetToken": "abc123", // optional
+      "token": "uuid-session-token",
+       role: "instructor"
+    },
+
+
   ],
   "currentUser": {
-    "email": "john@example.com",
-    "token": "uuid-session-token"
+    // get user info from user db table
+    "email": "Guest 1001",
+    "token": "uuid-session-token",
+     role: 'student',
+    companyId: 'Free Individual',
+    //mocks get user prefrences from prefrence table or profile table
+    preference: {
+      cardPreference: { paymentMethod: "Master Card" },
+      onboardingCategories: ["React", "Frontend Development", "Data Structures"],
+      displayName: "***",
+      displayEmail: "Guest 1001",
+      screenReaderEnabled: true
+    },
+    //progress
+    // users not assigneed by companies are called students while those assigned courses by employess are  employee by role
+   //mocks  get courses and analytics from enrolled course api 
+    enrolledCourses: [],
+    progress: {
+      courseId1: ["mod-1.1", "mod-1.2"],
+      courseId2: []
+    }
+
   }
 }
 
 
 function getUsers() {
-  return JSON.parse(localStorage.getItem("users") || "[]");
+  if(localStorage.getItem("users")){
+     return JSON.parse(localStorage.getItem("users") ); 
+  }
+  return JSON.parse(JSON.stringify(defaultUsers.users))
 }
+//load default users
+getUsers()
 
 function saveUsers(users) {
   localStorage.setItem("users", JSON.stringify(users));
@@ -44,23 +100,43 @@ function logout() {
   localStorage.removeItem("currentUser");
 }
 
-
+// saas based mock up rediection for authentication
 function redirectAfterLogin() {
   const user = JSON.parse(localStorage.getItem("current_user"));
   if (!user) return window.location.href = "/login.html";
-
-  if (user.role === "employee") window.location.href = "/teams/dashboard.html";
-  else if (user.role === "admin") window.location.href = "/admin/dashboard.html";
-  else if (user.role === "student") window.location.href = "/dashboard.html";
-  else if (user.role === "instructor") window.location.href = "/instructor/dashboard.html";
+  // simple FE RBAC
+  if (user.role === "employee") window.location.href = "/teams/dashboard.html"; // EMPLOYEE BASED SAAS APP SECTION
+  else if (user.role === "admin") window.location.href = "/admin/dashboard.html"; // ADMIN
+  else if (user.role === "student") window.location.href = "/dashboard.html";  // STUDENT WITH OUT COMPANIES ASSIGNING TASK
+  else if (user.role === "instructor") window.location.href = "/instructor/dashboard.html"; // COURSE CREATOR
 }
 
 async function signUp(name, email, password, role = "student") {
+  
   const users = getUsers();
+  // ORDINARY STUDENTS 
   if (users.find(u => u.email === email)) return { error: "Email already exists." };
 
+
   const hashed = await hashPassword(password);
-  const newUser = { name, email, password: hashed, role };
+  const newUser = {
+    name, email,
+    password: hashed, role,
+    preference: {
+      cardPreference: { paymentMethod: "Master Card" },
+      onboardingCategories: [],
+      displayName: "***",
+      displayEmail: email,
+      screenReaderEnabled: true
+    },
+    //progress
+    // users not assigneed by companies are called students
+    companyId: 'Free Individual',
+    role: 'student',
+    enrolledCourses: [],
+    progress: {}
+
+  };
   users.push(newUser);
   saveUsers(users);
   return { success: true };
@@ -78,6 +154,7 @@ async function login(email, password) {
   saveUsers(users);
   setCurrentUser({
     email: user.email, token, role: user.role,
+    // TODO LOAD PREVIOUS SESSIONS DATA
     preference: {
       cardPreference: { paymentMethod: "Master Card" },
       onboardingCategories: ["React", "Frontend Development", "Data Structures"],
@@ -88,12 +165,12 @@ async function login(email, password) {
     //progress
     // users not assigneed by companies are called students
     companyId: 'Free Individual',
-    // role: 'student',
-    // enrolledCourses: [],
-    // progress: {
-    //   courseId1: ["mod-1.1", "mod-1.2"],
-    //   courseId2: []
-    // }
+    role: 'student',
+    enrolledCourses: [],
+    progress: {
+      courseId1: ["mod-1.1", "mod-1.2"],
+      courseId2: []
+    }
 
   });
   return { success: true, user };
@@ -142,11 +219,16 @@ function requireAuth(role = null) {
   //   document.getElementById("user-name")?.textContent = user.email;
 }
 
+// prompt auth modal
+
 
 
 function enrollCourse(courseId) {
   const current = getCurrentUser();
-  if (!current) return { error: "Login required" };
+  if (!current) {
+  
+    return { error: "Login required" };
+  }
 
   const users = getUsers();
   const user = users.find(u => u.email === current.email);
