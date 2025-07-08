@@ -414,10 +414,10 @@
         <h4 class="text-lg font-semibold">${c.title}</h4>
         <p class="text-sm text-gray-500">${c.description}</p>
         <div class="text-xs text-gray-400">Category: ${c.category} • Level: ${c.level}</div>
-        <div class="text-xs text-gray-400">Published: ${c.enabled ? '✅' : '❌'} • Expires: ${c.expiresAt || 'Never'}</div>
+        <div class="text-xs text-gray-400">Published: ${c.enabled ? '✅' : 'x'} • Expires: ${c.expiresAt || 'Never'}</div>
         
         <div class="flex gap-2 pt-2">
-          <button class="btn btn-sm" onclick="editCourse('${c.id}')">✏️ Edit</button>
+          <button class="btn btn-sm" onclick="editCourse('${c.id}')"><i class="fas fa-edit"></i> Edit</button>
           <button class="btn btn-sm btn-danger" onclick="deleteCourse('${c.id}')">🗑 Delete</button>
           <button class="btn btn-sm btn-outline" onclick="togglePublish('${c.id}')">${c.enabled ? 'Unpublish' : 'Publish'}</button>
         </div>
