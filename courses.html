@@ -158,7 +158,7 @@
           class="input w-full px-4 py-2 border rounded" />
       </div>
 
-      <div class="grid sm:grid-cols-1 grid-cols-4 gap-6" id="course-grid">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="course-grid">
         <!-- Course cards injected here -->
       </div>
 
@@ -436,10 +436,12 @@ console.log(allCourses, ">>>")
          <div class="text-sm mt-2">
          • ${course.level} • ${course.category}
       </div>
+      <div class="flex justify-between">
    <button class="p-4 mt-3 border-2" onclick="viewCourse('${course.id}')">View Course</button>
-         <button onclick='addToCart(${course})' class=" mt-4 w-full">
-  Enroll ₦${course.price}
+         <button onclick='addToCart(${course})' class=" mt-4 border-2" style="background:blue;padding:10px; color:#fff">
+  <i class="fas fa-shopping-cart"></i> Add to cart ₦${course.price}
 </button>
+</div>
      <!--<button onclick='payWithPaystack(${JSON.stringify(course)})' class="btn btn-primary mt-4 w-full">
   Enroll ₦${course.price}
 </button>-->
