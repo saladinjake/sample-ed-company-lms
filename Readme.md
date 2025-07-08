@@ -1,7 +1,7 @@
 #### LMS E-LEARNING SAMPLE APPLICATION  FRONTEND- FULL FUNCTIONALITY ONLY
 
 
-# UNI CAST
+# Project Name
 
 MVP OPEN SOURCE CODE  BASE FOR ED TECH.
 
@@ -36,7 +36,7 @@ MVP OPEN SOURCE CODE  BASE FOR ED TECH.
 - user profile edit
 - Business registration and onboarding invite for staff
 - Company assign course to staff
-- course/lms sessions and analytics tracking for course. resume last viewed course
+- course/lms sessions and analytics tracking for course. resume last viewd course
 ---
 
 ## 🚀 Installation
