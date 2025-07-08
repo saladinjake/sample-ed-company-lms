@@ -117,6 +117,14 @@ function seedMockDatabase() {
 }
 
 
+function getMockDatabaseCourses(){
+    //load data from admin course work bench or instructors work bench
+     // courses
+    if (!localStorage.getItem("created_courses")) {
+        localStorage.setItem("created_courses", JSON.stringify(mockUpMongoDatabase.courses))
+    }
+    return JSON.parse(localStorage.getItem("created_courses"))
+}
 
 
   function pickRandomSubset(arr, count) {
@@ -150,9 +158,9 @@ function seedMockDatabase() {
       const categories = ['Design', 'Development', 'Marketing', 'Business'];
       const styles = ['video', 'text', 'interactive'];
       const levels = ["Beginner", "Intermediate", "Advanced"];
-const random_videoS = [
-        "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        "https://www.youtube.com/embed/dD2EISBDjWM",
+ const random_videoS = [
+        "https://www.w3schools.com/html/mov_bbb.mp4",
+        "https://www.youtube.com/embed/zJSY8tbf_ys",
              "https://vimeo.com/76979871",
 
       ]
@@ -211,8 +219,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
     }
     function generateCurriculum(seed = 1) {
       const random_videoS = [
-        "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        "https://www.youtube.com/embed/dD2EISBDjWM",
+        "https://www.w3schools.com/html/mov_bbb.mp4",
+        "https://www.youtube.com/embed/zJSY8tbf_ys",
              "https://vimeo.com/76979871",
 
       ]
