@@ -75,7 +75,7 @@ function getRouteAndParams() {
   return { path, params };
 }
 
-const runScriptModule = async (scriptPath) => {
+const runScriptModule = async (scriptPath, params) => {
   const module = await import(`./${scriptPath}?t=${Date.now()}`);
   if (typeof module.init === 'function') {
     const actions = module.init(params);
@@ -131,10 +131,10 @@ async function loadPage(route, params = {}, match = null) {
 
     if (route.scripts) {
       for (const scriptPath of route.scripts) {
-        await runScriptModule(scriptPath);
+        await runScriptModule(scriptPath, params);
       }
     } else if (route.script) {
-      await runScriptModule(route.script);
+      await runScriptModule(route.script, params);
     }
 
     // Add transition
