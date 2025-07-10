@@ -1,169 +1,173 @@
-
 const mockUpMongoDatabase = {
   // mocks user db table in real life
-  "users": [
+  users: [
     {
-      "email": "user123@example.com",
-      "password": "e606e38b0d8c19b24cf0ee3808183162ea7cd63ff7912dbb22b5e803286b4446", // user123
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "student"
+      email: 'user123@example.com',
+      password:
+        'e606e38b0d8c19b24cf0ee3808183162ea7cd63ff7912dbb22b5e803286b4446', // user123
+      name: 'John Doe',
+      resetToken: 'abc123', // optional
+      token: 'uuid-session-token',
+      role: 'student',
     },
 
     {
-      "email": "victor@kuda.com",
-      "password": "hashedpassword", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "employee"
+      email: 'victor@kuda.com',
+      password: 'hashedpassword', // We'll just store raw for now
+      name: 'John Doe',
+      resetToken: 'abc123', // optional
+      token: 'uuid-session-token',
+      role: 'employee',
     },
 
-    // hr admin or any company using our saas 
+    // hr admin or any company using our saas
     {
-      "email": "company123@kuda.com",
-      "password": "54e48cbd75ad8c2d3237b35a151ca891de8ebd4ec6d2a958a51121e074c1ba51", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "employee"
+      email: 'company123@kuda.com',
+      password:
+        '54e48cbd75ad8c2d3237b35a151ca891de8ebd4ec6d2a958a51121e074c1ba51', // We'll just store raw for now
+      name: 'John Doe',
+      resetToken: 'abc123', // optional
+      token: 'uuid-session-token',
+      role: 'employee',
     },
-
 
     // the saas admin
     {
-      "email": "admin123@lms.com",
-      "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", // We'll just store raw for now
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "admin"
+      email: 'admin123@lms.com',
+      password:
+        '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', // We'll just store raw for now
+      name: 'John Doe',
+      resetToken: 'abc123', // optional
+      token: 'uuid-session-token',
+      role: 'admin',
     },
 
     {
-      "email": "instructor123@example.com",
-      "password": "auth.js:12 c1437a55f6e93b7049c4064af1b0920974e383a435283f5d0b0496ee4a8a47b5", // instructor123
-      "name": "John Doe",
-      "resetToken": "abc123", // optional
-      "token": "uuid-session-token",
-      role: "instructor"
+      email: 'instructor123@example.com',
+      password:
+        'auth.js:12 c1437a55f6e93b7049c4064af1b0920974e383a435283f5d0b0496ee4a8a47b5', // instructor123
+      name: 'John Doe',
+      resetToken: 'abc123', // optional
+      token: 'uuid-session-token',
+      role: 'instructor',
     },
-
-
   ],
-  "currentUser": {
+  currentUser: {
     // get user info from user db table
-    "email": "Guest 1001",
-    "token": "uuid-session-token",
+    email: 'Guest 1001',
+    token: 'uuid-session-token',
     role: 'student',
     companyId: 'Free Individual',
-    //mocks get user prefrences from prefrence table or profile table
+    // mocks get user prefrences from prefrence table or profile table
     preference: {
-      cardPreference: { paymentMethod: "Master Card" },
-      onboardingCategories: ["React", "Frontend Development", "Data Structures"],
-      displayName: "***",
-      displayEmail: "Guest 1001",
-      screenReaderEnabled: true
+      cardPreference: { paymentMethod: 'Master Card' },
+      onboardingCategories: [
+        'React',
+        'Frontend Development',
+        'Data Structures',
+      ],
+      displayName: '***',
+      displayEmail: 'Guest 1001',
+      screenReaderEnabled: true,
     },
-    //progress
+    // progress
     // users not assigneed by companies are called students while those assigned courses by employess are  employee by role
-    //mocks  get courses and analytics from enrolled course api 
+    // mocks  get courses and analytics from enrolled course api
     enrolledCourses: [],
     progress: {
-      courseId1: ["mod-1.1", "mod-1.2"],
-      courseId2: []
-    }
-
+      courseId1: ['mod-1.1', 'mod-1.2'],
+      courseId2: [],
+    },
   },
 
   profile: {
     role: 'student',
     companyId: 'Free Individual',
-    //mocks get user prefrences from prefrence table or profile table
+    // mocks get user prefrences from prefrence table or profile table
     preference: {
-      cardPreference: { paymentMethod: "Master Card" },
-      onboardingCategories: ["React", "Frontend Development", "Data Structures"],
-      displayName: "***",
-      displayEmail: "Guest 1001",
-      screenReaderEnabled: true
+      cardPreference: { paymentMethod: 'Master Card' },
+      onboardingCategories: [
+        'React',
+        'Frontend Development',
+        'Data Structures',
+      ],
+      displayName: '***',
+      displayEmail: 'Guest 1001',
+      screenReaderEnabled: true,
     },
-    //progress
+    // progress
     // users not assigneed by companies are called students while those assigned courses by employess are  employee by role
-    //mocks  get courses and analytics from enrolled course api 
+    // mocks  get courses and analytics from enrolled course api
     enrolledCourses: [],
     progress: {
-      courseId1: ["mod-1.1", "mod-1.2"],
-      courseId2: []
-    }
+      courseId1: ['mod-1.1', 'mod-1.2'],
+      courseId2: [],
+    },
   },
 
-  courses: generateMockCourses(270) //dont flood local storage
-}
-
+  courses: generateMockCourses(270), // dont flood local storage
+};
 
 export function seedMockDatabase() {
   // users
-  if (!localStorage.getItem("users")) {
-    localStorage.setItem('üsers', JSON.stringify(mockUpMongoDatabase.users))
+  if (!localStorage.getItem('users')) {
+    localStorage.setItem('üsers', JSON.stringify(mockUpMongoDatabase.users));
   }
   // current sessions
 
   // courses
-  if (!localStorage.getItem("created_courses")) {
-    localStorage.setItem("created_courses", JSON.stringify(mockUpMongoDatabase.courses))
+  if (!localStorage.getItem('created_courses')) {
+    localStorage.setItem(
+      'created_courses',
+      JSON.stringify(mockUpMongoDatabase.courses),
+    );
   }
-
 }
-
 
 export function getMockDatabaseCourses() {
-  //load data from admin course work bench or instructors work bench
+  // load data from admin course work bench or instructors work bench
   // courses
-  if (!localStorage.getItem("created_courses")) {
-    localStorage.setItem("created_courses", JSON.stringify(mockUpMongoDatabase.courses))
+  if (!localStorage.getItem('created_courses')) {
+    localStorage.setItem(
+      'created_courses',
+      JSON.stringify(mockUpMongoDatabase.courses),
+    );
   }
-  return JSON.parse(localStorage.getItem("created_courses"))
+  return JSON.parse(localStorage.getItem('created_courses'));
 }
-
 
 export function pickRandomSubset(arr, count) {
   return [...arr].sort(() => 0.5 - Math.random()).slice(0, count);
 }
 
-function getSampleVideo() {
+export function getSampleVideo() {
   const videos = [
-    "https://www.youtube.com/watch?v=OK_JCtrrv-c",
-    "https://vimeo.com/76979871",
-    "https://www.youtube.com/watch?v=w7ejDZ8SWv8"
+    'https://www.youtube.com/watch?v=OK_JCtrrv-c',
+    'https://vimeo.com/76979871',
+    'https://www.youtube.com/watch?v=w7ejDZ8SWv8',
   ];
   return videos[Math.floor(Math.random() * videos.length)];
 }
 
-
-
 export function generateCourse(count) {
-
   const list = [];
   for (let i = 1; i <= count; i++) {
     const id = i || `course-${i}`;
-    const course = generateSingleMockCourse(id)
+    const course = generateSingleMockCourse(id);
     list.push(course);
   }
   return list;
 }
 
-
 export function generateMockCourses(count) {
   const categories = ['Design', 'Development', 'Marketing', 'Business'];
   const styles = ['video', 'text', 'interactive'];
-  const levels = ["Beginner", "Intermediate", "Advanced"];
+  const levels = ['Beginner', 'Intermediate', 'Advanced'];
   const random_videoS = [
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://www.youtube.com/embed/zJSY8tbf_ys",
-    "https://vimeo.com/76979871",
-
-  ]
+    'https://www.w3schools.com/html/mov_bbb.mp4',
+    'https://www.youtube.com/embed/zJSY8tbf_ys',
+    'https://vimeo.com/76979871',
+  ];
 
   const loremIpsum = `<h3>HTML stands for HyperText Markup Language</h3>
 
@@ -206,25 +210,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ac orci 
       tags: [category, level],
       curriculum,
       approved: true,
-      approvalNote: "", // optional
-      //analytics
+      approvalNote: '', // optional
+      // analytics
       views: 132,
       enrollments: ['1', '3'], // user ids that enrolled
       revenue: 6400,
-
     });
   }
   return list;
-
 }
 export function generateCurriculum(seed = 1) {
   const random_videoS = [
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://www.youtube.com/embed/zJSY8tbf_ys",
+    'https://www.w3schools.com/html/mov_bbb.mp4',
+    'https://www.youtube.com/embed/zJSY8tbf_ys',
     //  "https://vimeo.com/76979871",
-    "https://www.youtube.com/embed/dD2EISBDjWM"
-
-  ]
+    'https://www.youtube.com/embed/dD2EISBDjWM',
+  ];
 
   const sectionCount = 2 + (seed % 3); // 2–4 sections
   return Array.from({ length: sectionCount }, (_, s) => ({
@@ -236,10 +237,9 @@ export function generateCurriculum(seed = 1) {
       video: random_videoS[c % random_videoS.length],
 
       htmlSlides: [], // too large with local storage
-    }))
+    })),
   }));
 }
 
-
-//load default users
-document.addEventListener("DOMContentLoaded", () => seedMockDatabase())
+// load default users
+document.addEventListener('DOMContentLoaded', () => seedMockDatabase());

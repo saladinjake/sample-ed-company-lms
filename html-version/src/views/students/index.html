@@ -1,108 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UNI- CAST Elearning Company </title>
-  <link href="./css/index.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-light text-md font-base text-primary">
-  <header class="bg-white border-b shadow-sm p-3 fixed z-10">
-    <!-- Top Row -->
-    <div
-      class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 ">
-
-      <!-- Social Icons -->
-      <div class=" gap-2 md:order-2 order-1 items-center mx-auto  hidden md:flex">
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-cart"></i></a>
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-dribbble"></i></a>
-      </div>
-
-      <!-- Logo -->
-      <div class="text-center md:order-1 order-2 w-full sm:w-auto">
-        <h1 class="text-lg font-bold"><a href="./index.html"></a>UNI<span class="text-warning">CAST</span> 
-        </h1>
-        <p class="text-muted text-sm"><a href="./index.html">E-LEARNING COMPANY</a></p>
-      </div>
-
-      <!-- Search -->
-      <div class="md:order-3 order-3 w-full w-auto mr-8">
-        <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
-          <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
-            id="course-search" />
-          <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <div class="md:hidden mt-4">
-      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-        class="text-muted text-md flex items-center gap-2">
-        <i class="fas fa-bars"></i> Browse Categories
-
-
-      </button>
-    </div>
-
-
-
-    <!-- Nav Menu -->
-    <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
-      <ul class="flex justify-center gap-6 text-sm uppercase">
-        <!-- Browse Categories Button -->
-        <li><a href="#" class="text-primary text-muted font-semibold" onclick="toggleMegaMenu()"
-            class="px-4 py-2 bg-gray-800 text-white rounded inline-flex items-center gap-2">
-            ☰ Course Categories</a>
-        </li>
-
-
-
-        <li><a href="courses.html" class="text-primary text-muted font-semibold">Courses</a></li>
-        <li><a href="my-courses.html" class="text-black hover:text-primary">My Courses</a></li>
-        <li><a href="./teams/business.html" class="text-black hover:text-primary">For Business</a></li>
-        <li><a href="./cart.html" class="text-black hover:text-primary">Cart</a></li>
-
-        <li><a href="./login.html" class="text-black hover:text-primary">Login</a></li>
-        <li><a href="./signup.html" class="text-black hover:text-primary">Signup</a></li>
-      </ul>
-    </nav>
-
-    <!-- Mega Menu -->
-    <!-- Mega Menu Panel -->
-    <div id="megaMenu" class="fixed top-16 left-0 w-full z-50 hidden bg-white shadow-lg px-6 py-8">
-      <div class="max-w-6xl mx-auto">
-        <div class="mb-4">
-          <input type="text" oninput="filterCategories(this.value)" placeholder="Search categories..."
-            class="w-full mr-4 px-4 py-2 border rounded focus:outline-none focus:ring" />
-        </div>
-
-        <div id="categoryGroupsContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-sm">
-          <!-- Filled by JS -->
-        </div>
-      </div>
-    </div>
-    <!-- Mobile Nav -->
-    <nav class="sm:hidden hidden mt-4 bg-black text-white text-sm uppercase" id="mobile-menu">
-      <!-- <div class="overlay absolute inset-0" style="background: rgba(255,255,255,0.5)"></div> -->
-
-      <a href="./index.html" class="block py-2 border-b px-3 text-primary">Home</a>
-      <a href="./courses.html" class="block py-2 border-b px-3">All Courses</a>
-      <a href="./teams/business.html" class="block py-2 border-b px-3">For Business</a>
-      <a href="./cart.html" class="block py-2 border-b px-3">Cart</a>
-
-      <li><a href="./login.html" class="block py-2 border-b px-3">Login</a></li>
-      <li><a href="./signup.html" class="block py-2 border-b px-3">Signup</a></li>
-    </nav>
-  </header>
-
-
 
 
   <main id="home">
@@ -586,75 +481,76 @@
   <footer class="py-6 px-4 bg-light text-center text-muted text-sm border-t">
     © 2025 AntLiteCSS. All rights reserved.
   </footer>
-  <script src="./js/init.js"></script>"
-  <script>
-    const track = document.getElementById('carousel-track');
-    const logos = track.children;
-    const logoWidth = 144; // 120px + 24px gap
-    let currentIndex = 0;
+  <!-- <script src="./js/init.js"></script> -->
+  <script type="module">
+    // import { pickRandomSubset, getMockDatabaseCourses } from "../../js/init.js"
+    // const track = document.getElementById('carousel-track');
+    // const logos = track.children;
+    // const logoWidth = 144; // 120px + 24px gap
+    // let currentIndex = 0;
 
 
 
-    function updateCarousel() {
-      const offset = -(currentIndex * logoWidth);
-      track.style.transform = `translateX(${offset}px)`;
-    }
+    // function updateCarousel() {
+    //   const offset = -(currentIndex * logoWidth);
+    //   track.style.transform = `translateX(${offset}px)`;
+    // }
 
-    function nextSlide() {
-      if (currentIndex < logos.length - 4) {
-        currentIndex++;
-      } else {
-        currentIndex = 0;
-      }
-      updateCarousel();
-    }
+    // function nextSlide() {
+    //   if (currentIndex < logos.length - 4) {
+    //     currentIndex++;
+    //   } else {
+    //     currentIndex = 0;
+    //   }
+    //   updateCarousel();
+    // }
 
-    function prevSlide() {
-      if (currentIndex > 0) {
-        currentIndex--;
-      } else {
-        currentIndex = logos.length - 4;
-      }
-      updateCarousel();
-    }
+    // function prevSlide() {
+    //   if (currentIndex > 0) {
+    //     currentIndex--;
+    //   } else {
+    //     currentIndex = logos.length - 4;
+    //   }
+    //   updateCarousel();
+    // }
 
-    // Auto slide every 3 seconds
-    setInterval(nextSlide, 3000);
+    // // Auto slide every 3 seconds
+    // setInterval(nextSlide, 3000);
   </script>
 
 
 
   <script>
-    const courseTrack = document.getElementById("course-track");
-    const courseCards = courseTrack.children;
-    const courseWidth = 320 + 24; // card width + gap
-    let courseIndex = 0;
+    // const courseTrack = document.getElementById("course-track");
+    // const courseCards = courseTrack.children;
+    // const courseWidth = 320 + 24; // card width + gap
+    // let courseIndex = 0;
 
-    function updateCourseCarousel() {
-      const offset = -(courseIndex * courseWidth);
-      courseTrack.style.transform = `translateX(${offset}px)`;
-    }
+    // function updateCourseCarousel() {
+    //   const offset = -(courseIndex * courseWidth);
+    //   courseTrack.style.transform = `translateX(${offset}px)`;
+    // }
 
-    function nextCourseSlide() {
-      if (courseIndex < courseCards.length - 1) {
-        courseIndex++;
-      } else {
-        courseIndex = 0;
-      }
-      updateCourseCarousel();
-    }
+    // function nextCourseSlide() {
+    //   if (courseIndex < courseCards.length - 1) {
+    //     courseIndex++;
+    //   } else {
+    //     courseIndex = 0;
+    //   }
+    //   updateCourseCarousel();
+    // }
 
-    function prevCourseSlide() {
-      if (courseIndex > 0) {
-        courseIndex--;
-      } else {
-        courseIndex = courseCards.length - 1;
-      }
-      updateCourseCarousel();
-    }
+    // function prevCourseSlide() {
+    //   if (courseIndex > 0) {
+    //     courseIndex--;
+    //   } else {
+    //     courseIndex = courseCards.length - 1;
+    //   }
+    //   updateCourseCarousel();
+    // }
 
-    // Autoplay every 4s
-    setInterval(nextCourseSlide, 4000);
+    // // Autoplay every 4s
+    // setInterval(nextCourseSlide, 4000);
   </script>
 
 
@@ -662,233 +558,230 @@
 
   <script>
 
-    function renderCarouselCourse() {
-      const selectedCarousel = pickRandomSubset(getMockDatabaseCourses(), 40)
-      const carousel = document.getElementById("course-track")
-      for (let i = 0; i < selectedCarousel.length; i++) {
-        course = selectedCarousel[i]
-        const div = document.createElement("div")
-        div.className = "bg-white rounded-xl shadow-sm w-80 flex-shrink-0"
-        const singleCard = `
-         <div class="card bg-white rounded-xl shadow-sm w-80 flex-shrink-0">
-              <img src="${course.image}" class="rounded-t-xl w-full" alt="${course.title}" />
-        <div class="p-4">
-         <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
-        <span class="text-md  mb-3 text-black">${course.description.substring(0, 140) + "..."}</span>
-          <p class="text-xs text-muted">By ${course.instructor}</p>
-          <button class="mt-4 w-full p-4  border-border bg-red" onclick="viewCourse('${course.id}')">View Course</button>
-              </div>
-            </div>
-        `
-        div.innerHTML = singleCard
-        carousel.appendChild(div)
-      }
-    }
-    renderCarouselCourse()
+  //   function renderCarouselCourse() {
+  //     const selectedCarousel = pickRandomSubset(getMockDatabaseCourses(), 40)
+  //     const carousel = document.getElementById("course-track")
+  //     for (let i = 0; i < selectedCarousel.length; i++) {
+  //       course = selectedCarousel[i]
+  //       const div = document.createElement("div")
+  //       div.className = "bg-white rounded-xl shadow-sm w-80 flex-shrink-0"
+  //       const singleCard = `
+  //        <div class="card bg-white rounded-xl shadow-sm w-80 flex-shrink-0">
+  //             <img src="${course.image}" class="rounded-t-xl w-full" alt="${course.title}" />
+  //       <div class="p-4">
+  //        <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
+  //       <span class="text-md  mb-3 text-black">${course.description.substring(0, 140) + "..."}</span>
+  //         <p class="text-xs text-muted">By ${course.instructor}</p>
+  //         <button class="mt-4 w-full p-4  border-border bg-red" onclick="viewCourse('${course.id}')">View Course</button>
+  //             </div>
+  //           </div>
+  //       `
+  //       div.innerHTML = singleCard
+  //       carousel.appendChild(div)
+  //     }
+  //   }
+  //   renderCarouselCourse()
 
 
-    const featuredCourses = pickRandomSubset(getMockDatabaseCourses(), 450)
-    let visibleCourses = [];
-    let page = 1;
-    const perPage = 6;
+  //   const featuredCourses = pickRandomSubset(getMockDatabaseCourses(), 450)
+  //   let visibleCourses = [];
+  //   let page = 1;
+  //   const perPage = 6;
 
-    const grid = document.getElementById("course-grid");
-    const searchInput = document.getElementById("course-search");
-    const sentinel = document.getElementById("scroll-sentinel");
-
-
+  //   const grid = document.getElementById("course-grid");
+  //   const searchInput = document.getElementById("course-search");
+  //   const sentinel = document.getElementById("scroll-sentinel");
 
 
 
-    function filterCourses(query) {
-      return featuredCourses.filter(course =>
-        (course.title + course.description + course.category)
-          .toLowerCase()
-          .includes(query.toLowerCase())
-      );
-    }
 
-    function loadCourses(reset = false) {
-      const query = searchInput.value.trim();
-      if (reset) {
-        grid.innerHTML = "";
-        page = 1;
-        visibleCourses = filterCourses(query);
-      }
 
-      const start = (page - 1) * perPage;
-      const end = page * perPage;
-      const courses = visibleCourses.slice(start, end);
+  //   function filterCourses(query) {
+  //     return featuredCourses.filter(course =>
+  //       (course.title + course.description + course.category)
+  //         .toLowerCase()
+  //         .includes(query.toLowerCase())
+  //     );
+  //   }
 
-      courses.forEach((course, id) => {
-        const card = document.createElement("div");
-        card.className = "card"
-        card.className = "bg-white rounded-xl shadow-sm w-full ";
-        card.innerHTML = `
-        <img src="${course.image}" class="rounded-t-xl w-full" alt="${course.title}" />
-        <div class="p-4">
-            <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
-        <span class="text-md  mb-3 text-black">${course.description.substring(0, 140) + "..."}</span>
-          <p class="text-xs text-muted">By ${course.instructor}</p>
-          <button class="mt-4 w-full p-4  border-border bg-red" onclick="viewCourse('${course.id}')">View Course</button>
-        </div>
+  //   function loadCourses(reset = false) {
+  //     const query = searchInput.value.trim();
+  //     if (reset) {
+  //       grid.innerHTML = "";
+  //       page = 1;
+  //       visibleCourses = filterCourses(query);
+  //     }
+
+  //     const start = (page - 1) * perPage;
+  //     const end = page * perPage;
+  //     const courses = visibleCourses.slice(start, end);
+
+  //     courses.forEach((course, id) => {
+  //       const card = document.createElement("div");
+  //       card.className = "card"
+  //       card.className = "bg-white rounded-xl shadow-sm w-full ";
+  //       card.innerHTML = `
+  //       <img src="${course.image}" class="rounded-t-xl w-full" alt="${course.title}" />
+  //       <div class="p-4">
+  //           <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
+  //       <span class="text-md  mb-3 text-black">${course.description.substring(0, 140) + "..."}</span>
+  //         <p class="text-xs text-muted">By ${course.instructor}</p>
+  //         <button class="mt-4 w-full p-4  border-border bg-red" onclick="viewCourse('${course.id}')">View Course</button>
+  //       </div>
 
         
-      `;
-        grid.appendChild(card);
-      });
-      page++;
-    }
+  //     `;
+  //       grid.appendChild(card);
+  //     });
+  //     page++;
+  //   }
 
 
-    function viewCourse(courseId) {
-      // const allCourses = generateMockCourses(1000); // You can replace with real data
-      // console.log(allCourses, ">>>")
-      const course = featuredCourses.find(c => parseInt(c.id) === parseInt(courseId));
-      if (!course) return alert("Course not found!");
+  //   function viewCourse(courseId) {
+  //     // const allCourses = generateMockCourses(1000); // You can replace with real data
+  //     // console.log(allCourses, ">>>")
+  //     const course = featuredCourses.find(c => parseInt(c.id) === parseInt(courseId));
+  //     if (!course) return alert("Course not found!");
 
-      localStorage.setItem("selected_course", JSON.stringify(course));
-      window.location.href = "course-detail.html";
-    }
+  //     localStorage.setItem("selected_course", JSON.stringify(course));
+  //     window.location.href = "course-detail.html";
+  //   }
 
-    // 👇 Handle live search
-    searchInput.addEventListener("input", () => {
-      visibleCourses = filterCourses(searchInput.value);
-      loadCourses(true);
-    });
+  //   // 👇 Handle live search
+  //   searchInput.addEventListener("input", () => {
+  //     visibleCourses = filterCourses(searchInput.value);
+  //     loadCourses(true);
+  //   });
 
-    //  IntersectionObserver for infinite scroll
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && page * perPage <= visibleCourses.length) {
-        loadCourses();
-      }
-    }, {
-      rootMargin: "100px",
-    });
+  //   //  IntersectionObserver for infinite scroll
+  //   const observer = new IntersectionObserver(entries => {
+  //     if (entries[0].isIntersecting && page * perPage <= visibleCourses.length) {
+  //       loadCourses();
+  //     }
+  //   }, {
+  //     rootMargin: "100px",
+  //   });
 
-    observer.observe(sentinel);
+  //   observer.observe(sentinel);
 
-    // 🔁 Initial setup
-    visibleCourses = featuredCourses;
-    loadCourses(true);
-
-
-
+  //   // 🔁 Initial setup
+  //   visibleCourses = featuredCourses;
+  //   loadCourses(true);
 
 
 
 
 
-    //faq
-    const plans = {
-      individual: [
-        { name: "Free", price: "₦0", features: ["Access 5 free courses", "Community support"] },
-        { name: "Pro", price: "₦5,000", features: ["All courses", "Certificates", "Offline mode"] }
-      ],
-      teams: [
-        { name: "Starter Team", price: "₦10,000", features: ["3 members", "Admin dashboard"] },
-        { name: "Business", price: "₦30,000", features: ["25 members", "Analytics", "Priority support"] }
-      ]
-    };
-
-    function switchPlanTab(type) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove("active"));
-      event.target.classList.add("active");
-
-      const html = plans[type].map(p => `
-    <div class="p-6 border rounded shadow bg-white mb-4">
-      <h3 class="text-lg font-bold mb-2">${p.name}</h3>
-      <p class="text-xl font-semibold mb-2">${p.price} / month</p>
-      <ul class="text-sm text-gray-600 mb-3">${p.features.map(f => `<li>✅ ${f}</li>`).join("")}</ul>
-      <button class="btn bg-blue-600 text-white w-full">Subscribe</button>
-    </div>
-  `).join("");
-
-      document.getElementById("plansContent").innerHTML = html;
-    }
-    // switchPlanTab("individual");
 
 
 
-    function toggleFaq(el) {
-      const answer = el.querySelector('.faq-answer');
-      answer.classList.toggle('hidden');
-    }
+  //   //faq
+  //   const plans = {
+  //     individual: [
+  //       { name: "Free", price: "₦0", features: ["Access 5 free courses", "Community support"] },
+  //       { name: "Pro", price: "₦5,000", features: ["All courses", "Certificates", "Offline mode"] }
+  //     ],
+  //     teams: [
+  //       { name: "Starter Team", price: "₦10,000", features: ["3 members", "Admin dashboard"] },
+  //       { name: "Business", price: "₦30,000", features: ["25 members", "Analytics", "Priority support"] }
+  //     ]
+  //   };
+
+  //   function switchPlanTab(type) {
+  //     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove("active"));
+  //     event.target.classList.add("active");
+
+  //     const html = plans[type].map(p => `
+  //   <div class="p-6 border rounded shadow bg-white mb-4">
+  //     <h3 class="text-lg font-bold mb-2">${p.name}</h3>
+  //     <p class="text-xl font-semibold mb-2">${p.price} / month</p>
+  //     <ul class="text-sm text-gray-600 mb-3">${p.features.map(f => `<li>✅ ${f}</li>`).join("")}</ul>
+  //     <button class="btn bg-blue-600 text-white w-full">Subscribe</button>
+  //   </div>
+  // `).join("");
+
+  //     document.getElementById("plansContent").innerHTML = html;
+  //   }
+  //   // switchPlanTab("individual");
 
 
 
-    const categoryGroups = {
-      "Development": [
-        { name: "Web Development", icon: "fa fa-code" },
-        { name: "Mobile Development", icon: "fa fa-phone" },
-        { name: "Game Development", icon: "fa fa-controls" },
-        { name: "Software Engineering", icon: "fa fa-engine" }
-      ],
-      "Design": [
-        { name: "UI/UX Design", icon: "fa fa-home" },
-        { name: "Product Design", icon: "fa fa-home" },
-        { name: "Motion Graphics", icon: "fa fa-home" },
-        { name: "3D Design", icon: "fa fa-home" }
-      ],
-      "Marketing": [
-        { name: "Digital Marketing", icon: "fa fa-home" },
-        { name: "SEO", icon: "🔍" },
-        { name: "Email Marketing", icon: "fa fa-email" },
-        { name: "Content Strategy", icon: "fa fa-media" }
-      ],
-      "Business": [
-        { name: "Entrepreneurship", icon: "fa fa-user" },
-        { name: "Leadership", icon: "fa fa-user" },
-        { name: "Finance", icon: "fa fa-money" },
-        { name: "Project Management", icon: "fa fa-portfolio" }
-      ]
-    };
+  //   function toggleFaq(el) {
+  //     const answer = el.querySelector('.faq-answer');
+  //     answer.classList.toggle('hidden');
+  //   }
+
+
+
+  //   const categoryGroups = {
+  //     "Development": [
+  //       { name: "Web Development", icon: "fa fa-code" },
+  //       { name: "Mobile Development", icon: "fa fa-phone" },
+  //       { name: "Game Development", icon: "fa fa-controls" },
+  //       { name: "Software Engineering", icon: "fa fa-engine" }
+  //     ],
+  //     "Design": [
+  //       { name: "UI/UX Design", icon: "fa fa-home" },
+  //       { name: "Product Design", icon: "fa fa-home" },
+  //       { name: "Motion Graphics", icon: "fa fa-home" },
+  //       { name: "3D Design", icon: "fa fa-home" }
+  //     ],
+  //     "Marketing": [
+  //       { name: "Digital Marketing", icon: "fa fa-home" },
+  //       { name: "SEO", icon: "🔍" },
+  //       { name: "Email Marketing", icon: "fa fa-email" },
+  //       { name: "Content Strategy", icon: "fa fa-media" }
+  //     ],
+  //     "Business": [
+  //       { name: "Entrepreneurship", icon: "fa fa-user" },
+  //       { name: "Leadership", icon: "fa fa-user" },
+  //       { name: "Finance", icon: "fa fa-money" },
+  //       { name: "Project Management", icon: "fa fa-portfolio" }
+  //     ]
+  //   };
 
 
 
 
-    function toggleMegaMenu() {
-      const menu = document.getElementById("megaMenu");
-      const isOpen = !menu.classList.contains("hidden");
-      menu.classList.toggle("hidden", isOpen);
-      if (!isOpen) renderCategoryGroups();
-    }
+  //   function toggleMegaMenu() {
+  //     const menu = document.getElementById("megaMenu");
+  //     const isOpen = !menu.classList.contains("hidden");
+  //     menu.classList.toggle("hidden", isOpen);
+  //     if (!isOpen) renderCategoryGroups();
+  //   }
 
-    function renderCategoryGroups(filter = "") {
-      const container = document.getElementById("categoryGroupsContainer");
-      container.innerHTML = "";
+  //   function renderCategoryGroups(filter = "") {
+  //     const container = document.getElementById("categoryGroupsContainer");
+  //     container.innerHTML = "";
 
-      for (const [group, items] of Object.entries(categoryGroups)) {
-        const groupBlock = document.createElement("div");
+  //     for (const [group, items] of Object.entries(categoryGroups)) {
+  //       const groupBlock = document.createElement("div");
 
-        const filtered = items.filter(cat =>
-          cat.name.toLowerCase().includes(filter.toLowerCase())
-        );
-        if (filtered.length === 0) continue;
+  //       const filtered = items.filter(cat =>
+  //         cat.name.toLowerCase().includes(filter.toLowerCase())
+  //       );
+  //       if (filtered.length === 0) continue;
 
-        groupBlock.innerHTML = `
-      <h3 class="font-semibold mb-2 text-gray-700">${group}</h3>
-      <ul class="space-y-1">
-        ${filtered.map(cat => `
-          <li class="category-pill flex items-center gap-2  hover:bg-gray-200 px-3  mb-3 py-2 rounded cursor-pointer">
-            <span class="text-lg ${cat?.icon}"></span>
-            <span>${cat.name}</span>
-          </li>
-        `).join("")}
-      </ul>
-    `;
-        container.appendChild(groupBlock);
-      }
-    }
+  //       groupBlock.innerHTML = `
+  //     <h3 class="font-semibold mb-2 text-gray-700">${group}</h3>
+  //     <ul class="space-y-1">
+  //       ${filtered.map(cat => `
+  //         <li class="category-pill flex items-center gap-2  hover:bg-gray-200 px-3  mb-3 py-2 rounded cursor-pointer">
+  //           <span class="text-lg ${cat?.icon}"></span>
+  //           <span>${cat.name}</span>
+  //         </li>
+  //       `).join("")}
+  //     </ul>
+  //   `;
+  //       container.appendChild(groupBlock);
+  //     }
+  //   }
 
-    function filterCategories(text) {
-      renderCategoryGroups(text);
-    }
+  //   function filterCategories(text) {
+  //     renderCategoryGroups(text);
+  //   }
 
   </script>
 
 
 
-</body>
-
-</html>

@@ -5,37 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UNI- CAST Elearning Company </title>
-  <link href="./src/css/index.css" rel="stylesheet" />
+  <!-- <link href="./src/css/index.css" rel="stylesheet" /> -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <style>
-       #layout {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header, footer {
-      background: #222;
-      color: white;
-      padding: 1rem;
-    }
-    main {
-      flex: 1;
-      padding: 1rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    main.fade-in {
-      opacity: 1;
-    }
-  </style>
+
 </head>
 
 
 <!--SPA MVP-->
 
-<body class="bg-light text-md font-base text-primary" style="margin-top:-15px">
-    <div id="layout">
+<body id="layout" class="bg-light text-md font-base text-primary" style="margin-top:-15px">
+    <div >
           <header class="bg-white border-b shadow-sm  fixed z-10" >
     <!-- Top Row -->
     <div
@@ -132,6 +112,10 @@
 
    
     <main id="app"><!-- page content loads here --></main>
+<!-- Spinner Container -->
+<div id="loader" style="display: none;">
+  <div class="spinner"></div>
+</div>
     <script type="module" src="/main.js"></script>
  
 

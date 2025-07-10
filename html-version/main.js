@@ -84,7 +84,7 @@ function matchRoute(path) {
 function getRouteAndParams() {
   // eslint-disable-next-line no-restricted-globals
   const hash = decodeURIComponent(location.hash.slice(1));
-  const [path = 'home', qs = ''] = hash.split('?');
+  const [path = 'index', qs = ''] = hash.split('?');
   const params = Object.fromEntries(new URLSearchParams(qs));
   return { path, params };
 }
@@ -97,7 +97,18 @@ const runScriptModule = async (scriptPath, params) => {
   }
 };
 
+function showLoader() {
+  const loader = document.getElementById('loader');
+  if (loader) loader.style.display = 'flex';
+}
+
+function hideLoader() {
+  const loader = document.getElementById('loader');
+  if (loader) loader.style.display = 'none';
+}
+
 async function loadPage(route, params = {}, match = null) {
+  showLoader();
   if (!(await globalMiddleware(route, params))) {
     app.innerHTML = `<p>Blocked by global middleware.</p>`;
     return;
@@ -109,16 +120,20 @@ async function loadPage(route, params = {}, match = null) {
   }
 
   try {
-    app.classList.remove('fade-in');
+    // app.classList.remove('fade-in');
     const res = await fetch(route.view);
+    console.log(route.view, '>>>');
     const htmlText = await res.text();
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const content = doc.body;
 
+    console.log(content);
+
     app.innerHTML = '';
     for (const child of content.children) {
+      console.log(child, 'LLL');
       app.appendChild(child.cloneNode(true));
     }
 
@@ -152,7 +167,9 @@ async function loadPage(route, params = {}, match = null) {
     }
 
     // Add transition
-    requestAnimationFrame(() => app.classList.add('fade-in'));
+    // requestAnimationFrame(() => app.classList.add('fade-in'));
+    // app.classList.remove('fade-in');
+    hideLoader();
   } catch (err) {
     console.error(err);
     app.innerHTML = `<h2>Error loading ${route.view}</h2>`;
@@ -162,6 +179,8 @@ async function loadPage(route, params = {}, match = null) {
 function handleHashChange() {
   const { path, params: queryParams } = getRouteAndParams();
 
+  console.log(path, queryParams, '<<<');
+
   if (!path || path.trim() === '') {
     location.hash = `#${DEFAULT_ROUTE}`;
     return;
@@ -169,12 +188,14 @@ function handleHashChange() {
 
   const matched = matchRoute(path);
 
+  console.log(matched, '<<<>>>');
+
   if (matched) {
     const { route, match, params: pathParams } = matched;
     const combinedParams = { ...queryParams, ...pathParams };
     loadPage(route, combinedParams, match);
   } else {
-    app.innerHTML = `<h2>404 - Not Found</h2>`;
+    app.innerHTML = `<h2 class="contianer mx-auto">404 - Not Found</h2>`;
   }
 }
 

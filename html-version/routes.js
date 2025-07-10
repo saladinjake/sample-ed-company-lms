@@ -1,19 +1,19 @@
 export const routes = [
   {
-    path: '',
+    path: 'index',
     view: 'src/views/students/index.html',
-    script: ['pages/home.js'],
+    script: ['src/js/sample.js'],
   },
 
   {
     path: 'home',
     view: 'views/students/index.html',
-    script: ['pages/home.js'],
+    script: ['src/js/sample.js'],
   },
   {
     path: 'courses',
     view: 'courses.html',
-    script: ['src/js/courses.js'],
+    script: ['src/js/sample.js'],
     middleware: () => {
       console.log(' middleware ran');
       return true;
@@ -22,7 +22,7 @@ export const routes = [
   {
     path: 'course_detail/:id',
     view: 'course_detail.html',
-    script: ['src/js/course_detail.js'],
+    script: ['src/js/sample.js'],
     middleware: () => confirm('see details'),
   },
 
@@ -30,7 +30,7 @@ export const routes = [
   {
     path: /^user\/(\d+)$/,
     view: 'views/user.html',
-    script: 'pages/user.js',
+    script: ['src/js/sample.js'],
     middleware: (match, params) => {
       if (!match || !match[1]) return false;
       params.id = match[1];
@@ -41,20 +41,20 @@ export const routes = [
   {
     path: 'user/:id',
     view: 'views/user.html',
-    script: 'pages/user.js',
+    script: ['src/js/sample.js'],
   },
 
   // admin
   {
     path: 'admin/dashboard',
     view: 'views/admin/dashboard.html',
-    script: 'pages/admin/dashboard.js',
+    script: ['src/js/sample.js'],
   },
 
   // last
   {
     path: '*',
     view: 'views/404.html',
-    script: 'pages/404.js',
+    script: ['src/js/sample.js'],
   },
 ];
