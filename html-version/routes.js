@@ -1,15 +1,18 @@
 export const routes = [
+  // index or home
   {
     path: 'index',
     view: 'src/views/students/index.html',
-    script: ['src/js/sample.js'],
+    script: ['src/js/home.js'],
   },
 
   {
-    path: 'home',
-    view: 'views/students/index.html',
-    script: ['src/js/sample.js'],
+    path: 'index',
+    view: 'src/views/students/index.html',
+    script: ['src/js/home.js'],
   },
+
+  // course browsing
   {
     path: 'courses',
     view: 'courses.html',

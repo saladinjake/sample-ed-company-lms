@@ -1,4 +1,4 @@
-const mockUpMongoDatabase = {
+export const mockUpMongoDatabase = {
   // mocks user db table in real life
   users: [
     {
@@ -149,16 +149,6 @@ export function getSampleVideo() {
   return videos[Math.floor(Math.random() * videos.length)];
 }
 
-export function generateCourse(count) {
-  const list = [];
-  for (let i = 1; i <= count; i++) {
-    const id = i || `course-${i}`;
-    const course = generateSingleMockCourse(id);
-    list.push(course);
-  }
-  return list;
-}
-
 export function generateMockCourses(count) {
   const categories = ['Design', 'Development', 'Marketing', 'Business'];
   const styles = ['video', 'text', 'interactive'];
@@ -228,6 +218,7 @@ export function generateCurriculum(seed = 1) {
   ];
 
   const sectionCount = 2 + (seed % 3); // 2–4 sections
+  // eslint-disabled no-shadow
   return Array.from({ length: sectionCount }, (_, s) => ({
     title: `Section ${s + 1}`,
     collapsed: true,
@@ -240,6 +231,3 @@ export function generateCurriculum(seed = 1) {
     })),
   }));
 }
-
-// load default users
-document.addEventListener('DOMContentLoaded', () => seedMockDatabase());
