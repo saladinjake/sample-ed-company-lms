@@ -1,7 +1,13 @@
 export const routes = [
   {
+    path: '',
+    view: 'src/views/students/index.html',
+    script: ['pages/home.js'],
+  },
+
+  {
     path: 'home',
-    view: 'home.html',
+    view: 'views/students/index.html',
     script: ['pages/home.js'],
   },
   {
