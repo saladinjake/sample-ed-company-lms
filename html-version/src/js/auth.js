@@ -1,5 +1,5 @@
 // auth utils
-async function hashPassword(password) {
+export async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
@@ -15,30 +15,30 @@ async function hashPassword(password) {
 })()
 
 
-function getUsers() {
+export function getUsers() {
 
   return JSON.parse(localStorage.getItem("üsers"))
 }
 
 
-function saveUsers(users) {
+export function saveUsers(users) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-function setCurrentUser(user) {
+export function setCurrentUser(user) {
   localStorage.setItem("currentUser", JSON.stringify(user));
 }
 
-function getCurrentUser() {
+export function getCurrentUser() {
   return JSON.parse(localStorage.getItem("currentUser"));
 }
 
-function logout() {
+export function logout() {
   localStorage.clear()
 }
 
 // saas based mock up rediection for authentication
-function redirectAfterLogin() {
+export function redirectAfterLogin() {
   const user = JSON.parse(localStorage.getItem("current_user"));
   if (!user) return window.location.href = "/login.html";
   // simple FE RBAC
@@ -48,7 +48,7 @@ function redirectAfterLogin() {
   else if (user.role === "instructor") window.location.href = "/instructor/dashboard.html"; // COURSE CREATOR
 }
 
-async function signUp(name, email, password, role = "student") {
+export async function signUp(name, email, password, role = "student") {
 
   const users = getUsers();
   // ORDINARY STUDENTS 
@@ -79,7 +79,7 @@ async function signUp(name, email, password, role = "student") {
   return { success: true };
 }
 
-async function login(email, password) {
+export async function login(email, password) {
   const users = getUsers();
   const hashed = await hashPassword(password);
   console.log(hashed, email,password)
@@ -113,7 +113,7 @@ async function login(email, password) {
   return { success: true, user };
 }
 
-function requestReset(email) {
+export function requestReset(email) {
   const users = getUsers();
   const user = users.find(u => u.email === email);
   if (!user) return { error: "User not found" };
@@ -123,7 +123,7 @@ function requestReset(email) {
   return { success: true, token: code }; // return code for demo
 }
 
-async function resetPassword(email, token, newPassword) {
+export async function resetPassword(email, token, newPassword) {
   const users = getUsers();
   const user = users.find(u => u.email === email && u.resetToken === token);
   if (!user) return { error: "Invalid token" };
@@ -139,7 +139,7 @@ async function resetPassword(email, token, newPassword) {
 // requireAuth("admin"); // for admin-only
 // requireAuth("student"); // for students
 // requireAuth(); // any logged-in user
-function requireAuth(role = null) {
+export function requireAuth(role = null) {
   const user = getCurrentUser();
   if (!user) {
     alert("You must be logged in.");
@@ -160,7 +160,7 @@ function requireAuth(role = null) {
 
 
 
-function enrollCourse(courseId) {
+export function enrollCourse(courseId) {
   const current = getCurrentUser();
   if (!current) {
 
@@ -180,7 +180,7 @@ function enrollCourse(courseId) {
   return { success: true };
 }
 
-function hasEnrolled(courseId) {
+export function hasEnrolled(courseId) {
   const current = getCurrentUser();
   if (!current) return false;
 

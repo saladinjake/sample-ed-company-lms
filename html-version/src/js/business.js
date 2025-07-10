@@ -1,4 +1,4 @@
-function checkCompanySeatLimit() {
+export function checkCompanySeatLimit() {
     const company = JSON.parse(localStorage.getItem("current_company"));
     const members = JSON.parse(localStorage.getItem("team_users") || "[]")
         .filter(u => u.companyId === company.id).length;

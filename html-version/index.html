@@ -8,13 +8,35 @@
   <link href="./src/css/index.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+  <style>
+       #layout {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header, footer {
+      background: #222;
+      color: white;
+      padding: 1rem;
+    }
+    main {
+      flex: 1;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    main.fade-in {
+      opacity: 1;
+    }
+  </style>
 </head>
 
 
 <!--SPA MVP-->
 
-<body class="bg-light text-md font-base text-primary">
-  <header class="bg-white border-b shadow-sm  fixed z-10" >
+<body class="bg-light text-md font-base text-primary" style="margin-top:-15px">
+    <div id="layout">
+          <header class="bg-white border-b shadow-sm  fixed z-10" >
     <!-- Top Row -->
     <div
       class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 " >
@@ -108,9 +130,12 @@
 
 
 
-    <div id="app"></div>
-    <script type="module" src="/src/js/test-spa.js"></script>
+   
+    <main id="app"><!-- page content loads here --></main>
+    <script type="module" src="/src/js/main.js"></script>
  
+
+    </div>
 
     </body>
     </html>
