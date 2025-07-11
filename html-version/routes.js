@@ -24,40 +24,40 @@ export const routes = [
   },
   {
     path: 'course_detail/:id',
-    view: 'course_detail.html',
+    view: 'src/views/students/course_detail.html',
     script: ['src/js/course_detail.js'],
-    middleware: () => confirm('see details'),
+    // middleware: () => confirm('see details'),
   },
 
   // dynamic mthd1
-  {
-    path: /^user\/(\d+)$/,
-    view: 'views/user.html',
-    script: ['src/js/sample.js'],
-    middleware: (match, params) => {
-      if (!match || !match[1]) return false;
-      params.id = match[1];
-      return true;
-    },
-  },
-  // methd 2
-  {
-    path: 'user/:id',
-    view: 'views/user.html',
-    script: ['src/js/sample.js'],
-  },
+  // {
+  //   path: /^user\/(\d+)$/,
+  //   view: 'views/user.html',
+  //   script: ['src/js/sample.js'],
+  //   middleware: (match, params) => {
+  //     if (!match || !match[1]) return false;
+  //     params.id = match[1];
+  //     return true;
+  //   },
+  // },
+  // // methd 2
+  // {
+  //   path: 'user/:id',
+  //   view: 'views/user.html',
+  //   script: ['src/js/sample.js'],
+  // },
 
-  // admin
-  {
-    path: 'admin/dashboard',
-    view: 'views/admin/dashboard.html',
-    script: ['src/js/sample.js'],
-  },
+  // // admin
+  // {
+  //   path: 'admin/dashboard',
+  //   view: 'views/admin/dashboard.html',
+  //   script: ['src/js/sample.js'],
+  // },
 
-  // last
-  {
-    path: '*',
-    view: 'views/404.html',
-    script: ['src/js/sample.js'],
-  },
+  // // last
+  // {
+  //   path: '*',
+  //   view: 'views/404.html',
+  //   script: ['src/js/sample.js'],
+  // },
 ];

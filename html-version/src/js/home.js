@@ -196,7 +196,7 @@ export function init(params) {
       if (!course) return alert('Course not found!');
 
       localStorage.setItem('selected_course', JSON.stringify(course));
-      return (location.hash = `#course-detail/${courseId}`);
+      return (location.hash = `#course_detail/${courseId}`);
     },
     prevSlide: () => prevSlide(),
     nextSlide: () => nextSlide(),
