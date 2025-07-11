@@ -290,49 +290,45 @@ export function init(params) {
       }
     },
     payWithPaystack: () => {
-      const myCart = JSON.parse(localStorage.getItem('cart')) || [];
-      console.log(myCart, '<<<<');
-      const user = getCurrentUser();
-      const total = myCart.reduce((item, acc) => item.price + acc, 0);
-      const handler = PaystackPop.setup({
-        publicKey: 'pk_test_5dca9a796da0a59391c7f15c6cdc0275db4c8093',
-        reference: new Date().getTime(),
-        email: user?.email || 'guest@gmail.com',
-        amount: total * 100, // in kobo
-        currency: 'NGN',
-        ref: `COURSE_${new Date().getTime()}`,
-
-        metadata: {
-          custom_fields: [
-            {
-              display_name:
-                myCart.length > 1
-                  ? 'Multiple Course Enrolement'
-                  : myCart.length == 1
-                    ? myCart[0].title
-                    : 'Course Enrollment',
-              variable_name: 'course_id',
-              value:
-                myCart.length > 1
-                  ? 'Multiple Course Enrolement'
-                  : myCart.length == 1
-                    ? myCart[0].title
-                    : 'Course Enrollment',
-            },
-          ],
-        },
-
-        callback(response) {
-          alert(`Payment successful! Ref: ${response.reference}`);
-          // You can call your backend API here to mark as enrolled
-        },
-
-        onClose() {
-          alert('Transaction cancelled');
-        },
-      });
-
-      handler.openIframe();
+      // const myCart = JSON.parse(localStorage.getItem('cart')) || [];
+      // console.log(myCart, '<<<<');
+      // const user = getCurrentUser();
+      // const total = myCart.reduce((item, acc) => item.price + acc, 0);
+      // const handler = PaystackPop.setup({
+      //   publicKey: 'pk_test_5dca9a796da0a59391c7f15c6cdc0275db4c8093',
+      //   reference: new Date().getTime(),
+      //   email: user?.email || 'guest@gmail.com',
+      //   amount: total * 100, // in kobo
+      //   currency: 'NGN',
+      //   ref: `COURSE_${new Date().getTime()}`,
+      //   metadata: {
+      //     custom_fields: [
+      //       {
+      //         display_name:
+      //           myCart.length > 1
+      //             ? 'Multiple Course Enrolement'
+      //             : myCart.length == 1
+      //               ? myCart[0].title
+      //               : 'Course Enrollment',
+      //         variable_name: 'course_id',
+      //         value:
+      //           myCart.length > 1
+      //             ? 'Multiple Course Enrolement'
+      //             : myCart.length == 1
+      //               ? myCart[0].title
+      //               : 'Course Enrollment',
+      //       },
+      //     ],
+      //   },
+      //   callback(response) {
+      //     alert(`Payment successful! Ref: ${response.reference}`);
+      //     // You can call your backend API here to mark as enrolled
+      //   },
+      //   onClose() {
+      //     alert('Transaction cancelled');
+      //   },
+      // });
+      // handler.openIframe();
     },
 
     removeFromCart: ({ event, dataset }) => {

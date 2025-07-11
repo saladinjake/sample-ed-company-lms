@@ -27,6 +27,7 @@
     "no-loop-func":"off",
     "eqeqeq":"off",
      "no-alert": "off",
+     "no-nested-ternary":"off",
      "consistent-return":"off",
       "import/prefer-default-export": "off",
       "no-plusplus": "off",

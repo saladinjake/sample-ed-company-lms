@@ -69,37 +69,34 @@ function renderCarouselCourse() {
   }
 }
 
-function backers() {
-  const track = document.getElementById('carousel-track');
-  const logos = track.children;
-  const logoWidth = 144; // 120px + 24px gap
-  let currentIndex = 0;
+// logo backer slider
 
-  function updateCarousel() {
-    const offset = -(currentIndex * logoWidth);
-    track.style.transform = `translateX(${offset}px)`;
+const track = document.getElementById('carousel-track');
+const logos = track.children;
+const logoWidth = 144; // 120px + 24px gap
+let currentIndex = 0;
+
+function updateCarousel() {
+  const offset = -(currentIndex * logoWidth);
+  track.style.transform = `translateX(${offset}px)`;
+}
+
+export function nextSlide() {
+  if (currentIndex < logos.length - 4) {
+    currentIndex++;
+  } else {
+    currentIndex = 0;
   }
+  updateCarousel();
+}
 
-  function nextSlide() {
-    if (currentIndex < logos.length - 4) {
-      currentIndex++;
-    } else {
-      currentIndex = 0;
-    }
-    updateCarousel();
+export function prevSlide() {
+  if (currentIndex > 0) {
+    currentIndex--;
+  } else {
+    currentIndex = logos.length - 4;
   }
-
-  function prevSlide() {
-    if (currentIndex > 0) {
-      currentIndex--;
-    } else {
-      currentIndex = logos.length - 4;
-    }
-    updateCarousel();
-  }
-
-  // Auto slide every 3 seconds
-  setInterval(nextSlide, 3000);
+  updateCarousel();
 }
 
 function filterCourses(query) {
@@ -153,7 +150,8 @@ export function init(params) {
   seedMockDatabase();
 
   requestAnimationFrame(() => {
-    setTimeout(() => backers(), 2000);
+    // Auto slide every 3 seconds
+    setInterval(nextSlide, 3000);
     setTimeout(() => renderCarouselCourse(), 2000);
     // // Autoplay every 4s
     setInterval(nextCourseSlide, 4000);
@@ -200,5 +198,7 @@ export function init(params) {
       localStorage.setItem('selected_course', JSON.stringify(course));
       return (location.hash = `#course-detail/${courseId}`);
     },
+    prevSlide: () => prevSlide(),
+    nextSlide: () => nextSlide(),
   };
 }

@@ -25,7 +25,7 @@ export const routes = [
   {
     path: 'course_detail/:id',
     view: 'course_detail.html',
-    script: ['src/js/sample.js'],
+    script: ['src/js/course_detail.js'],
     middleware: () => confirm('see details'),
   },
 
