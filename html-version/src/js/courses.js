@@ -4,6 +4,8 @@ import {
   getMockDatabaseCourses,
 } from './utils/init';
 
+import { getCurrentUser } from './auth';
+
 const allCourses = pickRandomSubset(getMockDatabaseCourses(), 450); // You can replace with real data
 const searchInput = document.getElementById('search-input');
 const priceRange = document.getElementById('price-range');
