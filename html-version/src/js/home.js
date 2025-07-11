@@ -59,7 +59,8 @@ function renderCarouselCourse() {
          <h3 class="text-md font-semibold mb-2 text-black">${course.title}</h3>
         <span class="text-md  mb-3 text-black">${`${course.description.substring(0, 140)}...`}</span>
           <p class="text-xs text-muted">By ${course.instructor}</p>
-          <button class="mt-4 w-full p-4  border-border bg-red" onclick="viewCourse('${course.id}')">View Course</button>
+          <button class="mt-4 w-full p-4  border-border bg-red"  data-action="viewCourse"
+            data-id="${course.id}">View Course</button>
               </div>
             </div>
         `;
@@ -144,6 +145,8 @@ function loadCourses(reset = false) {
   page++;
 }
 
+// MEGA MENU
+// HOME PAGE COMPONENT
 export function init(params) {
   // load default db for demo from local storage
 
@@ -190,7 +193,7 @@ export function init(params) {
       // Navigate to course
 
       const course = featuredCourses.find(
-        (c) => parseInt(c.id) === parseInt(courseId),
+        (c) => parseInt(c.id) == parseInt(courseId),
       );
       if (!course) return alert('Course not found!');
 

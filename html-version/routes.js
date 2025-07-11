@@ -15,8 +15,8 @@ export const routes = [
   // course browsing
   {
     path: 'courses',
-    view: 'courses.html',
-    script: ['src/js/sample.js'],
+    view: 'src/views/students/courses.html',
+    script: ['src/js/courses.js'],
     middleware: () => {
       console.log(' middleware ran');
       return true;

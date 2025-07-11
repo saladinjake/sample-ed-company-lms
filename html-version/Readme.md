@@ -19,7 +19,7 @@ MVP OPEN SOURCE CODE  BASE FOR ED TECH.
 ---
 
 ## ✨ MVP Features
-
+- Custom SPA FRAMEWORK PURE VANILLA JS
 - landing page with some courses
 - courses page with search filter functionality, load more after 200 products then show pagination for the rest
 - course detail page with enroll functionality

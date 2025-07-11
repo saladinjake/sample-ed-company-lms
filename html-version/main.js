@@ -133,7 +133,6 @@ async function loadPage(route, params = {}, match = null) {
 
     app.innerHTML = '';
     for (const child of content.children) {
-      console.log(child, 'LLL');
       app.appendChild(child.cloneNode(true));
     }
 
@@ -143,7 +142,7 @@ async function loadPage(route, params = {}, match = null) {
 
       if (script.src) {
         if (loadedScriptSrcs.has(script.src)) {
-          console.log('');
+          return;
         }
         newScript.src = script.src;
         loadedScriptSrcs.add(script.src);

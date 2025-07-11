@@ -401,3 +401,9 @@ button[onclick] {
   @keyframes spin {
     to { transform: rotate(360deg); }
   }
+
+  button, [data-action]{
+    pointer-events:auto !important;
+    z-index:1000 !important;
+    position: relative
+  }
