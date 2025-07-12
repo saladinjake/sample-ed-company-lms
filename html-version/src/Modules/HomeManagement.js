@@ -2,7 +2,7 @@ import {
   seedMockDatabase,
   pickRandomSubset,
   getMockDatabaseCourses,
-} from './utils/init';
+} from '../Plugins/db/init';
 
 const courseTrack = document.getElementById('course-track');
 const courseCards = courseTrack.children;

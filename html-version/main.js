@@ -1,6 +1,6 @@
 import './public/css/index.css';
 import { routes } from './AppRoutes';
-import { globalMiddleware } from './src/js/utils/middlewares/middlewares';
+import { globalMiddleware } from './src/Plugins/utils/middlewares/middlewares';
 
 const DEFAULT_ROUTE = 'index';
 const app = document.getElementById('app');
