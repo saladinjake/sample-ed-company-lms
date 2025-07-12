@@ -1,210 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNI- CAST Elearning Company </title>
-    <link href="./css/index.css" rel="stylesheet" />
-    <link href="./css/auth.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-light text-md font-base text-primary">
-     <header class="bg-white border-b shadow-sm p-3 fixed z-10">
-    <!-- Top Row -->
-    <div
-      class="flex   justify-start md:justify-between  mx-auto  flex-col md:flex-row  md:items-center  gap-1 md:gap-3 ">
-
-      <!-- Social Icons -->
-      <div class=" gap-2 md:order-2 order-1 items-center mx-auto  hidden md:flex">
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-cart"></i></a>
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="border rounded-full p-2"><i class="fab fa-dribbble"></i></a>
-      </div>
-
-      <!-- Logo -->
-      <div class="text-center md:order-1 order-2 w-full sm:w-auto">
-        <h1 class="text-lg font-bold"><a href="./#index"></a>UNI<span class="text-warning">CAST</span></h1> </a></h1>
-        <p class="text-muted text-sm"><a href="./#index">E-LEARNING COMPANY</a></p>
-      </div>
-
-      <!-- Search -->
-      <div class="md:order-3 order-3 w-full w-auto mr-8">
-        <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
-          <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
-            id="course-search" />
-          <button type="submit" class="bg-muted text-white px-4"><i class="fas fa-search"></i></button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <div class="md:hidden mt-4">
-      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-        class="text-muted text-md flex items-center gap-2">
-        <i class="fas fa-bars"></i> Browse Categories
-
-
-      </button>
-    </div>
+<main id="home">
 
 
 
-    <!-- Nav Menu -->
-    <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
-      <ul class="flex justify-center gap-6 text-sm uppercase">
-        <!-- Browse Categories Button -->
-        <li><a href="#" class="text-primary text-muted font-semibold" onclick="toggleMegaMenu()"
-            class="px-4 py-2 bg-gray-800 text-white rounded inline-flex items-center gap-2">
-            ☰ Course Categories</a>
-        </li>
+  <!--Start here for body-->
+  <div class="container mx-auto bg-gray-50 p-10 mx-auto ">
+    <h2 class="text-2xl font-bold mb-6 mt-10">My Profile</h2>
 
+    <form id="profile-form" class="space-y-4 bg-white p-6 rounded-xl shadow mt-8">
+      <input type="text" name="name" class="input w-full mb-4" placeholder="Name" />
+      <input type="email" name="email" class="input w-full mb-4" placeholder="Email" disabled />
+      <select name="preference" class="input w-full mb-4">
+        <option value="video">Video-Based</option>
+        <option value="text">Text-Based</option>
+      </select>
+      <button type="submit" class="btn btn-primary w-full mb-4">Update Profile</button>
+    </form>
 
+    <hr class="my-8">
 
-        <li><a href="./#courses" class="text-primary text-muted font-semibold">Courses</a></li>
-        <li><a href="./#mycourses" class="text-black hover:text-primary">My Courses</a></li>
-        <li><a href="./#teams/business" class="text-black hover:text-primary">For Business</a></li>
-        <li><a href="./#cart" class="text-black hover:text-primary">Cart</a></li>
-     
-        <li><a href="./#login" class="text-black hover:text-primary">Login</a></li>
-        <li><a href="./#signup" class="text-black hover:text-primary">Signup</a></li>
-      </ul>
-    </nav>
-
-    <!-- Mega Menu -->
-   <!-- Mega Menu Panel -->
-<div id="megaMenu" class="fixed top-16 left-0 w-full z-50 hidden bg-white shadow-lg px-6 py-8">
-  <div class="max-w-6xl mx-auto">
-    <div class="mb-4">
-      <input type="text" oninput="filterCategories(this.value)" placeholder="Search categories..."
-        class="w-full mr-4 px-4 py-2 border rounded focus:outline-none focus:ring" />
-    </div>
-
-    <div id="categoryGroupsContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-sm">
-      <!-- Filled by JS -->
-    </div>
+    <h3 class="text-xl font-semibold mb-4">Change Password</h3>
+    <form id="password-form" class="space-y-4 bg-white p-6 rounded-xl shadow">
+      <input type="password" name="current" class="input w-full mb-4" placeholder="Current Password" />
+      <input type="password" name="newpass" class="input w-full mb-4" placeholder="New Password" />
+      <button type="submit" class="btn btn-primary w-full mb-4">Change Password</button>
+    </form>
   </div>
-</div>
-    <!-- Mobile Nav -->
-    <nav class="sm:hidden hidden mt-4 bg-black text-white text-sm uppercase" id="mobile-menu">
-      <!-- <div class="overlay absolute inset-0" style="background: rgba(255,255,255,0.5)"></div> -->
 
-      <a href="./#index" class="block py-2 border-b px-3 text-primary">Home</a>
-      <a href="./#courses" class="block py-2 border-b px-3">All Courses</a>
-      <a href="./#teams/business" class="block py-2 border-b px-3">For Business</a>
-      <a href="./#cart" class="block py-2 border-b px-3">Cart</a>
-     
-       <li><a href="./#login" class="block py-2 border-b px-3">Login</a></li>
-        <li><a href="./#signup" class="block py-2 border-b px-3">Signup</a></li>
-    </nav>
-  </header>
+
+</main>
 
 
 
-
-
-
-
-    <main id="home">
-
-
-
-        <!--Start here for body-->
-        <div class="container mx-auto bg-gray-50 p-10 mx-auto ">
-            <h2 class="text-2xl font-bold mb-6 mt-10">My Profile</h2>
-
-            <form id="profile-form" class="space-y-4 bg-white p-6 rounded-xl shadow mt-8">
-                <input type="text" name="name" class="input w-full mb-4" placeholder="Name" />
-                <input type="email" name="email" class="input w-full mb-4" placeholder="Email" disabled />
-                <select name="preference" class="input w-full mb-4">
-                    <option value="video">Video-Based</option>
-                    <option value="text">Text-Based</option>
-                </select>
-                <button type="submit" class="btn btn-primary w-full mb-4">Update Profile</button>
-            </form>
-
-            <hr class="my-8">
-
-            <h3 class="text-xl font-semibold mb-4">Change Password</h3>
-            <form id="password-form" class="space-y-4 bg-white p-6 rounded-xl shadow">
-                <input type="password" name="current" class="input w-full mb-4" placeholder="Current Password" />
-                <input type="password" name="newpass" class="input w-full mb-4" placeholder="New Password" />
-                <button type="submit" class="btn btn-primary w-full mb-4">Change Password</button>
-            </form>
-        </div>
-
-
-    </main>
-
-
-
-    <script src="./js/auth.js"></script>
-    <script>
-
-
-        const user = getCurrentUser();
-        const users = getUsers();
-        const current = users.find(u => u.email === user.email);
-
-        document.querySelector('[name="name"]').value = current.name;
-        document.querySelector('[name="email"]').value = current.email;
-        document.querySelector('[name="preference"]').value = current.preference || "video";
-
-        // Update profile
-        document.getElementById("profile-form").addEventListener("submit", e => {
-            e.preventDefault();
-            current.name = e.target.name.value;
-            current.preference = e.target.preference.value;
-            saveUsers(users);
-            //update preference
-            alert("Profile updated!");
-        });
-
-        // Change password
-        document.getElementById("password-form").addEventListener("submit", async e => {
-            e.preventDefault();
-            const currentHash = await hashPassword(e.target.current.value);
-            const newHash = await hashPassword(e.target.newpass.value);
-
-            if (currentHash !== current.password) {
-                alert("Current password is incorrect");
-                return;
-            }
-
-            current.password = newHash;
-            saveUsers(users);
-            alert("Password changed successfully!");
-        });
-
-
-        
-
-    const categories = Array.from({ length: 100 }, (_, i) => `Category ${i + 1}`);
-
-    function toggleMegaMenu() {
-      const menu = document.getElementById("megaMenu");
-      const isOpen = !menu.classList.contains("hidden");
-      menu.classList.toggle("hidden", isOpen);
-      if (!isOpen) populateCategories();
-    }
-
-    function populateCategories() {
-      const grid = document.getElementById("categoryGrid");
-      if (grid.children.length > 0) return; // Only populate once
-
-      const html = categories.map(cat => `
-    <div class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded cursor-pointer whitespace-nowrap">${cat}</div>
-  `).join("");
-
-      grid.innerHTML = html;
-    }
-
-
-    </script>
-
-</body>
-
-</html>

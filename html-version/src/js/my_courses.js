@@ -1,20 +1,4 @@
 
-  <main id="home">
-
-    <div class="min-h-screen bg-gray-50 p-6">
-      <div class="relative" style="margin-top:180px">
-        <h2 class="text-2xl font-bold mb-6 mt-8">My Courses</h2>
-        <div id="my-course-list" class="grid grid-cols-1  md:grid-cols-3 gap-6 p-4 "></div>
-      </div>
-
-    </div>
-  </main>
-
-  <script>
-
-
-
-
     const courseList = document.getElementById("my-course-list");
     const user = getCurrentUser();
     const allCourses = getMockDatabaseCourses(); // You can replace with real data
@@ -78,9 +62,3 @@
 
       grid.innerHTML = html;
     }
-
-  </script>
-
-</body>
-
-</html>

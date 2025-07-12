@@ -28,8 +28,21 @@ export const routes = [
     script: ['src/js/course_detail.js'],
     // middleware: () => confirm('see details'),
   },
+  {
+    path: 'cart',
+    view: 'src/views/students/cart.html',
+    script: ['src/js/cart.js'],
+    // middleware: () => confirm('see details'),
+  },
 
-  // auth routes
+  {
+    path: 'my_courses',
+    view: 'src/views/students/my_courses.html',
+    script: ['src/js/my_courses.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  // auth routes students
 
   {
     path: 'login',
@@ -60,22 +73,50 @@ export const routes = [
   },
 
   // dynamic mthd1
-  // {
-  //   path: /^user\/(\d+)$/,
-  //   view: 'views/user.html',
-  //   script: ['src/js/sample.js'],
-  //   middleware: (match, params) => {
-  //     if (!match || !match[1]) return false;
-  //     params.id = match[1];
-  //     return true;
-  //   },
-  // },
-  // // methd 2
-  // {
-  //   path: 'user/:id',
-  //   view: 'views/user.html',
-  //   script: ['src/js/sample.js'],
-  // },
+  {
+    path: /^profile\/(\d+)$/ || 'profile/:id',
+    view: 'src/views/students/profile.html',
+    script: ['src/js/sample.js'],
+    middleware: (match, params) => {
+      if (!match || !match[1]) return false;
+      params.id = match[1];
+      return true;
+    },
+  },
+
+  /** **************************************** */
+  /** * Instructors sections */
+  // auth routes instructor
+
+  {
+    path: 'instructors/login',
+    view: 'src/views/students/login.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  {
+    path: 'instructors/signup',
+    view: 'src/views/students/signup.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  {
+    path: 'instructors/forgot_password',
+    view: 'src/views/students/forgot_password.html',
+    script: ['src/js/login.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  {
+    path: 'instructors/reset_password',
+    view: 'src/views/students/reset_password.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  /** *************   ADMIN  *********** */
 
   // // admin
   // {
