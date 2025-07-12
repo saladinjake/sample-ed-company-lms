@@ -7,7 +7,7 @@ export const routes = [
   },
 
   {
-    path: 'index',
+    path: 'home',
     view: 'src/views/students/index.html',
     script: ['src/js/home.js'],
   },
@@ -48,7 +48,7 @@ export const routes = [
   {
     path: 'forgot_password',
     view: 'src/views/students/forgot_password.html',
-    script: ['src/js/auth.js'],
+    script: ['src/js/login.js'],
     // middleware: () => confirm('see details'),
   },
 
