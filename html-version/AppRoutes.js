@@ -16,7 +16,7 @@ export const routes = [
   {
     path: 'courses',
     view: 'src/Views/Students/courses.html',
-    script: ['Modules/CourseManagement/Courses.js'],
+    script: ['Modules/CourseManagement/CoursesManagement.js'],
     middleware: () => {
       console.log(' middleware ran');
       return true;
@@ -25,20 +25,20 @@ export const routes = [
   {
     path: 'course_detail/:id',
     view: 'src/Views/Students/course_detail.html',
-    script: ['Modules/CourseManagement/CourseDetail.js'],
+    script: ['Modules/CourseManagement/CourseDetailManagement.js'],
     // middleware: () => confirm('see details'),
   },
   {
     path: 'cart',
     view: 'src/Views/Students/cart.html',
-    script: ['Modules/CourseManagement/Cart.js'],
+    script: ['Modules/CourseManagement/CartManagement.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'my_courses',
     view: 'src/Views/Students/my_courses.html',
-    script: ['Modules/CourseManagement/MyCourses.js'],
+    script: ['Modules/CourseManagement/MyStudentCoursesManagement.js'],
     // middleware: () => confirm('see details'),
   },
 

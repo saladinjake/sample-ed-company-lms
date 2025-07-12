@@ -2,9 +2,7 @@ import {
   seedMockDatabase,
   pickRandomSubset,
   getMockDatabaseCourses,
-} from '../utils/init';
-
-import { getCurrentUser } from '../AuthManager/Auth';
+} from '../../Plugins/db/init';
 
 const allCourses = pickRandomSubset(getMockDatabaseCourses(), 450); // You can replace with real data
 const searchInput = document.getElementById('search-input');
