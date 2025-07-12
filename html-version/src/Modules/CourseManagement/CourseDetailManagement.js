@@ -10,7 +10,7 @@ import {
   seedMockDatabase,
   pickRandomSubset,
   getMockDatabaseCourses,
-} from './utils/init';
+} from '../utils/init';
 
 const currentCourse = localStorage.getItem('selected_course')
   ? JSON.parse(localStorage.getItem('selected_course'))

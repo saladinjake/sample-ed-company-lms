@@ -1,5 +1,5 @@
 import './public/css/index.css';
-import { routes } from './routes';
+import { routes } from './AppRoutes';
 import { globalMiddleware } from './src/js/utils/middlewares/middlewares';
 
 const DEFAULT_ROUTE = 'index';

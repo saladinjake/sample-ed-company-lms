@@ -1,5 +1,5 @@
-import { getCurrentUser, getUsers,saveUsers } from "./Auth/Auth";
-import { hashPassword } from "./Auth/Auth";
+import { getCurrentUser, getUsers,saveUsers } from "./Auth";
+import { hashPassword } from "./Auth";
 const user = getCurrentUser();
 const users = getUsers();
 const current = users.find(u => u.email === user.email);
