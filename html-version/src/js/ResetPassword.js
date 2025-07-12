@@ -1,4 +1,4 @@
-import { login,redirectAfterLogin } from "./auth";
+import { login,redirectAfterLogin } from "./Auth";
 export function init(params) {
     // load default db for demo from local storage
     const categories = Array.from({ length: 100 }, (_, i) => `Category ${i + 1}`);

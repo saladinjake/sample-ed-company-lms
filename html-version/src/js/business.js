@@ -19,3 +19,18 @@ function companyHasRoom() {
 
     return members < limits[plan];
 }
+
+
+
+
+export function init(params) {
+ 
+  requestAnimationFrame(() => {
+  });
+
+  //  action in html string will work like this
+  return {
+   companyHasRoom,
+   checkCompanySeatLimit
+  };
+}

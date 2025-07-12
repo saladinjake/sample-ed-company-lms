@@ -10,11 +10,12 @@ const loadedScriptSrcs = new Set();
 function bindActions(handlers = {}) {
   const elements = app.querySelectorAll('[data-action]');
   elements.forEach((el) => {
-    const { action } = el.dataset;
+    const { action, eventType = null } = el.dataset;
     const fn = handlers[action];
     if (typeof fn !== 'function') return;
 
-    el.addEventListener('click', (event) => {
+    el.addEventListener(eventType != null ? eventType : 'click', (event) => {
+      event.preventDefault();
       fn({ event, element: el, dataset: { ...el.dataset } });
     });
   });

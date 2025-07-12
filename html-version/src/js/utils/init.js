@@ -218,7 +218,7 @@ export function generateCurriculum(seed = 1) {
   ];
 
   const sectionCount = 2 + (seed % 3); // 2–4 sections
-  // eslint-disabled no-shadow
+ 
   return Array.from({ length: sectionCount }, (_, s) => ({
     title: `Section ${s + 1}`,
     collapsed: true,

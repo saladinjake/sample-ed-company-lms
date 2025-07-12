@@ -1,5 +1,5 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+const allCourses = JSON.parse(localStorage.getItem('created_courses')) || [];
 function addToCart(courseId) {
   try {
     const course = allCourses.find((c) => c.id == courseId);
@@ -24,7 +24,7 @@ function toggleCartModal(show) {
   }
 
   console.log(cartItems, '>>>>');
-  if (show) {
+  if (show.toString() == 'true') {
     document.getElementById('cart-modal').classList.remove('hidden');
   } else {
     document.getElementById('cart-modal').classList.add('hidden');
@@ -100,38 +100,44 @@ function clearCart() {
   toggleCartModal(true);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const savedTime = parseInt(localStorage.getItem('cart_saved_at') || '0');
-  const now = Date.now();
-  if (now - savedTime > 86400000) {
-    localStorage.removeItem('cart');
-    localStorage.removeItem('cart_saved_at');
-    cart = [];
-  }
-  renderCartItems();
-  saveCart();
-});
+export function init(params) {
+  // load default db for demo from local storage
+  const categories = Array.from({ length: 100 }, (_, i) => `Category ${i + 1}`);
 
-const categories = Array.from({ length: 100 }, (_, i) => `Category ${i + 1}`);
+  function populateCategories() {
+    const grid = document.getElementById('categoryGrid');
+    if (grid.children.length > 0) return; // Only populate once
 
-function toggleMegaMenu() {
-  const menu = document.getElementById('megaMenu');
-  const isOpen = !menu.classList.contains('hidden');
-  menu.classList.toggle('hidden', isOpen);
-  if (!isOpen) populateCategories();
-}
-
-function populateCategories() {
-  const grid = document.getElementById('categoryGrid');
-  if (grid.children.length > 0) return; // Only populate once
-
-  const html = categories
-    .map(
-      (cat) => `
+    const html = categories
+      .map(
+        (cat) => `
     <div class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded cursor-pointer whitespace-nowrap">${cat}</div>
   `,
-    )
-    .join('');
+      )
+      .join('');
 
-  grid.innerHTML = html;
+    grid.innerHTML = html;
+  }
+
+  requestAnimationFrame(() => {
+    const savedTime = parseInt(localStorage.getItem('cart_saved_at') || '0');
+    const now = Date.now();
+    if (now - savedTime > 86400000) {
+      localStorage.removeItem('cart');
+      localStorage.removeItem('cart_saved_at');
+      cart = [];
+    }
+    renderCartItems();
+    saveCart();
+  });
+
+  //  action in html string will work like this
+  return {
+    clearCart,
+    saveCart,
+    populateCategories,
+    addToCart: ({ dataset }) => addToCart(dataset.id),
+    toggleCartModal: ({ dataset }) => addToCart(dataset.show),
+    removeFromCart: ({ dataset }) => removeFromCart(dataset.title),
+  };
 }

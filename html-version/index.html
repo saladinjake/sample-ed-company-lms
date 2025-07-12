@@ -38,7 +38,7 @@
 
       <!-- Search -->
       <div class="md:order-3 order-3 w-full w-auto mr-8">
-        <span id="fas fa-shopping-cart"></span><i id="cart-count"></i>
+        <span id="fas fa-shopping-cart" data-action="toggleCartModal" data-show="true"></span><i id="cart-count"></i>
         <form class="flex  rounded-full overflow-hidden w-full sm:w-auto">
           <input class="input rounded-none border-0 bg-transparent px-3 w-full" placeholder="Search"
             id="course-search" />
@@ -63,7 +63,7 @@
     <nav class="border-t border-b border-border bg-white py-2 hidden  md:block ">
       <ul class="flex justify-center gap-6 text-sm uppercase">
         <!-- Browse Categories Button -->
-        <li><a href="#" class="text-primary text-muted font-semibold" onclick="toggleMegaMenu()"
+        <li><a href="#" class="text-primary text-muted font-semibold" data-action="toggleMegaMenu"
             class="px-4 py-2 bg-gray-800 text-white rounded inline-flex items-center gap-2">
             ☰ Course Categories</a>
         </li>
@@ -85,7 +85,7 @@
     <div id="megaMenu" class="fixed top-16 left-0 w-full z-50 hidden bg-white shadow-lg px-6 py-8">
       <div class="max-w-6xl mx-auto">
         <div class="mb-4">
-          <input type="text" oninput="filterCategories(this.value)" placeholder="Search categories..."
+          <input type="text" id="category-search" data-action="filterCategories" data-eventType="ïnput"   placeholder="Search categories..."
             class="w-full mr-4 px-4 py-2 border rounded focus:outline-none focus:ring" />
         </div>
 

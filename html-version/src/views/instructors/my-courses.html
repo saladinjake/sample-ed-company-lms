@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNI- CAST Elearning Company </title>
+    <link href="../css/index.css" rel="stylesheet" />
+    <link href="../css/auth.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light text-md font-base text-primary">
+    <header class="bg-white border-b shadow-sm p-3 fixed z-10">
+        <div class="flex justify-between ">
+            <div class="text-center ">
+                <h1 class="text-lg font-bold">UNI<span class="text-warning">CAST</span></h1>
+                <p class="text-muted text-sm">E-LEARNING COMPANY</p>
+            </div>
+            <!-- Trigger Button on Small Screens -->
+            <button class=" left-4 z-50  bg-blue-600 text-black rounded" onclick="toggleDrawer(true)">
+                📚 Browse Lessons
+            </button>
+        </div>
+    </header>
+
+
+
+
+
+
+
+    <main id="home">
+
+        <div class="min-h-screen flex bg-gray-50">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="w-64 bg-white shadow-xl p-4 transition-all duration-300"
+                style="margin-top:170px">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Dashboard</h2>
+                    <button onclick="toggleSidebar()" class="text-gray-500">✖</button>
+                </div>
+                <nav class="space-y-2">
+                    <a href="#new" class="block text-blue-600 font-semibold text-md mb-4">New Course</a>
+                    <a href="#list" class="block text-md mb-4">My Courses</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 p-6 w-100  " style="margin-top:180px">
+                <button onclick="toggleSidebar()" class="mb-4 md:hidden btn btn-outline">☰ Menu</button>
+
+                <div id="courseMetrics" class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6"></div>
+
+                <!-- Course List -->
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold"> My Created Courses</h2>
+
+                    <div id="myCoursesGrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        <!-- Courses will be injected here -->
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+
+
+    </main>

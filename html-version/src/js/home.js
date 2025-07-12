@@ -142,6 +142,80 @@ function loadCourses(reset = false) {
   page++;
 }
 
+const categoryGroups = {
+  Development: [
+    { name: 'Web Development', icon: 'fa fa-code' },
+    { name: 'Mobile Development', icon: 'fa fa-phone' },
+    { name: 'Game Development', icon: 'fa fa-controls' },
+    { name: 'Software Engineering', icon: 'fa fa-engine' },
+  ],
+  Design: [
+    { name: 'UI/UX Design', icon: 'fa fa-home' },
+    { name: 'Product Design', icon: 'fa fa-home' },
+    { name: 'Motion Graphics', icon: 'fa fa-home' },
+    { name: '3D Design', icon: 'fa fa-home' },
+  ],
+  Marketing: [
+    { name: 'Digital Marketing', icon: 'fa fa-home' },
+    { name: 'SEO', icon: '🔍' },
+    { name: 'Email Marketing', icon: 'fa fa-email' },
+    { name: 'Content Strategy', icon: 'fa fa-media' },
+  ],
+  Business: [
+    { name: 'Entrepreneurship', icon: 'fa fa-user' },
+    { name: 'Leadership', icon: 'fa fa-user' },
+    { name: 'Finance', icon: 'fa fa-money' },
+    { name: 'Project Management', icon: 'fa fa-portfolio' },
+  ],
+};
+
+export function toggleMegaMenu() {
+  const menu = document.getElementById('megaMenu');
+  const isOpen = !menu.classList.contains('hidden');
+  menu.classList.toggle('hidden', isOpen);
+  if (!isOpen) renderCategoryGroups();
+}
+
+function renderCategoryGroups(filter = '') {
+  const container = document.getElementById('categoryGroupsContainer');
+  container.innerHTML = '';
+
+  for (const [group, items] of Object.entries(categoryGroups)) {
+    const groupBlock = document.createElement('div');
+
+    const filtered = items.filter((cat) =>
+      cat.name.toLowerCase().includes(filter.toLowerCase()),
+    );
+    if (filtered.length === 0) continue;
+
+    groupBlock.innerHTML = `
+    <h3 class="font-semibold mb-2 text-gray-700">${group}</h3>
+    <ul class="space-y-1">
+      ${filtered
+        .map(
+          (cat) => `
+        <li class="category-pill flex items-center gap-2  hover:bg-gray-200 px-3  mb-3 py-2 rounded cursor-pointer">
+          <span class="text-lg ${cat?.icon}"></span>
+          <span>${cat.name}</span>
+        </li>
+      `,
+        )
+        .join('')}
+    </ul>
+  `;
+    container.appendChild(groupBlock);
+  }
+}
+
+export function filterCategories(text) {
+  renderCategoryGroups(text);
+}
+
+function toggleFaq(el) {
+  const answer = el.querySelector('.faq-answer');
+  answer.classList.toggle('hidden');
+}
+
 // MEGA MENU
 // HOME PAGE COMPONENT
 export function init(params) {
@@ -200,5 +274,10 @@ export function init(params) {
     },
     prevSlide: () => prevSlide(),
     nextSlide: () => nextSlide(),
+    toggleMegaMenu,
+    filterCategories: ({ event, dataset }) => {
+      return filterCategories(dataset.searchQuery);
+    },
+    toggleFaq: ({ event, element }) => toggleFaq(element),
   };
 }
