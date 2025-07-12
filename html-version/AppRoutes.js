@@ -139,6 +139,18 @@ export const routes = [
     script: ['src/js/AdminManagement/Login.js'],
   },
 
+   {
+    path: 'admin/my_courses',
+    view: 'src/Views/Admin/my_courses.html',
+    script: ['src/js/AdminManagement/MyCoursesManagement.js'],
+  },
+
+  {
+    path: 'admin/courses_pending_reviews',
+    view: 'src/Views/Admin/pending_courses.html',
+    script: ['src/js/AdminManagement/MyCoursesManagement.js'],
+  },
+
   // // last
   // {
   //   path: '*',
