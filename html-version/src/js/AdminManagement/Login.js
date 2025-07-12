@@ -1,4 +1,4 @@
-import { login } from "../Auth";
+import { login } from "../AuthManager/Auth";
 
 
 
