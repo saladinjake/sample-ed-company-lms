@@ -23,6 +23,10 @@ const isEnrolled = localStorage.getItem('is_enrolled') === 'true';
 
 const modules = currentCourse?.curriculum;
 
+const course = JSON.parse(localStorage.getItem('selected_course'));
+const enrollBtn = document.getElementById('enrollBtn');
+const enrollBtn2 = document.getElementById('enrollBtn2');
+
 function markWatched(sectionIndex, childIndex) {
   const key = `watched_${sectionIndex}_${childIndex}`;
   localStorage.setItem(key, 'true');
@@ -108,52 +112,6 @@ function openAuthPromptModal() {
 //     modules[index].collapsed = !modules[index].collapsed;
 //     renderModules();
 // }
-
-renderModules();
-
-const course = JSON.parse(localStorage.getItem('selected_course'));
-const enrollBtn = document.getElementById('enrollBtn');
-const enrollBtn2 = document.getElementById('enrollBtn2');
-
-if (hasEnrolled(course.id)) {
-  enrollBtn.textContent = 'You are already enrolled';
-  enrollBtn.disabled = true;
-
-  enrollBtn2.textContent = 'You are already enrolled';
-  enrollBtn2.disabled = true;
-} else {
-  enrollBtn.addEventListener('click', () => {
-    const result = enrollCourse(course.id);
-    if (result.error) {
-      openAuthPromptModal();
-      return alert(result.error);
-    }
-
-    alert('Enrollment successful!');
-    enrollBtn.textContent = 'You are now enrolled';
-    enrollBtn.disabled = true;
-
-    enrollBtn2.textContent = 'You are now enrolled';
-    enrollBtn2.disabled = true;
-    // renderCurriculum(course.curriculum, true); // reload as enrolled
-  });
-
-  enrollBtn2.addEventListener('click', () => {
-    const result = enrollCourse(course.id);
-    if (result.error) {
-      openAuthPromptModal();
-      return alert(result.error);
-    }
-
-    alert('Enrollment successful!');
-    enrollBtn.textContent = 'You are now enrolled';
-    enrollBtn.disabled = true;
-
-    enrollBtn2.textContent = 'You are now enrolled';
-    enrollBtn2.disabled = true;
-    // renderCurriculum(course.curriculum, true); // reload as enrolled
-  });
-}
 
 function playVideo(sectionIndex, childIndex) {
   const child = modules[sectionIndex].children[childIndex];
@@ -252,19 +210,6 @@ function saveCollapseState() {
   localStorage.setItem('collapsed_sections', JSON.stringify(state));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = JSON.parse(localStorage.getItem('collapsed_sections'));
-  if (Array.isArray(saved)) {
-    modules.forEach((m, i) => (m.collapsed = saved[i]));
-  }
-
-  // auto play
-  const last = JSON.parse(localStorage.getItem('last_watched_video'));
-  if (last) playVideo(last.sectionIndex, last.childIndex);
-
-  renderModules();
-});
-
 // toggle smallscreen drawer
 function toggleDrawer(open) {
   const drawer = document.getElementById('modules-drawer');
@@ -295,22 +240,86 @@ function populateCategories() {
   grid.innerHTML = html;
 }
 
-// auth login via modal if user is not login and clicks enroll btn
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = e.target.email.value;
-  const password = e.target.password.value;
+// HOME PAGE COMPONENT
+export function init(params) {
+  requestAnimationFrame(() => {
+    renderModules();
 
-  const result = await login(email, password);
-  if (result.error) {
-    alert(result.error);
-  } else {
-    alert('Login successful!');
-    const user = getCurrentUser();
-    user.enrolledCourses.push(currentCourse);
-    setCurrentUser({ ...user, enrolledCourses: [...user.enrolledCourses] });
-    closeAuthPromptModal();
+    if (hasEnrolled(course.id)) {
+      enrollBtn.textContent = 'You are already enrolled';
+      enrollBtn.disabled = true;
 
-    // redirectAfterLogin()
-  }
-});
+      enrollBtn2.textContent = 'You are already enrolled';
+      enrollBtn2.disabled = true;
+    } else {
+      enrollBtn.addEventListener('click', () => {
+        const result = enrollCourse(course.id);
+        if (result.error) {
+          openAuthPromptModal();
+          return alert(result.error);
+        }
+
+        alert('Enrollment successful!');
+        enrollBtn.textContent = 'You are now enrolled';
+        enrollBtn.disabled = true;
+
+        enrollBtn2.textContent = 'You are now enrolled';
+        enrollBtn2.disabled = true;
+        // renderCurriculum(course.curriculum, true); // reload as enrolled
+      });
+
+      enrollBtn2.addEventListener('click', () => {
+        const result = enrollCourse(course.id);
+        if (result.error) {
+          openAuthPromptModal();
+          return alert(result.error);
+        }
+
+        alert('Enrollment successful!');
+        enrollBtn.textContent = 'You are now enrolled';
+        enrollBtn.disabled = true;
+
+        enrollBtn2.textContent = 'You are now enrolled';
+        enrollBtn2.disabled = true;
+        // renderCurriculum(course.curriculum, true); // reload as enrolled
+      });
+    }
+
+    const saved = JSON.parse(localStorage.getItem('collapsed_sections'));
+    if (Array.isArray(saved)) {
+      modules.forEach((m, i) => (m.collapsed = saved[i]));
+    }
+
+    // auto play
+    const last = JSON.parse(localStorage.getItem('last_watched_video'));
+    if (last) playVideo(last.sectionIndex, last.childIndex);
+
+    renderModules();
+    // auth login via modal if user is not login and clicks enroll btn
+    document
+      .getElementById('login-form')
+      .addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        const result = await login(email, password);
+        if (result.error) {
+          alert(result.error);
+        } else {
+          alert('Login successful!');
+          const user = getCurrentUser();
+          user.enrolledCourses.push(currentCourse);
+          setCurrentUser({
+            ...user,
+            enrolledCourses: [...user.enrolledCourses],
+          });
+          closeAuthPromptModal();
+
+          // redirectAfterLogin()
+        }
+      });
+  });
+  //  action in html string will work like this
+  return {};
+}

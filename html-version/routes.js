@@ -29,6 +29,36 @@ export const routes = [
     // middleware: () => confirm('see details'),
   },
 
+  // auth routes
+
+  {
+    path: 'login',
+    view: 'src/views/students/login.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  {
+    path: 'signup',
+    view: 'src/views/students/signup.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  {
+    path: 'forgot_password',
+    view: 'src/views/students/forgot_password.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
+  {
+    path: 'reset_password',
+    view: 'src/views/students/reset_password.html',
+    script: ['src/js/auth.js'],
+    // middleware: () => confirm('see details'),
+  },
+
   // dynamic mthd1
   // {
   //   path: /^user\/(\d+)$/,
