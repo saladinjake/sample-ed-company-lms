@@ -1,7 +1,8 @@
-###🧪 MVP Frontend-Only E-Learning Platform
-A minimal, responsive frontend-only learning platform built with pure HTML, CSS (utility-first), and JavaScript.
+#🧪 MVP Frontend-Only E-Learning Platform
 
-Designed to simulate a real LMS, this MVP includes course browsing, learning modules, progress tracking, and offline resume functionality — all powered by localStorage.
+- A minimal, responsive frontend-only learning platform built with pure HTML, CSS (utility-first), and JavaScript.
+
+- Designed to simulate a real LMS, this MVP includes course browsing, learning modules, progress tracking, and offline resume functionality — all powered by localStorage.
 
 ### 🎯 Goals
 ✅ Mobile-first, responsive layout
