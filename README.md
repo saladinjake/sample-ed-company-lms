@@ -49,7 +49,8 @@ Lessons support:
 ## Routing
 
 - A developer friendly routing configuration
-  ````
+
+````
 export const routes = [
   // index or home
   {
@@ -136,8 +137,7 @@ export const routes = [
     },
   },
 
-  /** **************************************** */
-  /** * Instructors sections */
+ 
   // auth routes instructor
 
   {
@@ -182,9 +182,8 @@ export const routes = [
     // middleware: () => confirm('see details'),
   },
 
-  /** *************   ADMIN  *********** */
+ 
 
-  // // admin
   {
     path: 'admin/login',
     view: 'src/Views/Admin/login.html',
@@ -211,21 +210,7 @@ export const routes = [
   // },
 ];
 
-  ````
-
-### Framwork bootsrapper
-- In the main.js bootrap the mini framework
-````
-import './public/css/index.css';
-import { routes } from './AppRoutes';
-import { bootstrapContainers } from './src/bootstrap';
-
-const app = document.getElementById('app');
-
-bootstrapContainers(routes).runFramework(app);
-
-````
-````
+  
 const course = {
   title: "Frontend Bootcamp",
   curriculum: [
@@ -249,9 +234,7 @@ const course = {
 🧠 How Tracking Works
 Progress is stored in localStorage:
 
-json
-Copy
-Edit
+
 {
   "lastViewed": { "sectionIndex": 1, "subIndex": 2 },
   "modules": {
@@ -263,6 +246,24 @@ Edit
     ...
   }
 }
+
+
+
+
+
+
+### Framwork bootsrapper
+- In the main.js bootrap the mini framework
+  
+import './public/css/index.css';
+import { routes } from './AppRoutes';
+import { bootstrapContainers } from './src/bootstrap';
+
+const app = document.getElementById('app');
+
+bootstrapContainers(routes).runFramework(app);
+
+
 ````
 ###📱 Responsive Behavior
 - Sidebar collapses into dropdown on mobile
