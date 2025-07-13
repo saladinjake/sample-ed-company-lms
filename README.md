@@ -5,48 +5,46 @@
 - Designed to simulate a real LMS, this MVP includes course browsing, learning modules, progress tracking, and offline resume functionality — all powered by localStorage.
 
 ### 🎯 Goals
-✅ Mobile-first, responsive layout
-✅ Course Enrollment
-✅ Course Search + Detail
-✅ Cart + payment Paystack functionality
-✅ Video + HTML content per lesson
-✅ Progress tracking (video + slide completion)
-✅ Resume where you left off
-✅ Local-only: no backend, authentication via localstorage + data persistence
-✅ Readiness for expansion (Vue/Backend ready)
+- ✅ Mobile-first, responsive layout
+- ✅ Course Enrollment
+- ✅ Course Search + Detail
+- ✅ Cart + payment Paystack functionality
+- ✅ Video + HTML content per lesson
+- ✅ Progress tracking (video + slide completion)
+- ✅ Resume where you left off
+- ✅ Local-only: no backend, authentication via localstorage + data persistence
+- ✅ Readiness for expansion (Vue/Backend ready)
 
 
 ### 🚀 Features
 📚 Course Viewer
 Accordion-based curriculum with sections + lessons
 Lessons support:
-✅ Video (YouTube, Vimeo, MP4)
-✅ Slides (HTML content rendered as a slideshow)
-📈 Progress Tracking
+- ✅ Video (YouTube, Vimeo, MP4)
+- ✅ Slides (HTML content rendered as a slideshow)
+- 📈 Progress Tracking
 
 ### localStorage tracks:
-Video watched ✅
+- Video watched ✅
 
-Slides read ✅
-Resumes user at last-viewed lesson
-Section progress bars
+- Slides read ✅
+- Resumes user at last-viewed lesson
+- Section progress bars
 
 ###🔓 Quiz Unlock Logic
-Quiz available only when all lessons are complete
+- Quiz available only when all lessons are complete
+- Tracks user lesson-by-lesson progress
+- Slide & video completion both required to unlock
 
-Tracks user lesson-by-lesson progress
+- ✅ HTML5, CSS3 (custom utility-first style)
 
-Slide & video completion both required to unlock
+- ✅ Vanilla JavaScript (modular, reusable)
 
-✅ HTML5, CSS3 (custom utility-first style)
+- ✅ No extra frameworks just  -- vanilla js frameless util lib
 
-✅ Vanilla JavaScript (modular, reusable)
+- ✅ Fully offline-ready (all data in browser)
 
-✅ No extra frameworks just  -- vanilla js frameless util lib
-
-✅ Fully offline-ready (all data in browser)
-
-📘 Data Structure Example
+- 📘 Data Structure Example
 ````
 const course = {
   title: "Frontend Bootcamp",
@@ -87,13 +85,13 @@ Edit
 }
 ````
 ###📱 Responsive Behavior
-Sidebar collapses into dropdown on mobile
+- Sidebar collapses into dropdown on mobile
 
-Slideshow navigation is touch-friendly
+- Slideshow navigation is touch-friendly
 
-Accordion curriculum adapts to screen size
+- Accordion curriculum adapts to screen size
 
-Full-height layout for immersive learning
+- Full-height layout for immersive learning
 
 📌 How to Use
 1. clone the repo
