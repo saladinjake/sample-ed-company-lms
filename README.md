@@ -1,4 +1,4 @@
-#🧪 MVP Frontend-Only E-Learning Platform
+## MVP Frontend-Only E-Learning Platform
 
 - A minimal, responsive frontend-only learning platform built with pure HTML, CSS (utility-first), and JavaScript.
 
