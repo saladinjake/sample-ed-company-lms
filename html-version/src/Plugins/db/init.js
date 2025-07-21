@@ -231,3 +231,7 @@ export function generateCurriculum(seed = 1) {
     })),
   }));
 }
+
+export const getCourseById = (id) => {
+  return {};
+};

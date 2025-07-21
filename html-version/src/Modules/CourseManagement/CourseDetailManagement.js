@@ -4,7 +4,7 @@ import {
   setCurrentUser,
   enrollCourse,
   hasEnrolled,
-} from './Auth';
+} from '../AuthManager/Auth';
 
 import {
   seedMockDatabase,

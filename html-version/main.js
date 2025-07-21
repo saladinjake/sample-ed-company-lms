@@ -1,4 +1,4 @@
-import './public/css/index.css';
+// import './public/css/index.css?url';
 import { routes } from './AppRoutes';
 import { bootstrapContainers } from './src/bootstrap';
 

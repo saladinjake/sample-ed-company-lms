@@ -1,10 +1,13 @@
+import { getCourseById } from '../../Plugins/db/init';
 
 function renderMyCourses() {
-  const user = JSON.parse(localStorage.getItem("current_user"));
-  const all = JSON.parse(localStorage.getItem("created_courses") || "[]");
-  const myCourses = all.filter(c => c.ownerId === user.id);
+  const user = JSON.parse(localStorage.getItem('current_user'));
+  const all = JSON.parse(localStorage.getItem('created_courses') || '[]');
+  const myCourses = all.filter((c) => c.ownerId === user.id);
 
-  document.getElementById("myCoursesGrid").innerHTML = myCourses.map(c => `
+  document.getElementById('myCoursesGrid').innerHTML = myCourses
+    .map(
+      (c) => `
     <div class="border rounded p-4 bg-white space-y-2 shadow">
       <img src="${c.thumbnail}" class="w-full h-40 object-cover rounded" />
       <h3 class="font-semibold text-lg">${c.title}</h3>
@@ -22,67 +25,58 @@ function renderMyCourses() {
         <button onclick="expireCourse('${c.id}')" class="btn-sm bg-red-100 text-red-700">Expire</button>
       </div>
     </div>
-  `).join("");
+  `,
+    )
+    .join('');
 }
-
-
 
 function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("hidden");
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('hidden');
 }
-
 
 function renderCourseAnalytics(courseId) {
   const course = getCourseById(courseId);
 
-  document.getElementById("courseMetrics").innerHTML = `
+  document.getElementById('courseMetrics').innerHTML = `
     <div class="card">👁 Views<p>${course.views || 0}</p></div>
     <div class="card">Enrollments<p>${(course.enrollments || []).length}</p></div>
     <div class="card">Revenue<p>₦${course.revenue || 0}</p></div>
   `;
 }
 
-
-
 // todo should only be for admin
 
 function togglePublish(id) {
-  const all = JSON.parse(localStorage.getItem("created_courses") || "[]");
-  const course = all.find(c => c.id === id);
+  const all = JSON.parse(localStorage.getItem('created_courses') || '[]');
+  const course = all.find((c) => c.id === id);
   if (!course) return;
 
   course.published = !course.published;
-  localStorage.setItem("created_courses", JSON.stringify(all));
+  localStorage.setItem('created_courses', JSON.stringify(all));
   renderMyCourses();
 }
 
 function expireCourse(id) {
-  const all = JSON.parse(localStorage.getItem("created_courses") || "[]");
-  const course = all.find(c => c.id === id);
+  const all = JSON.parse(localStorage.getItem('created_courses') || '[]');
+  const course = all.find((c) => c.id === id);
   if (!course) return;
 
   course.expired = true;
-  localStorage.setItem("created_courses", JSON.stringify(all));
+  localStorage.setItem('created_courses', JSON.stringify(all));
   renderMyCourses();
 }
 
-
-
 export function init(params) {
-
   requestAnimationFrame(() => {
-
-    renderMyCourses()
-    renderCourseAnalytics()
-
-
+    renderMyCourses();
+    renderCourseAnalytics();
   });
 
   //  action in html string will work like this
   return {
     expireCourse: ({ dataset }) => expireCourse(dataset.id),
     togglePublish,
-    toggleSidebar
+    toggleSidebar,
   };
 }
