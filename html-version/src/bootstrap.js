@@ -2,6 +2,8 @@ import { routes } from '../AppRoutes';
 import { globalMiddleware } from './Plugins/utils/middlewares/middlewares';
 
 const modules = import.meta.glob('/src/Modules/**/*.js');
+// Load all HTML views as raw strings
+const views = import.meta.glob('/src/Views/**/*.html', { as: 'raw' });
 
 const DEFAULT_ROUTE = 'index';
 
@@ -126,7 +128,6 @@ function hideLoader() {
 }
 
 async function loadPage(app, route, params = {}, match = null) {
-  // showLoader();
   if (!(await globalMiddleware(route, params))) {
     app.innerHTML = `<p>Blocked by global middleware.</p>`;
     return;
@@ -138,16 +139,19 @@ async function loadPage(app, route, params = {}, match = null) {
   }
 
   try {
-    // app.classList.remove('fade-in');
-    const res = await fetch(route.view);
-    console.log(route.view, '>>>');
-    const htmlText = await res.text();
+    const viewPath = `/src/${route.view}`; // e.g. src/Views/Students/index.html
+    const viewLoader = views[viewPath];
+
+    if (!viewLoader) {
+      app.innerHTML = `<h2>View not found: ${route.view}</h2>`;
+      return;
+    }
+
+    const htmlText = await viewLoader();
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const content = doc.body;
-
-    console.log(doc);
 
     app.innerHTML = '';
     for (const child of content.children) {
@@ -159,23 +163,18 @@ async function loadPage(app, route, params = {}, match = null) {
       const newScript = document.createElement('script');
 
       if (script.src) {
-        if (loadedScriptSrcs.has(script.src)) {
-          return;
-        }
+        if (loadedScriptSrcs.has(script.src)) return;
         newScript.src = script.src;
         loadedScriptSrcs.add(script.src);
       } else {
         newScript.textContent = script.textContent;
       }
 
-      if (script.type) {
-        newScript.type = script.type;
-      }
+      if (script.type) newScript.type = script.type;
 
       document.body.appendChild(newScript);
     });
 
-    hideLoader();
     if (route.scripts) {
       for (const scriptPath of route.scripts) {
         await runScriptModule(scriptPath, params, app);
@@ -183,10 +182,6 @@ async function loadPage(app, route, params = {}, match = null) {
     } else if (route.script) {
       await runScriptModule(route.script, params, app);
     }
-
-    // Add transition
-    // requestAnimationFrame(() => app.classList.add('fade-in'));
-    // app.classList.remove('fade-in');
   } catch (err) {
     console.error(err);
     app.innerHTML = `<h2>Error loading ${route.view}</h2>`;

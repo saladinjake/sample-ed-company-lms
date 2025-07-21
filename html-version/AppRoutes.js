@@ -2,20 +2,20 @@ export const routes = [
   // index or home
   {
     path: 'index',
-    view: 'src/Views/Students/index.html',
+    view: 'Views/Students/index.html',
     script: ['HomeManagement.js'],
   },
 
   {
     path: 'home',
-    view: 'src/Views/Students/index.html',
+    view: 'Views/Students/index.html',
     script: ['HomeManagement.js'],
   },
 
   // course browsing
   {
     path: 'courses',
-    view: 'src/Views/Students/courses.html',
+    view: 'Views/Students/courses.html',
     script: ['CourseManagement/CoursesManagement.js'],
     middleware: () => {
       console.log(' middleware ran');
@@ -24,20 +24,20 @@ export const routes = [
   },
   {
     path: 'course_detail/:id',
-    view: 'src/Views/Students/course_detail.html',
+    view: 'Views/Students/course_detail.html',
     script: ['CourseManagement/CourseDetailManagement.js'],
     // middleware: () => confirm('see details'),
   },
   {
     path: 'cart',
-    view: 'src/Views/Students/cart.html',
+    view: 'Views/Students/cart.html',
     script: ['CourseManagement/CartManagement.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'my_courses',
-    view: 'src/Views/Students/my_courses.html',
+    view: 'Views/Students/my_courses.html',
     script: ['CourseManagement/MyStudentCoursesManagement.js'],
     // middleware: () => confirm('see details'),
   },
@@ -46,28 +46,28 @@ export const routes = [
 
   {
     path: 'login',
-    view: 'src/Views/Students/login.html',
+    view: 'Views/Students/login.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'signup',
-    view: 'src/Views/Students/signup.html',
+    view: 'Views/Students/signup.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'forgot_password',
-    view: 'src/Views/Students/forgot_password.html',
+    view: 'Views/Students/forgot_password.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'reset_password',
-    view: 'src/Views/Students/reset_password.html',
+    view: 'Views/Students/reset_password.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
@@ -75,7 +75,7 @@ export const routes = [
   // dynamic mthd1
   {
     path: /^profile\/(\d+)$/ || 'profile/:id',
-    view: 'src/Views/Students/profile.html',
+    view: 'Views/Students/profile.html',
     script: ['Profile.js'],
     middleware: (match, params) => {
       if (!match || !match[1]) return false;
@@ -90,42 +90,42 @@ export const routes = [
 
   {
     path: 'instructors/login',
-    view: 'src/Views/Students/login.html',
+    view: 'Views/Students/login.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'instructors/signup',
-    view: 'src/Views/Students/signup.html',
+    view: 'Views/Students/signup.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'instructors/forgot_password',
-    view: 'src/Views/Students/forgot_password.html',
+    view: 'Views/Students/forgot_password.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'instructors/reset_password',
-    view: 'src/Views/Students/reset_password.html',
+    view: 'Views/Students/reset_password.html',
     script: ['AuthManager/Auth.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'instructors/:id/my_courses',
-    view: 'src/Views/Instructors/my_courses.html',
+    view: 'Views/Instructors/my_courses.html',
     script: ['InstructorsManagement/MyCourses.js'],
     // middleware: () => confirm('see details'),
   },
 
   {
     path: 'instructors',
-    view: 'src/Views/Instructors/dashboard.html',
+    view: 'Views/Instructors/dashboard.html',
     script: ['InstructorsManagement/Dashbaord.js'],
     // middleware: () => confirm('see details'),
   },
@@ -135,19 +135,19 @@ export const routes = [
   // // admin
   {
     path: 'admin/login',
-    view: 'src/Views/Admin/login.html',
+    view: 'Views/Admin/login.html',
     script: ['AdminManagement/Login.js'],
   },
 
   {
     path: 'admin/my_courses',
-    view: 'src/Views/Admin/my_courses.html',
+    view: 'Views/Admin/my_courses.html',
     script: ['AdminManagement/MyCoursesManagement.js'],
   },
 
   {
     path: 'admin/courses_pending_reviews',
-    view: 'src/Views/Admin/pending_courses.html',
+    view: 'Views/Admin/pending_courses.html',
     script: ['AdminManagement/MyCoursesManagement.js'],
   },
 
