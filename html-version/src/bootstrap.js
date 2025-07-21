@@ -126,7 +126,7 @@ function hideLoader() {
 }
 
 async function loadPage(app, route, params = {}, match = null) {
-  showLoader();
+  // showLoader();
   if (!(await globalMiddleware(route, params))) {
     app.innerHTML = `<p>Blocked by global middleware.</p>`;
     return;
@@ -175,6 +175,7 @@ async function loadPage(app, route, params = {}, match = null) {
       document.body.appendChild(newScript);
     });
 
+    hideLoader();
     if (route.scripts) {
       for (const scriptPath of route.scripts) {
         await runScriptModule(scriptPath, params, app);
@@ -186,7 +187,6 @@ async function loadPage(app, route, params = {}, match = null) {
     // Add transition
     // requestAnimationFrame(() => app.classList.add('fade-in'));
     // app.classList.remove('fade-in');
-    hideLoader();
   } catch (err) {
     console.error(err);
     app.innerHTML = `<h2>Error loading ${route.view}</h2>`;
